@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MOSFET Academy — Theory & Simulator</title>
+
+  <!-- SEO -->
+  <meta name="description" content="A complete, interactive MOSFET learning hub: structured theory, beautifully illustrated diagrams, and a fully working nMOS/pMOS simulator with real-time I–V curves." />
+  <meta name="keywords" content="MOSFET, nMOS, pMOS, Enhancement, Depletion, Id Vds, Id Vgs, transistor, electronics, simulator, IV curves" />
+  <link rel="canonical" href="https://electronicsbyamitkr26.blogspot.com/" />
+  <meta property="og:title" content="MOSFET Academy — Theory & Simulator" />
+  <meta property="og:description" content="Everything you need to learn MOSFETs in one place. Start with theory, then launch the full-screen simulator." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://electronicsbyamitkr26.blogspot.com/" />
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%2313262f'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='64' font-family='Segoe UI, Roboto'%3EMOSFET Academy%3C/text%3E%3C/svg%3E" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon (embedded) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect rx='12' ry='12' width='64' height='64' fill='%2319a1a1'/%3E%3Cg fill='white'%3E%3Crect x='14' y='18' width='36' height='8' rx='3'/%3E%3Crect x='14' y='38' width='36' height='8' rx='3'/%3E%3Ccircle cx='14' cy='32' r='4'/%3E%3Ccircle cx='50' cy='32' r='4'/%3E%3C/g%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root{
+      --bg: #f7fafc;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --brand: #0ea5e9;
+      --brand-2: #22c55e;
+      --ring: #93c5fd;
+      --chip: #e2e8f0;
+      --good: #16a34a;
+      --bad: #dc2626;
+    }
+    [data-theme="dark"]{
+      --bg:#0b1220;
+      --card:#0f172a;
+      --ink:#e2e8f0;
+      --muted:#94a3b8;
+      --brand:#38bdf8;
+      --brand-2:#34d399;
+      --ring:#38bdf8;
+      --chip:#1f2937;
+      --good:#22c55e;
+      --bad:#ef4444;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.5;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1200px;margin:0 auto;padding:24px}
+    header.site{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: saturate(1.2) blur(8px);
+      background: color-mix(in lab, var(--bg) 80%, transparent);
+      border-bottom:1px solid color-mix(in lab, var(--ink) 10%, transparent);
+    }
+    .nav{
+      display:flex;align-items:center;gap:16px;justify-content:space-between;
+      padding:12px 24px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;font-weight:800;font-size:18px;
+    }
+    .brand .logo{
+      width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      display:grid;place-items:center;color:white;font-weight:800;
+      box-shadow:0 6px 18px color-mix(in srgb, var(--brand) 40%, transparent);
+    }
+    .nav-actions{display:flex;gap:8px;align-items:center}
+    .btn{
+      border:1px solid color-mix(in lab, var(--ink) 10%, transparent);
+      background:var(--card);
+      color:var(--ink);
+      padding:10px 14px;border-radius:12px;cursor:pointer;
+      display:inline-flex;gap:8px;align-items:center;
+      transition:.2s ease;
+    }
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:white;border:none;box-shadow:0 6px 18px color-mix(in srgb, var(--brand) 40%, transparent)}
+    .btn.ghost{background:transparent}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(0,0,0,.08)}
+    .btn:focus{outline:3px solid var(--ring);outline-offset:2px}
+
+    .hero{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;
+      padding:36px 24px;
+    }
+    .hero .panel{
+      background:var(--card);border:1px solid color-mix(in lab, var(--ink) 10%, transparent);
+      border-radius:18px;padding:20px;
+      box-shadow:0 6px 16px rgba(0,0,0,.06);
+    }
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px}
+    .chip{background:var(--chip);color:var(--muted);padding:6px 10px;border-radius:999px;font-size:12px}
+    .callout{
+      padding:12px 14px;border-radius:12px;background:color-mix(in lab, var(--brand) 12%, var(--card));
+      border:1px dashed color-mix(in lab, var(--brand) 40%, transparent);
+      margin-top:12px;color:var(--muted)
+    }
+    .grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+    }
+    .card{
+      background:var(--card);border:1px solid color-mix(in lab, var(--ink) 10%, transparent);
+      border-radius:16px;padding:18px;box-shadow:0 4px 10px rgba(0,0,0,.05)
+    }
+    h1{font-size:36px;margin:8px 0 6px}
+    h2{font-size:26px;margin:24px 0 12px}
+    h3{font-size:20px;margin:18px 0 8px}
+    p{color:var(--muted)}
+    .toc{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .toc a{display:block;padding:10px 12px;background:var(--chip);border-radius:10px;color:var(--ink);font-weight:600;border:1px solid color-mix(in lab, var(--ink) 10%, transparent)}
+    .toc a:hover{background:color-mix(in lab, var(--chip) 60%, var(--card))}
+
+    /* Theory & Simulator views */
+    #theoryPage{display:block}
+    #simPage{display:none}
+    .full-bleed{width:100%;max-width:none;margin:0;padding:0}
+    .theory-section{background:var(--card);border:1px solid color-mix(in lab, var(--ink) 10%, transparent);border-radius:18px;padding:20px;margin:16px 0}
+    .theory-section img{max-width:100%;height:auto;border-radius:12px;background:white;padding:8px;border:1px solid #e5e7eb}
+    .svg-wrap{background:var(--card);border-radius:14px;border:1px solid color-mix(in lab, var(--ink) 10%, transparent);padding:10px}
+
+    /* Simulator */
+    .sim-shell{height:100vh;display:grid;grid-template-rows:auto 1fr}
+    .sim-header{
+      display:flex;gap:12px;align-items:center;justify-content:space-between;
+      padding:10px 16px;background:var(--card);border-bottom:1px solid color-mix(in lab, var(--ink) 12%, transparent)
+    }
+    .sim-main{display:grid;grid-template-columns:420px 1fr;gap:14px;padding:14px;overflow:hidden}
+    .sim-left{display:flex;flex-direction:column;gap:14px;overflow:auto}
+    .sim-right{display:grid;grid-template-rows:1fr 1fr;gap:14px;overflow:hidden}
+    .panel{background:var(--card);border:1px solid color-mix(in lab, var(--ink) 10%, transparent);border-radius:16px;padding:14px;overflow:hidden}
+    .panel h3{margin:0 0 10px}
+    .ctrl{display:grid;grid-template-columns:120px 1fr 80px;gap:8px;align-items:center;margin-bottom:10px}
+    .ctrl input[type="range"]{width:100%}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    .tabbar{display:flex;gap:6px;flex-wrap:wrap}
+    .tabbar .btn{padding:8px 10px}
+    .badge{padding:4px 8px;border-radius:8px;background:var(--chip);font-size:12px}
+
+    canvas{width:100% !important;height:100% !important}
+
+    footer{
+      margin-top:40px;padding:24px;background:var(--card);
+      border-top:1px solid color-mix(in lab, var(--ink) 10%, transparent);
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .sim-main{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+      .sim-right{grid-template-rows:420px 420px}
+    }
+    @media (max-width: 640px){
+      .toc{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .ctrl{grid-template-columns:1fr 1fr;gap:6px}
+      .ctrl label{grid-column:1/span 2}
+      .sim-right{grid-template-rows:360px 360px}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"MOSFET Academy",
+    "url":"https://electronicsbyamitkr26.blogspot.com/",
+    "description":"Theory-first MOSFET learning site with an interactive simulator for nMOS and pMOS devices.",
+    "potentialAction": {
+      "@type":"SearchAction",
+      "target":"https://electronicsbyamitkr26.blogspot.com/?q={search_term_string}",
+      "query-input":"required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body data-theme="light">
+  <header class="site">
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">μF</div>
+        <span>MOSFET Academy</span>
+        <span class="badge" id="modeBadge">Theory First</span>
+      </div>
+      <div class="nav-actions">
+        <button class="btn ghost" id="themeToggle" aria-label="Toggle theme">🌗 Theme</button>
+        <a class="btn" href="#toc">📚 Contents</a>
+        <button class="btn primary" id="startSimBtn">🧪 Launch Simulator</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- THEORY PAGE -->
+  <main id="theoryPage">
+    <section class="container hero">
+      <div class="panel">
+        <h1>What is a <span style="color:var(--brand)">MOSFET</span>?</h1>
+        <p>A MOSFET (Metal Oxide Semiconductor Field Effect Transistor) is a voltage-controlled semiconductor device used for switching and amplification. This site gives you everything: <strong>complete theory</strong>, <strong>clear diagrams</strong>, and a <strong>live simulator</strong>. Sabse pehle theory dekho; fir simulator ko full screen me chalao.</p>
+        <div class="chips">
+          <span class="chip">nMOS / pMOS</span>
+          <span class="chip">Enhancement &amp; Depletion</span>
+          <span class="chip">Cutoff / Linear / Saturation</span>
+          <span class="chip">I–V Curves</span>
+          <span class="chip">SVG Diagrams</span>
+          <span class="chip">Responsive UI</span>
+        </div>
+        <div class="row">
+          <a class="btn" href="#mosfet-intro">Start Reading</a>
+          <button class="btn primary" id="startSimBtn2">Launch Simulator</button>
+        </div>
+        <div class="callout">Tip: The images you shared are transparent GIFs. We’ve wrapped them in white panels so they look great in both themes.</div>
+      </div>
+      <div class="panel svg-wrap" aria-label="MOSFET block diagram (SVG)">
+        <!-- Simple SVG MOSFET diagram -->
+        <svg viewBox="0 0 600 360" role="img" aria-labelledby="svgTitle svgDesc">
+          <title id="svgTitle">MOSFET Concept Diagram</title>
+          <desc id="svgDesc">Gate over oxide controlling a channel between source and drain.</desc>
+          <defs>
+            <linearGradient id="grad1" x1="0" x2="1">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="100%" stop-color="#34d399"/>
+            </linearGradient>
+          </defs>
+          <rect x="10" y="10" width="580" height="340" rx="16" fill="white" stroke="#e5e7eb"/>
+          <!-- Source & Drain blocks -->
+          <rect x="60" y="150" width="80" height="60" rx="8" fill="#e2e8f0" stroke="#cbd5e1"/>
+          <text x="100" y="145" text-anchor="middle" fill="#334155" font-size="14">Source</text>
+          <rect x="460" y="150" width="80" height="60" rx="8" fill="#e2e8f0" stroke="#cbd5e1"/>
+          <text x="500" y="145" text-anchor="middle" fill="#334155" font-size="14">Drain</text>
+          <!-- Channel -->
+          <rect x="160" y="168" width="280" height="24" rx="12" fill="url(#grad1)" opacity="0.7"/>
+          <!-- Gate -->
+          <rect x="260" y="90" width="140" height="18" rx="6" fill="#94a3b8"/>
+          <text x="330" y="85" text-anchor="middle" fill="#334155" font-size="14">Gate (over Oxide)</text>
+          <!-- Gate connection -->
+          <line x1="330" y1="90" x2="330" y2="140" stroke="#94a3b8" stroke-width="4"/>
+          <circle cx="330" cy="140" r="8" fill="#94a3b8"/>
+          <!-- Arrows -->
+          <polygon points="448,180 460,174 460,186" fill="#22c55e"/>
+          <polygon points="152,180 140,174 140,186" fill="#22c55e"/>
+          <text x="300" y="210" fill="#334155" font-size="13" text-anchor="middle">Channel Conductivity ↑ with V<tspan baseline-shift="sub">GS</tspan></text>
+        </svg>
+      </div>
+    </section>
+
+    <section id="toc" class="container theory-section">
+      <h2>📚 Table of Contents</h2>
+      <div class="toc">
+        <a href="#mosfet-intro">MOSFET Basics</a>
+        <a href="#modes">Enhancement vs Depletion</a>
+        <a href="#types">n-Channel &amp; p-Channel</a>
+        <a href="#regions">Regions of Operation</a>
+        <a href="#switching">MOSFET as a Switch</a>
+        <a href="#amplifier">MOSFET as an Amplifier</a>
+        <a href="#selection">Choosing a MOSFET</a>
+        <a href="#apps">Applications &amp; Examples</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </section>
+
+    <!-- THEORETICAL CONTENT (condensed but comprehensive, based on user's provided text) -->
+    <section id="mosfet-intro" class="container theory-section">
+      <h2>MOSFET Basics — Structure &amp; Working</h2>
+      <p>MOSFET is a four-terminal device: Gate (G), Drain (D), Source (S), and Body (B). In discrete devices the body is typically tied to source, so it behaves as a three-terminal component. The gate is insulated from the channel by a thin oxide (SiO₂), which gives MOSFETs extremely high input impedance. Applying a voltage between gate and source (V<sub>GS</sub>) modulates the channel width and hence the drain current (I<sub>D</sub>).</p>
+      <ul>
+        <li><strong>Gate over Oxide:</strong> Think of it like a capacitor plate that pulls carriers into (or repels from) the surface.</li>
+        <li><strong>Channel:</strong> n-type for nMOS (electron conduction) and p-type for pMOS (hole conduction).</li>
+        <li><strong>Terminals:</strong> Current enters at drain, exits at source (by convention); gate draws negligible DC current.</li>
+      </ul>
+      <div class="grid">
+        <div class="card">
+          <h3>MOS Capacitor at Heart</h3>
+          <p>Electric field from the gate voltage inverts the surface under oxide, forming a conductive channel when |V<sub>GS</sub>| exceeds threshold V<sub>TH</sub>.</p>
+        </div>
+        <div class="card">
+          <h3>Device View</h3>
+          <img alt="MOSFET structure gif" src="https://www.electronics-tutorials.ws/wp-content/uploads/2024/02/mosfet-structure.gif" />
+        </div>
+        <div class="card">
+          <h3>Symbols</h3>
+          <img alt="MOSFET symbols" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/transistor-tran20a.gif" />
+        </div>
+      </div>
+    </section>
+
+    <section id="modes" class="container theory-section">
+      <h2>Depletion vs Enhancement Modes</h2>
+      <p><strong>Depletion-mode:</strong> Channel is naturally present at V<sub>GS</sub>=0; you apply a gate bias to <em>deplete</em> carriers and pinch off conduction. Equivalent to a “normally-closed” switch.</p>
+      <p><strong>Enhancement-mode:</strong> No channel at V<sub>GS</sub>=0; you <em>enhance</em> the channel by applying gate bias. The most common power MOSFETs are nMOS enhancement devices (normally-open switch).</p>
+      <div class="grid">
+        <div class="card"><img alt="Depletion P" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/transistor-tran57.gif" /></div>
+        <div class="card"><img alt="Enhancement N" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/transistor-tran58.gif" /></div>
+        <div class="card"><img alt="Regions" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/transistor-tran56.gif" /></div>
+      </div>
+    </section>
+
+    <section id="types" class="container theory-section">
+      <h2>n-Channel &amp; p-Channel MOSFETs</h2>
+      <p>nMOS conducts via electrons (higher mobility → lower R<sub>DS(on)</sub>), typically used on the low-side. pMOS conducts via holes, commonly used for high-side switching at lower currents/voltages or in CMOS logic as the complementary pull-up device.</p>
+      <div class="grid">
+        <div class="card"><img alt="N channel" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/transistor-tran59.gif" /></div>
+        <div class="card"><img alt="P channel" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/transistor-tran60.gif" /></div>
+        <div class="card"><img alt="MOSFET block" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/transistor-tran24.gif" /></div>
+      </div>
+    </section>
+
+    <section id="regions" class="container theory-section">
+      <h2>Regions of Operation</h2>
+      <ol>
+        <li><strong>Cutoff:</strong> |V<sub>GS</sub>| &lt; V<sub>TH</sub> → no conduction (I<sub>D</sub>≈0).</li>
+        <li><strong>Linear/Ohmic:</strong> Channel formed; V<sub>DS</sub> &lt; (V<sub>GS</sub>−V<sub>TH</sub>) → behaves like a voltage-controlled resistor.</li>
+        <li><strong>Saturation (pinch-off):</strong> V<sub>DS</sub> ≥ (V<sub>GS</sub>−V<sub>TH</sub>). Ideal square-law: I<sub>D</sub>=½k(V<sub>GS</sub>−V<sub>TH</sub>)²(1+λV<sub>DS</sub>).</li>
+      </ol>
+      <img alt="I-V regions" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/transistor-tran23.gif" />
+    </section>
+
+    <section id="switching" class="container theory-section">
+      <h2>MOSFET as a Switch</h2>
+      <p>Enhancement nMOS works great as a low-side switch with logic-level gates. For inductive loads use a flyback diode. Efficiency depends heavily on R<sub>DS(on)</sub>. Gate charge (Q<sub>G</sub>) and driver strength set switching speed and losses.</p>
+      <div class="grid">
+        <div class="card"><img alt="Switch example" src="https://www.electronics-tutorials.ws/wp-content/uploads/2013/09/tran57.gif" /></div>
+        <div class="card"><img alt="Motor control" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/transistor-tran36.gif" /></div>
+        <div class="card"><img alt="Complementary pair" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/transistor-tran35.gif" /></div>
+      </div>
+      <div class="callout">Protection: add flywheel diodes, RC snubbers, or TVS for inductive loads. Consider SOA and thermal limits.</div>
+    </section>
+
+    <section id="amplifier" class="container theory-section">
+      <h2>Common-Source Amplifier</h2>
+      <p>A biased nMOS in the linear region acts as a transconductor. Small-signal gain ≈ g<sub>m</sub>·R<sub>D</sub>, with g<sub>m</sub>=k(V<sub>GS</sub>−V<sub>TH</sub>). High input impedance, phase inversion.</p>
+      <img alt="Amplifier" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/transistor-tran37.gif" />
+    </section>
+
+    <section id="selection" class="container theory-section">
+      <h2>How to Choose a MOSFET</h2>
+      <ul>
+        <li>Polarity (n/p), enhancement vs depletion.</li>
+        <li>V<sub>DS</sub> rating, I<sub>D</sub>, R<sub>DS(on)</sub> at your V<sub>GS</sub>.</li>
+        <li>Gate charge (Q<sub>G</sub>), rise/fall times &amp; driver.</li>
+        <li>Package thermal θ<sub>JA</sub>, θ<sub>JC</sub>, mounting &amp; heatsink.</li>
+        <li>Body diode performance for synchronous rectification.</li>
+      </ul>
+    </section>
+
+    <section id="apps" class="container theory-section">
+      <h2>Applications</h2>
+      <p>Regulators, motor drivers, LED dimmers, class-D amplifiers, choppers, synchronous buck/boost, solid-state relays, level-shifting, analog switches, CMOS logic, and more.</p>
+    </section>
+
+    <section id="faq" class="container theory-section">
+      <h2>FAQ</h2>
+      <details><summary>Why MOSFET over BJT?</summary><p>Voltage drive, lower static losses, easy paralleling (positive tempco of R<sub>DS(on)</sub>), higher input impedance.</p></details>
+      <details><summary>What is λ in the model?</summary><p>Channel-length modulation factor. It adds a slight slope to the I–V in saturation: I<sub>D</sub>··(1+λV<sub>DS</sub>).</p></details>
+      <details><summary>Can I simulate body effect?</summary><p>Yes. In this simulator you can add a simple γ (gamma) and body-bias to shift V<sub>TH</sub> ≈ V<sub>TH0</sub> + γ(√|V<sub>SB</sub>+2ϕ<sub>F</sub>| − √|2ϕ<sub>F</sub>|).</p></details>
+    </section>
+
+    <footer>
+      <div class="container">
+        <strong>MOSFET Academy</strong> · Built for students &amp; makers — learn by reading, then explore with the simulator.
+        <div class="row" style="margin-top:8px">
+          <button class="btn primary" id="startSimBtn3">Launch Simulator</button>
+          <button class="btn" id="themeToggle2">Toggle Theme</button>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- SIMULATOR PAGE (hidden by default) -->
+  <section id="simPage" class="full-bleed">
+    <div class="sim-shell">
+      <div class="sim-header">
+        <div class="row">
+          <button class="btn" id="backToTheory">← Back to Theory</button>
+          <span class="badge">Full Screen Simulator</span>
+        </div>
+        <div class="row">
+          <button class="btn ghost" id="resetSim">Reset</button>
+          <button class="btn" id="exportCsv">Export CSV</button>
+          <button class="btn" id="themeToggle3">🌗</button>
+        </div>
+      </div>
+
+      <div class="sim-main">
+        <aside class="sim-left">
+          <div class="panel">
+            <h3>Device &amp; Bias</h3>
+            <div class="row">
+              <label class="btn"><input type="radio" name="polarity" value="n" checked /> nMOS</label>
+              <label class="btn"><input type="radio" name="polarity" value="p" /> pMOS</label>
+              <label class="btn"><input type="radio" name="mode" value="enh" checked /> Enhancement</label>
+              <label class="btn"><input type="radio" name="mode" value="dep" /> Depletion</label>
+            </div>
+            <div class="ctrl"><label for="VGS">V<sub>GS</sub> (V)</label><input id="VGS" type="range" min="-10" max="10" step="0.01" value="3.0"><output id="VGS_o">3.00</output></div>
+            <div class="ctrl"><label for="VDS">V<sub>DS</sub> (V)</label><input id="VDS" type="range" min="0" max="20" step="0.01" value="5.0"><output id="VDS_o">5.00</output></div>
+            <div class="ctrl"><label for="VTH">V<sub>TH0</sub> (V)</label><input id="VTH" type="range" min="0" max="5" step="0.01" value="2.0"><output id="VTH_o">2.00</output></div>
+            <div class="ctrl"><label for="K">k (A/V²)</label><input id="K" type="range" min="0.0001" max="0.1" step="0.0001" value="0.02"><output id="K_o">0.0200</output></div>
+            <div class="ctrl"><label for="LAMBDA">λ (1/V)</label><input id="LAMBDA" type="range" min="0.0" max="0.05" step="0.0005" value="0.01"><output id="LAMBDA_o">0.0100</output></div>
+            <div class="ctrl"><label for="GAMMA">γ (body)</label><input id="GAMMA" type="range" min="0.0" max="1.0" step="0.01" value="0.2"><output id="GAMMA_o">0.20</output></div>
+            <div class="ctrl"><label for="VSB">V<sub>SB</sub> (V)</label><input id="VSB" type="range" min="-5" max="5" step="0.01" value="0.0"><output id="VSB_o">0.00</output></div>
+            <div class="row">
+              <span class="badge">I<sub>D</sub>: <span id="ID_read">0.000 A</span></span>
+              <span class="badge">Region: <span id="region_read">Cutoff</span></span>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Circuit (interactive SVG)</h3>
+            <div class="svg-wrap" id="circuitHost">
+              <svg viewBox="0 0 600 360" id="circuitSVG" role="img" aria-label="MOSFET circuit">
+                <defs>
+                  <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="c"/><feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                </defs>
+                <!-- Wires -->
+                <line x1="100" y1="300" x2="500" y2="300" stroke="#94a3b8" stroke-width="4"/>
+                <line x1="500" y1="300" x2="500" y2="120" stroke="#94a3b8" stroke-width="4"/>
+                <line x1="100" y1="300" x2="100" y2="180" stroke="#94a3b8" stroke-width="4"/>
+
+                <!-- MOSFET body -->
+                <rect id="bodyRect" x="260" y="150" width="80" height="80" rx="10" fill="#0ea5e9" opacity="0.15" stroke="#38bdf8"/>
+                <!-- Channel -->
+                <rect id="channel" x="260" y="186" width="80" height="8" rx="4" fill="#22c55e" filter="url(#glow)"/>
+                <!-- Gate -->
+                <rect id="gate" x="220" y="160" width="6" height="60" fill="#64748b"/>
+                <line x1="180" y1="190" x2="220" y2="190" stroke="#64748b" stroke-width="4"/>
+                <circle cx="180" cy="190" r="8" fill="#64748b"/>
+
+                <!-- Drain -->
+                <circle id="drain" cx="500" cy="120" r="10" fill="#0ea5e9">
+                  <title>Drain: Collects carriers; VDS is measured wrt Source.</title>
+                </circle>
+                <text x="514" y="124" fill="#334155" font-size="12">Drain</text>
+                <!-- Source -->
+                <circle id="source" cx="100" cy="180" r="10" fill="#0ea5e9">
+                  <title>Source: Where carriers originate; also body tied here for discrete MOSFETs.</title>
+                </circle>
+                <text x="60" y="184" fill="#334155" font-size="12">Source</text>
+                <!-- Gate label -->
+                <text x="160" y="176" fill="#334155" font-size="12">Gate</text>
+
+                <!-- Supply & load -->
+                <rect x="480" y="60" width="40" height="26" rx="6" fill="#fde68a" stroke="#f59e0b"/>
+                <text x="500" y="78" text-anchor="middle" font-size="12" fill="#92400e">VDD</text>
+                <rect x="480" y="90" width="40" height="20" rx="4" fill="#e2e8f0" stroke="#94a3b8"/>
+                <text x="500" y="104" text-anchor="middle" font-size="10" fill="#475569">Load</text>
+
+                <!-- Current arrow -->
+                <polygon id="iArrow" points="340,190 352,184 352,196" fill="#22c55e">
+                  <title>Drain current I_D</title>
+                </polygon>
+              </svg>
+            </div>
+            <div class="row" style="margin-top:8px">
+              <span class="badge" title="Hover on Gate/Source/Drain labels for quick tips.">ℹ️ Tooltips on nodes</span>
+              <span class="badge">Theme follows polarity (nMOS: blue/green, pMOS: magenta/violet)</span>
+            </div>
+          </div>
+        </aside>
+
+        <section class="sim-right">
+          <div class="panel">
+            <div class="row" style="justify-content:space-between;align-items:center">
+              <h3>I–V Curves: I<sub>D</sub> vs V<sub>DS</sub></h3>
+              <div class="tabbar">
+                <button class="btn" id="familyCurves">Family</button>
+                <button class="btn" id="singleCurve">Single</button>
+              </div>
+            </div>
+            <canvas id="ivChart"></canvas>
+          </div>
+
+          <div class="panel">
+            <h3>Transfer: I<sub>D</sub> vs V<sub>GS</sub> (at fixed V<sub>DS</sub>)</h3>
+            <canvas id="transferChart"></canvas>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Theme toggling
+    const themeToggle = document.getElementById('themeToggle');
+    const themeToggle2 = document.getElementById('themeToggle2');
+    const themeToggle3 = document.getElementById('themeToggle3');
+    const bodyEl = document.body;
+    function toggleTheme(){ bodyEl.dataset.theme = (bodyEl.dataset.theme === 'dark') ? 'light' : 'dark'; }
+    themeToggle.addEventListener('click', toggleTheme);
+    themeToggle2.addEventListener('click', toggleTheme);
+    themeToggle3.addEventListener('click', toggleTheme);
+
+    // Navigation between Theory and Simulator (Theory first, Simulator hidden)
+    const theoryPage = document.getElementById('theoryPage');
+    const simPage = document.getElementById('simPage');
+    const startSimBtn = document.getElementById('startSimBtn');
+    const startSimBtn2 = document.getElementById('startSimBtn2');
+    const startSimBtn3 = document.getElementById('startSimBtn3');
+    const backToTheory = document.getElementById('backToTheory');
+    const modeBadge = document.getElementById('modeBadge');
+
+    function showSim(){
+      theoryPage.style.display = 'none';
+      simPage.style.display = 'block';
+      modeBadge.textContent = 'Simulator';
+      // Let charts size properly after layout
+      setTimeout(()=>{
+        ivChart.resize(); transferChart.resize();
+        recomputeAndDraw();
+      }, 50);
+    }
+    function showTheory(){
+      simPage.style.display = 'none';
+      theoryPage.style.display = 'block';
+      modeBadge.textContent = 'Theory First';
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+    startSimBtn.addEventListener('click', showSim);
+    startSimBtn2.addEventListener('click', showSim);
+    startSimBtn3.addEventListener('click', showSim);
+    backToTheory.addEventListener('click', showTheory);
+
+    // Simulator logic (Shichman–Hodges style model)
+    const VGS = document.getElementById('VGS');
+    const VDS = document.getElementById('VDS');
+    const VTH = document.getElementById('VTH');
+    const K = document.getElementById('K');
+    const LAMBDA = document.getElementById('LAMBDA');
+    const GAMMA = document.getElementById('GAMMA');
+    const VSB = document.getElementById('VSB');
+    const o = (id)=>document.getElementById(id);
+    const ID_read = o('ID_read');
+    const region_read = o('region_read');
+
+    function updOut(inp, out){ out.textContent = Number(inp.value).toFixed( (inp.step && inp.step < 0.01)? 4:2 ); }
+    [ [VGS,'VGS_o'], [VDS,'VDS_o'], [VTH,'VTH_o'], [K,'K_o'], [LAMBDA,'LAMBDA_o'], [GAMMA,'GAMMA_o'], [VSB,'VSB_o'] ].forEach(([inp,id])=>{
+      updOut(inp, o(id));
+      inp.addEventListener('input', ()=>{ updOut(inp, o(id)); recomputeAndDraw(); animateCircuit(); });
+    });
+
+    let polarity = 'n'; // 'n' or 'p'
+    let mode = 'enh';   // 'enh' or 'dep'
+    document.querySelectorAll('input[name="polarity"]').forEach(r=>{
+      r.addEventListener('change', (e)=>{
+        polarity = e.target.value;
+        // Flip aesthetic colors
+        document.getElementById('bodyRect').setAttribute('fill', polarity==='n' ? '#0ea5e9' : '#c026d3');
+        document.getElementById('channel').setAttribute('fill', polarity==='n' ? '#22c55e' : '#a78bfa');
+        animateCircuit();
+        recomputeAndDraw();
+      });
+    });
+    document.querySelectorAll('input[name="mode"]').forEach(r=>{
+      r.addEventListener('change', (e)=>{
+        mode = e.target.value;
+        recomputeAndDraw();
+      });
+    });
+
+    // Circuit animation: channel width/opacity and current arrow
+    function animateCircuit(){
+      const vg = parseFloat(VGS.value);
+      const vt0 = parseFloat(VTH.value);
+      const gam = parseFloat(GAMMA.value);
+      const vsb = parseFloat(VSB.value);
+      const phi = 0.6; // surface potential approx (V)
+      const vt = vt0 + gam * (Math.sqrt(Math.abs(vsb + 2*phi)) - Math.sqrt(2*phi));
+      let vov = (polarity==='n') ? (vg - vt) : -(vg + vt); // effective overdrive sign-adjusted
+      if(mode==='dep') vov += (polarity==='n') ? vt : -vt; // depletion acts like built-in channel
+      const baseWidth = 8;
+      const w = Math.max(1, baseWidth + 12 * Math.max(0, vov));
+      const channel = document.getElementById('channel');
+      channel.setAttribute('height', Math.min(24, w));
+      channel.setAttribute('y', 190 - Math.min(12, w/2));
+      const arrow = document.getElementById('iArrow');
+      arrow.setAttribute('opacity', vov>0 ? 1 : 0.25);
+    }
+
+    // Core MOSFET equations
+    function mosfetId(vgs, vds){
+      const vt0 = parseFloat(VTH.value);
+      const k = parseFloat(K.value);
+      const lam = parseFloat(LAMBDA.value);
+      const gam = parseFloat(GAMMA.value);
+      const vsb = parseFloat(VSB.value);
+      const phi = 0.6;
+      const vt = vt0 + gam * (Math.sqrt(Math.abs(vsb + 2*phi)) - Math.sqrt(2*phi));
+      let vgs_eff = vgs;
+      let vds_eff = vds;
+      let sign = 1;
+
+      if(polarity==='p'){
+        // map pMOS to nMOS computation by inverting voltages
+        vgs_eff = -vgs;
+        vds_eff = -vds;
+        sign = -1;
+      }
+
+      let vth = vt;
+      // Depletion-mode: emulate built-in channel by reducing threshold offset
+      if(mode==='dep'){
+        vth = Math.max(0, vt * 0.2); // approximate: easier to turn on
+      }
+
+      if(vgs_eff <= vth) {
+        region_read.textContent = 'Cutoff';
+        return 0;
+      }
+
+      const vov = vgs_eff - vth;
+      if(vds_eff < vov){
+        region_read.textContent = 'Linear';
+        return k * ( (vov)*vds_eff - 0.5*vds_eff*vds_eff ) * (1 + lam*vds_eff);
+      }else{
+        region_read.textContent = 'Saturation';
+        return 0.5 * k * vov*vov * (1 + lam*vds_eff);
+      }
+    }
+
+    // Charts
+    const ivCtx = document.getElementById('ivChart').getContext('2d');
+    const trCtx = document.getElementById('transferChart').getContext('2d');
+    let ivChart = new Chart(ivCtx, {
+      type:'line',
+      data:{labels:[], datasets:[]},
+      options:{
+        responsive:true,
+        animation:false,
+        interaction:{mode:'index', intersect:false},
+        scales:{
+          x:{title:{display:true, text:'VDS (V)'}},
+          y:{title:{display:true, text:'ID (A)'}}
+        },
+        plugins:{legend:{position:'bottom'}}
+      }
+    });
+    let transferChart = new Chart(trCtx, {
+      type:'line',
+      data:{labels:[], datasets:[{label:'ID vs VGS', data:[], fill:false}]},
+      options:{
+        responsive:true,
+        animation:false,
+        interaction:{mode:'index', intersect:false},
+        scales:{
+          x:{title:{display:true, text:'VGS (V)'}},
+          y:{title:{display:true, text:'ID (A)'}}
+        },
+        plugins:{legend:{display:false}}
+      }
+    });
+
+    const familyBtn = document.getElementById('familyCurves');
+    const singleBtn = document.getElementById('singleCurve');
+    let showFamily = true;
+    familyBtn.addEventListener('click', ()=>{ showFamily=true; recomputeAndDraw(); });
+    singleBtn.addEventListener('click', ()=>{ showFamily=false; recomputeAndDraw(); });
+
+    function recomputeAndDraw(){
+      // live read
+      const vg = parseFloat(VGS.value);
+      const vd = parseFloat(VDS.value);
+
+      // Readout
+      const id_now = mosfetId(vg, vd);
+      ID_read.textContent = id_now.toFixed(6) + ' A';
+
+      // Prepare I-V datasets
+      const vdsAxis = [];
+      for(let v=0; v<=20; v+=0.1) vdsAxis.push(Number(v.toFixed(2)));
+
+      const colors = ['#0ea5e9','#22c55e','#ef4444','#f59e0b','#8b5cf6','#14b8a6'];
+      const datasets = [];
+
+      if(showFamily){
+        const vgList = [];
+        for(let v=-5; v<=10; v+=1.5) vgList.push(Number(v.toFixed(2)));
+        vgList.forEach((vgx, idx)=>{
+          const data = vdsAxis.map(vd=> mosfetId(vgx, vd));
+          datasets.push({label:`VGS=${vgx}V`, data, borderColor: colors[idx % colors.length], tension:0.1, pointRadius:0});
+        });
+      }else{
+        const data = vdsAxis.map(vd=> mosfetId(vg, vd));
+        datasets.push({label:`I–V @ VGS=${vg.toFixed(2)}V`, data, borderColor: colors[0], tension:0.1, pointRadius:0});
+      }
+
+      ivChart.data.labels = vdsAxis;
+      ivChart.data.datasets = datasets;
+      ivChart.update('none');
+
+      // Transfer curve at fixed VDS
+      const vgsAxis = [];
+      for(let v=-10; v<=10; v+=0.05) vgsAxis.push(Number(v.toFixed(2)));
+      const tdata = vgsAxis.map(vgx => mosfetId(vgx, parseFloat(VDS.value)));
+      transferChart.data.labels = vgsAxis;
+      transferChart.data.datasets[0].data = tdata;
+      transferChart.update('none');
+    }
+
+    // CSV Export
+    function exportCSV(){
+      const vdsAxis = [];
+      for(let v=0; v<=20; v+=0.1) vdsAxis.push(Number(v.toFixed(2)));
+      const vg = parseFloat(VGS.value);
+      const rows = [['VDS','ID (single VGS)','VGS','Polarity','Mode']];
+      vdsAxis.forEach(vd=> rows.push([vd, mosfetId(vg, vd), vg, polarity, mode]));
+      const csv = rows.map(r=> r.join(',')).join('\n');
+      const blob = new Blob([csv], {type:'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'mosfet_iv_export.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    }
+    document.getElementById('exportCsv').addEventListener('click', exportCSV);
+
+    // Reset
+    document.getElementById('resetSim').addEventListener('click', ()=>{
+      VGS.value = 3.0; VDS.value=5.0; VTH.value=2.0; K.value=0.02; LAMBDA.value=0.01; GAMMA.value=0.2; VSB.value=0.0;
+      document.querySelector('input[name="polarity"][value="n"]').checked = true; polarity='n';
+      document.querySelector('input[name="mode"][value="enh"]').checked = true; mode='enh';
+      [ [VGS,'VGS_o'], [VDS,'VDS_o'], [VTH,'VTH_o'], [K,'K_o'], [LAMBDA,'LAMBDA_o'], [GAMMA,'GAMMA_o'], [VSB,'VSB_o'] ].forEach(([inp,id])=>updOut(inp, o(id)));
+      animateCircuit(); recomputeAndDraw();
+    });
+
+    // Initial render on first open
+    animateCircuit();
+    recomputeAndDraw();
+  </script>
+</body>
+</html>
