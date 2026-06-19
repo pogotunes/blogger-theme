@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+==========================================================
+RANKRSEO SNIPPET LIBRARY — Reusable Blogger XML Snippets
+==========================================================
+Purpose: Production-ready snippets for Blogger theme creation
+Source: Analyzed from 13 Blogger XML themes
+Usage: Copy-paste into new themes. Replace placeholder values.
+==========================================================
+-->
+
+<!-- ========================================================
+     SNIPPET 1: Theme Head (Meta Tags + Schema)
+     ======================================================== -->
+<b:includable id='theme-head'>
+  <!-- Viewport (accessible zoom) -->
+  <meta content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5' name='viewport'/>
+  
+  <!-- Title (single universal tag, properly escaped) -->
+  <title><data:view.title.escaped/></title>
+  
+  <!-- Content Type -->
+  <meta expr:content='&quot;text/html; charset=&quot; + data:blog.encoding' http-equiv='Content-Type'/>
+  
+  <!-- Canonical URL -->
+  <link expr:href='data:view.url.canonical' rel='canonical'/>
+  
+  <!-- Meta Description -->
+  <meta expr:content='data:view.description.escaped' name='description'/>
+  
+  <!-- Robots — extended directives -->
+  <b:if cond='!data:view.isSearch and !data:view.isLabelSearch'>
+    <meta content='index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1' name='robots'/>
+  </b:if>
+  <b:if cond='data:view.isArchive'>
+    <meta content='noindex' name='robots'/>
+  </b:if>
+  <b:if cond='data:view.isSearch or data:view.isLabelSearch'>
+    <meta content='noindex,nofollow' name='robots'/>
+  </b:if>
+  
+  <!-- Theme Color (Mobile Chrome) -->
+  <meta expr:content='data:skin.vars.keycolor' name='theme-color'/>
+  <meta expr:content='data:skin.vars.keycolor' name='msapplication-navbutton-color'/>
+  
+  <!-- Favicon -->
+  <link expr:href='data:blog.blogspotFaviconUrl' rel='icon' type='image/x-icon'/>
+  <link expr:href='data:blog.blogspotFaviconUrl' rel='icon' sizes='32x32'/>
+  <link expr:href='data:blog.blogspotFaviconUrl' rel='apple-touch-icon'/>
+  <meta expr:content='data:blog.blogspotFaviconUrl' name='msapplication-TileImage'/>
+  
+  <!-- hreflang -->
+  <link expr:href='data:blog.url' hreflang='x-default' rel='alternate'/>
+  
+  <!-- DNS Prefetch / Preconnect -->
+  <link href='//1.bp.blogspot.com' rel='dns-prefetch'/>
+  <link href='//www.blogger.com' rel='dns-prefetch'/>
+  <link href='//fonts.googleapis.com' rel='dns-prefetch'/>
+  <link href='//cdnjs.cloudflare.com' rel='dns-prefetch'/>
+  <link href='//pagead2.googlesyndication.com' rel='dns-prefetch'/>
+  <link href='//www.gstatic.com' rel='preconnect'/>
+  
+  <!-- Open Graph -->
+  <b:if cond='data:view.isHomepage'><meta content='website' property='og:type'/></b:if>
+  <b:if cond='data:view.isSingleItem'><meta content='article' property='og:type'/></b:if>
+  <b:if cond='data:view.isMultipleItems and not data:view.isHomepage'>
+    <meta content='object' property='og:type'/>
+  </b:if>
+  <meta expr:content='data:view.title.escaped' property='og:title'/>
+  <meta expr:content='data:blog.url.canonical' property='og:url'/>
+  <meta expr:content='data:view.description.escaped' property='og:description'/>
+  <meta expr:content='data:blog.title.escaped' property='og:site_name'/>
+  <meta expr:content='data:blog.localeUnderscoreDelimited' property='og:locale'/>
+  <b:if cond='data:view.featuredImage'>
+    <meta expr:content='data:view.featuredImage' property='og:image'/>
+  </b:if>
+  <b:if cond='data:view.isMultipleItems and data:widgets.Blog.first.posts[0].featuredImage'>
+    <meta expr:content='data:widgets.Blog.first.posts[0].featuredImage' property='og:image'/>
+  </b:if>
+  
+  <!-- Twitter Card -->
+  <meta content='summary_large_image' name='twitter:card'/>
+  <meta expr:content='data:view.title.escaped' name='twitter:title'/>
+  <meta expr:content='data:blog.url.canonical' name='twitter:domain'/>
+  <meta expr:content='data:view.description.escaped' name='twitter:description'/>
+  <b:if cond='data:view.featuredImage'>
+    <meta expr:content='data:view.featuredImage' name='twitter:image'/>
+  </b:if>
+  
+  <!-- WebSite Schema + SearchAction (Homepage only) -->
+  <b:if cond='data:view.isHomepage'>
+    <script type='application/ld+json'>{
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "<data:view.title.escaped/>",
+      "url": "<data:view.url.canonical/>",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "<data:view.url.canonical/>search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }</script>
+  </b:if>
+  
+  <!-- Feed Links -->
+  <data:blog.feedLinks/>
+  <data:blog.meTag/>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 2: BlogPosting Schema (Item Pages)
+     ======================================================== -->
+<b:includable id='postSchema' var='post'>
+  <b:if cond='data:view.isSingleItem'>
+    <script type='application/ld+json'>{
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "<data:post.url.canonical/>"
+      },
+      "headline": "<data:post.title/>",
+      "description": "<b:eval expr='data:post.snippets.short snippet { length: 120 }'/>",
+      <b:if cond='data:post.featuredImage'>
+      "image": {
+        "@type": "ImageObject",
+        "url": "<data:post.featuredImage/>"
+      },
+      </b:if>
+      "author": {
+        "@type": "Person",
+        "name": "<data:post.author.name/>",
+        "url": "<data:post.authorUrl/>"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "<data:blog.title.escaped/>",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "<data:blog.blogspotFaviconUrl/>"
+        }
+      },
+      "datePublished": "<data:post.date.iso8601/>",
+      "dateModified": "<data:post.date.iso8601/>"
+    }</script>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 3: Breadcrumb with JSON-LD Schema
+     ======================================================== -->
+<b:includable id='breadcrumb' var='post'>
+  <b:if cond='data:view.isPost'>
+    <nav id='breadcrumb'>
+      <a expr:href='data:blog.homepageUrl'><data:messages.home/></a>
+      <b:if cond='data:post.labels.any'>
+        <b:loop index='i' values='data:post.labels' var='label' max='1'>
+          <span> &#187; </span><a expr:href='data:label.url'><data:label.name/></a>
+        </b:loop>
+      </b:if>
+      <span> &#187; </span><span><data:post.title/></span>
+    </nav>
+    <script type='application/ld+json'>{
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "<data:messages.home/>",
+          "item": "<data:blog.homepageUrl/>"
+        }
+        <b:if cond='data:post.labels.any'>
+        <b:loop index='i' values='data:post.labels' var='label' max='1'>
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "<data:label.name/>",
+          "item": "<data:label.url/>"
+        }
+        </b:loop>
+        </b:if>
+        ,{
+          "@type": "ListItem",
+          "position": "<b:if cond='data:post.labels.any'>3<b:else/>2</b:if>",
+          "name": "<data:post.title/>"
+        }
+      ]
+    }</script>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 4: Widget Title
+     ======================================================== -->
+<b:includable id='widget-title'>
+  <b:if cond='data:title'>
+    <h3 class='title'><data:title/></h3>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 5: Post Title (h2 on index, h1 on item)
+     ======================================================== -->
+<b:includable id='postTitle' var='post'>
+  <b:if cond='data:view.isMultipleItems'>
+    <h2 class='entry-title'>
+      <a expr:href='data:post.url.canonical'
+         expr:title='data:post.title ? data:post.title : data:messages.noTitle'
+         rel='bookmark'>
+        <b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/>
+      </a>
+    </h2>
+  </b:if>
+  <b:if cond='data:view.isSingleItem'>
+    <h1 class='entry-title'>
+      <b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/>
+    </h1>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 6: Post Meta (Author, Date, Comments)
+     ======================================================== -->
+<b:includable id='postMeta' var='post'>
+  <div class='post-meta'>
+    <b:if cond='data:post.author.authorPhoto.image and !data:view.isPage'>
+      <span class='author-image'>
+        <img class='avatar' expr:alt='data:post.author.name'
+             expr:data-src='resizeImage(data:post.author.authorPhoto.image, 40)'/>
+      </span>
+    </b:if>
+    <span class='post-author'><data:post.author.name/></span>
+    <b:if cond='data:allBylineItems.timestamp'>
+      <span class='post-date published' expr:datetime='data:post.date.iso8601'>
+        <data:post.date/>
+      </span>
+    </b:if>
+    <b:if cond='data:post.allowComments'>
+      <span class='post-comments'>
+        <a expr:href='data:post.url + &quot;#comments&quot;'>
+          <data:post.numberOfComments/>
+        </a>
+      </span>
+    </b:if>
+  </div>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 7: Post Thumbnail (Lazy Loaded with Fallback)
+     ======================================================== -->
+<b:includable id='postThumbnail' var='post'>
+  <a class='post-filter-link' expr:href='data:post.url' expr:title='data:post.title'>
+    <b:if cond='data:post.featuredImage'>
+      <img class='snip-thumbnail' loading='lazy'
+           expr:alt='data:post.title ? data:post.title : data:messages.noTitle'
+           expr:src='data:post.featuredImage.isYouTube
+             ? resizeImage(data:post.featuredImage.youtubeMaxResDefaultUrl.jsonEscaped, 400, "16:9")
+             : resizeImage(data:post.featuredImage, 400, "16:9")'/>
+    <b:else/>
+      <img class='snip-thumbnail' loading='lazy'
+           alt='No image available'
+           src='https://via.placeholder.com/400x225?text=No+Image'/>
+    </b:if>
+  </a>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 8: Post Body + Read More
+     ======================================================== -->
+<b:includable id='postBody' var='post'>
+  <b:if cond='data:view.isMultipleItems'>
+    <div class='post-snippet'>
+      <b:eval expr='data:post.snippets.short snippet { length: 200 }'/>
+    </div>
+    <a class='read-more' expr:href='data:post.url'>
+      <data:messages.home/> Read More &#187;
+    </a>
+  </b:if>
+  <b:if cond='data:view.isSingleItem'>
+    <div class='post-body entry-content' id='postBody'>
+      <data:post.body/>
+    </div>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 9: Search / Archive / Error Messages
+     ======================================================== -->
+<b:includable id='searchMessage'>
+  <b:if cond='data:view.search.query'>
+    <div class='queryMessage'>
+      <b:if cond='data:posts.empty'>
+        <span class='query-error'>No results for "<data:view.search.query/>"</span>
+      <b:else/>
+        <span class='query-success'>Showing results for "<data:view.search.query/>"</span>
+      </b:if>
+    </div>
+  </b:if>
+  <b:if cond='data:view.search.label'>
+    <div class='queryMessage'>
+      <span>Label: <data:view.search.label/></span>
+    </div>
+  </b:if>
+  <b:if cond='data:view.isArchive'>
+    <div class='queryMessage'>
+      <span><data:view.archive.rangeMessage/></span>
+    </div>
+  </b:if>
+  <b:if cond='data:view.isError'>
+    <div class='errorPage'>
+      <h3>404</h3>
+      <h4><data:messages.theresNothingHere/></h4>
+      <p>The page you are looking for does not exist.</p>
+      <a class='btn home-link' expr:href='data:blog.homepageUrl'>
+        &#187; <data:messages.home/>
+      </a>
+    </div>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 10: Pagination (Newer/Older)
+     ======================================================== -->
+<b:includable id='blogPager'>
+  <b:if cond='data:newerPageUrl or data:olderPageUrl'>
+    <div class='blog-pager'>
+      <b:if cond='data:newerPageUrl'>
+        <a class='blog-pager-newer-link' expr:href='data:newerPageUrl'
+           expr:title='data:messages.newerPosts' rel='previous'>
+          &#8592; <data:messages.newerPosts/>
+        </a>
+      </b:if>
+      <b:if cond='data:olderPageUrl'>
+        <a class='blog-pager-older-link' expr:href='data:olderPageUrl'
+           expr:title='data:messages.olderPosts' rel='next'>
+          <data:messages.olderPosts/> &#8594;
+        </a>
+      </b:if>
+    </div>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 11: Share Buttons
+     ======================================================== -->
+<b:includable id='postShareButtons' var='post'>
+  <b:if cond='data:allBylineItems.share'>
+    <div class='post-share'>
+      <span class='share-label'>Share:</span>
+      <a class='share-facebook' expr:href='&quot;https://www.facebook.com/sharer.php?u=&quot; + data:post.url.canonical'
+         rel='nofollow noopener noreferrer' target='_blank' title='Facebook'>
+        Facebook
+      </a>
+      <a class='share-twitter' expr:href='&quot;https://twitter.com/intent/tweet?url=&quot; + data:post.url.canonical + &quot;&amp;text=&quot; + data:post.title'
+         rel='nofollow noopener noreferrer' target='_blank' title='Twitter'>
+        Twitter
+      </a>
+      <a class='share-whatsapp' expr:href='&quot;https://api.whatsapp.com/send?text=&quot; + data:post.title + &quot; | &quot; + data:post.url'
+         rel='nofollow noopener noreferrer' target='_blank' title='WhatsApp'>
+        WhatsApp
+      </a>
+    </div>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 12: Threaded Comments (Full)
+     ======================================================== -->
+<b:includable id='threadedCommentForm' var='post'>
+  <div class='comment-form'>
+    <a name='comment-form'/>
+    <b:include data='post' name='commentFormIframeSrc'/>
+    <iframe allowtransparency='allowtransparency'
+            class='blogger-iframe-colorize blogger-comment-from-post'
+            frameborder='0' id='comment-editor' name='comment-editor'
+            src='' style='min-height:110px;' width='100%'/>
+    <data:post.cmtfpIframe/>
+    <script type='text/javascript'>
+      BLOG_CMT_createIframe('<data:post.appRpcRelayPath/>');
+    </script>
+  </div>
+</b:includable>
+
+<b:includable id='threadedComments' var='post'>
+  <section class='comments threaded' id='comments'
+           expr:data-embed='data:post.embedCommentForm'
+           expr:data-num-comments='data:post.numberOfComments'>
+    <a name='comments'/>
+    <h3><data:post.numberOfComments/> Comments</h3>
+    <div class='comments-content'>
+      <b:if cond='data:post.embedCommentForm'>
+        <b:include data='post' name='threadedCommentJs'/>
+      </b:if>
+      <div id='comment-holder'><data:post.commentHtml/></div>
+    </div>
+    <p class='comment-footer'>
+      <b:if cond='data:post.allowNewComments'>
+        <b:include data='post' name='threadedCommentForm'/>
+      <b:else/>
+        <data:post.noNewCommentsText/>
+      </b:if>
+    </p>
+    <b:if cond='data:showCmtPopup'>
+      <div id='comment-popup'>
+        <iframe allowtransparency='allowtransparency' frameborder='0'
+                id='comment-actions' name='comment-actions' scrolling='no'/>
+      </div>
+    </b:if>
+  </section>
+</b:includable>
+
+<b:includable id='threadedCommentJs' var='post'>
+  <script async='async' expr:src='data:post.commentSrc' type='text/javascript'/>
+  <b:template-script inline='true' name='threaded_comments'/>
+  <script type='text/javascript'>
+    blogger.widgets.blog.initThreadedComments(
+      <data:post.commentJso/>,
+      <data:post.commentMsgs/>,
+      <data:post.commentConfig/>
+    );
+  </script>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 13: Contact Form Widget
+     ======================================================== -->
+<b:includable id='contactFormContent'>
+  <div class='contact-form-widget'>
+    <form name='contact-form'>
+      <input class='contact-form-name'
+             expr:id='data:widget.instanceId + &quot;_contact-form-name&quot;'
+             expr:placeholder='data:contactFormNameMsg'
+             name='name' type='text'/>
+      <input class='contact-form-email'
+             expr:id='data:widget.instanceId + &quot;_contact-form-email&quot;'
+             expr:placeholder='data:contactFormEmailMsg + &quot;*&quot;'
+             name='email' type='text'/>
+      <textarea class='contact-form-email-message'
+                expr:id='data:widget.instanceId + &quot;_contact-form-email-message&quot;'
+                expr:placeholder='data:contactFormMessageMsg + &quot;*&quot;'
+                name='email-message' rows='5'/>
+      <input class='contact-form-button contact-form-button-submit'
+             expr:id='data:widget.instanceId + &quot;_contact-form-submit&quot;'
+             expr:value='data:contactFormSendMsg' type='button'/>
+      <div style='text-align: center; width: 100%; margin-top: 1rem;'>
+        <p class='contact-form-error-message'
+           expr:id='data:widget.instanceId + &quot;_contact-form-error-message&quot;'/>
+        <p class='contact-form-success-message'
+           expr:id='data:widget.instanceId + &quot;_contact-form-success-message&quot;'/>
+      </div>
+    </form>
+  </div>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 14: Hidden Widget Container (ContactForm Fix)
+     ======================================================== -->
+<b:includable id='hiddenWidgets'>
+  <b:if cond='data:view.isSingleItem'>
+    <div id='hidden-widget-container' style='display:none'>
+      <b:section class='hidden-widgets' deleted='true' id='hidden-widgets'
+                 maxwidgets='2' showaddelement='no'>
+        <b:widget id='ContactForm1' locked='true' title='Contact form'
+                  type='ContactForm' version='2' visible='true'>
+          <b:includable id='main'>
+            <b:include name='widget-title'/>
+            <b:include name='content'/>
+          </b:includable>
+          <b:includable id='content'>
+            <b:include name='contactFormContent'/>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 15: Labels / Categories
+     ======================================================== -->
+<b:includable id='postLabels' var='post'>
+  <b:if cond='data:post.labels.any'>
+    <div class='post-labels'>
+      <b:loop index='i' values='data:post.labels' var='label'>
+        <a class='label-link' expr:href='data:label.url' rel='tag'>
+          <data:label.name/>
+        </a>
+      </b:loop>
+    </div>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 16: Related Posts (via JSON/JS)
+     ======================================================== -->
+<b:includable id='relatedPosts' var='post'>
+  <b:if cond='data:view.isPost and data:post.labels.any'>
+    <div class='related-posts' id='related-posts'>
+      <h3>You May Like These Posts</h3>
+      <div class='related-grid' id='related-grid'>
+        <!-- Filled by JS -->
+      </div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+      var postLabels = [];
+      <b:loop values='data:post.labels' var='label'>
+        postLabels.push('<data:label.name/>');
+      </b:loop>
+      var relatedConfig = {
+        homeUrl: '<data:blog.homepageUrl/>',
+        maxResults: 4,
+        label: postLabels[0]
+      };
+      // Use Blogger JSON API to fetch related posts
+      fetch(relatedConfig.homeUrl + 'feeds/posts/default/-/' + relatedConfig.label +
+            '?alt=json&callback=?&max-results=' + (relatedConfig.maxResults + 1))
+        .then(r => r.json())
+        .then(data => {
+          var container = document.getElementById('related-grid');
+          var count = 0;
+          data.feed.entry.forEach(function(entry) {
+            if (entry.id.$t.indexOf('<data:post.id/>') === -1 && count < 4) {
+              var title = entry.title.$t;
+              var url = entry.link.filter(l => l.rel === 'alternate')[0].href;
+              var thumb = entry.media$thumbnail ? entry.media$thumbnail.url.replace('/s72-c/', '/s400-c/') : '';
+              container.innerHTML += '<div class="related-card"><a href="' + url + '">' +
+                (thumb ? '<img src="' + thumb + '" alt="' + title + '"/>' : '') +
+                '<h4>' + title + '</h4></a></div>';
+              count++;
+            }
+          });
+        });
+      //]]>
+    </script>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 17: Lazy Image Widget
+     ======================================================== -->
+<b:includable id='lazyImage' var='imageData'>
+  <img class='lazy' loading='lazy'
+       expr:data-src='data:imageData.src'
+       expr:alt='data:imageData.alt'
+       src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'/>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 18: Cookie Consent Banner
+     ======================================================== -->
+<b:includable id='cookieConsent'>
+  <div id='cookie-consent' style='display:none'>
+    <div class='cookie-inner'>
+      <p>This website uses cookies to improve your experience.</p>
+      <button id='cookie-accept' onclick='document.getElementById("cookie-consent").style.display="none"'>
+        Accept
+      </button>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    //<![CDATA[
+    if (!localStorage.getItem('cookieConsent')) {
+      document.getElementById('cookie-consent').style.display = 'block';
+    }
+    document.getElementById('cookie-accept').addEventListener('click', function() {
+      localStorage.setItem('cookieConsent', 'true');
+      document.getElementById('cookie-consent').style.display = 'none';
+    });
+    //]]>
+  </script>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 19: Back to Top Button
+     ======================================================== -->
+<b:includable id='backToTop'>
+  <button id='back-to-top' onclick='window.scrollTo({top: 0, behavior: "smooth"})'
+          style='display:none; position:fixed; bottom:20px; right:20px; z-index:999;'>
+    &#8593;
+  </button>
+  <script type='text/javascript'>
+    //<![CDATA[
+    window.addEventListener('scroll', function() {
+      var btn = document.getElementById('back-to-top');
+      if (window.scrollY > 500) {
+        btn.style.display = 'block';
+      } else {
+        btn.style.display = 'none';
+      }
+    });
+    //]]>
+  </script>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 20: Dark Mode Toggle (Fully Implemented)
+     ======================================================== -->
+<b:includable id='darkModeToggle'>
+  <button id='dark-mode-toggle' onclick='toggleDarkMode()' title='Toggle Dark Mode'>
+    <span class='sun-icon'>&#9728;</span>
+    <span class='moon-icon' style='display:none'>&#9790;</span>
+  </button>
+  <script type='text/javascript'>
+    //<![CDATA[
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      var isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDark);
+      document.querySelector('.sun-icon').style.display = isDark ? 'none' : 'inline';
+      document.querySelector('.moon-icon').style.display = isDark ? 'inline' : 'none';
+    }
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+      document.querySelector('.sun-icon').style.display = 'none';
+      document.querySelector('.moon-icon').style.display = 'inline';
+    }
+    //]]>
+  </script>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 21: Search Overlay Modal
+     ======================================================== -->
+<b:includable id='searchOverlay'>
+  <div id='search-overlay' style='display:none'>
+    <div class='search-overlay-content'>
+      <form expr:action='data:blog.homepageUrl + &quot;search&quot;' method='get'>
+        <input name='q' type='text' placeholder='Search...' autocomplete='off'/>
+        <button type='submit'>Search</button>
+      </form>
+      <button onclick='document.getElementById("search-overlay").style.display="none"'>
+        Close &#10005;
+      </button>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    //<![CDATA[
+    function openSearch() {
+      document.getElementById('search-overlay').style.display = 'flex';
+    }
+    //]]>
+  </script>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 22: PopularPosts Content Template
+     ======================================================== -->
+<b:includable id='popular-content' var='post'>
+  <div class='popular-post'>
+    <a expr:href='data:post.url'>
+      <b:if cond='data:post.featuredImage'>
+        <img class='popular-thumb' loading='lazy'
+             expr:alt='data:post.title ? data:post.title : data:messages.noTitle'
+             expr:src='resizeImage(data:post.featuredImage, 80, "1:1")'/>
+      <b:else/>
+        <img class='popular-thumb' loading='lazy'
+             alt='No image'
+             src='https://via.placeholder.com/80x80?text=N/A'/>
+      </b:if>
+      <div class='popular-info'>
+        <h4 class='popular-title'><data:post.title/></h4>
+        <span class='popular-date'><data:post.date/></span>
+      </div>
+    </a>
+  </div>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 23: Profile Widget Templates
+     ======================================================== -->
+<b:includable id='authorProfileImage'>
+  <img class='profile-img' expr:alt='data:messages.myPhoto'
+       expr:height='data:authorPhoto.height'
+       expr:src='data:authorPhoto.image'
+       expr:width='data:authorPhoto.width'/>
+</b:includable>
+
+<b:includable id='userProfile'>
+  <a class='user-image' expr:href='data:userUrl' rel='nofollow'>
+    <b:include name='profileImage'/>
+  </a>
+  <div class='profile-info'>
+    <div class='profile-datablock'>
+      <a class='profile-link' expr:href='data:userUrl' rel='author nofollow'>
+        <data:displayname/>
+      </a>
+    </div>
+    <div class='profile-textblock'><data:aboutme/></div>
+    <div class='profile-data location'><data:location/></div>
+  </div>
+</b:includable>
+
+<b:includable id='profileImage'>
+  <b:if cond='data:authorPhoto.image'>
+    <b:include name='authorProfileImage'/>
+  <b:else/>
+    <b:include name='defaultProfileImage'/>
+  </b:if>
+</b:includable>
+
+<b:includable id='defaultProfileImage'>
+  <img class='profile-img' expr:alt='data:post.author.name'
+       src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%2364748b%22 font-size=%2230%22%3E%3C/text%3E%3C/svg%3E'
+       width='100' height='100'/>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 24: Reading Time Script
+     ======================================================== -->
+<b:includable id='scriptTime' var='post'>
+  <b:if cond='data:view.isPost and data:widgets.Blog.first.allBylineItems.timestamp'>
+    <script type='text/javascript'>
+      //<![CDATA[
+      function getText(e){var r="";for(var t=e.childNodes.length,n=0;n<t;n++){var o=e.childNodes[n];8!=o.nodeType&&(r+=1!=o.nodeType?o.nodeValue:getText(o))}return r}
+      var words=getText(document.getElementById("postBody")),
+          count=words.split(" ").length,
+          readingTime=Math.max(1,Math.round(count/200));
+      //]]>
+    </script>
+  </b:if>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 25: FAQSection (Schema + HTML)
+     ======================================================== -->
+<b:includable id='faqSection'>
+  <div class='faq-section' itemscope='' itemtype='https://schema.org/FAQPage'>
+    <b:loop values='data:posts' var='post'>
+      <div class='faq-item' itemscope='' itemprop='mainEntity'
+           itemtype='https://schema.org/Question'>
+        <h3 itemprop='name'>Question?</h3>
+        <div itemscope='' itemprop='acceptedAnswer' itemtype='https://schema.org/Answer'>
+          <div itemprop='text'>
+            <p>Answer text here.</p>
+          </div>
+        </div>
+      </div>
+    </b:loop>
+  </div>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 26: Social Link List with Icons
+     ======================================================== -->
+<b:includable id='socialLinks'>
+  <div class='social-links'>
+    <ul class='colorful-ico colorful'>
+      <b:loop values='data:links' var='link'>
+        <li expr:class='data:link.name'>
+          <a expr:class='data:link.name'
+             expr:href='data:link.target'
+             rel='noopener noreferrer' target='_blank'>
+            <data:link.name/>
+          </a>
+        </li>
+      </b:loop>
+    </ul>
+  </div>
+</b:includable>
+
+
+<!-- ========================================================
+     SNIPPET 27: Mega Menu Item
+     ======================================================== -->
+<b:includable id='megaMenuItem' var='post'>
+  <div class='mega-item'>
+    <a expr:href='data:post.url'>
+      <img class='mega-thumb' loading='lazy'
+           expr:alt='data:post.title'
+           expr:src='resizeImage(data:post.featuredImage, 150, "1:1")'/>
+      <h5><data:post.title/></h5>
+    </a>
+  </div>
+</b:includable>
+<!-- END SNIPPET LIBRARY -->
