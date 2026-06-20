@@ -1371,7 +1371,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <li><a expr:href='data:blog.homepageUrl'>Blog</a></li>
         <li><a href='/search/label/Case%20Studies'>Case Studies</a></li>
         <li><a href='/p/about.html'>About</a></li>
-        <li><a href='/p/contact.html'>Contact</a></li>
+        <li><a href='/p/contact-us.html'>Contact</a></li>
       </ul>
     </nav>
   </aside>
@@ -1407,7 +1407,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           <li><a aria-label='Blog' expr:href='data:blog.homepageUrl'>Blog</a></li>
           <li><a aria-label='Case Studies' href='/search/label/Case%20Studies'>Case Studies</a></li>
           <li><a aria-label='About' href='/p/about.html'>About</a></li>
-          <li><a aria-label='Contact' href='/p/contact.html'>Contact</a></li>
+          <li><a aria-label='Contact' href='/p/contact-us.html'>Contact</a></li>
         </ul>
       </nav>
 
@@ -3143,10 +3143,10 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-2' maxwidgets='1' name='Footer Column 2' showaddelement='yes'>
           <b:widget id='LinkList5' locked='false' title='Quick Links' type='LinkList' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='link-7'>/p/contact.html</b:widget-setting>
+              <b:widget-setting name='link-7'>/p/contact-us.html</b:widget-setting>
               <b:widget-setting name='link-8'>/p/free-seo-audit.html</b:widget-setting>
-              <b:widget-setting name='link-5'>/2026/06/seo-pricing-guide.html</b:widget-setting>
-              <b:widget-setting name='link-6'>/2026/06/seo-consultant-services.html</b:widget-setting>
+              <b:widget-setting name='link-5'>/p/services.html</b:widget-setting>
+              <b:widget-setting name='link-6'>/p/seo-agency.html</b:widget-setting>
               <b:widget-setting name='text-5'>Pricing</b:widget-setting>
               <b:widget-setting name='text-6'>SEO Consultant</b:widget-setting>
               <b:widget-setting name='text-7'>Contact</b:widget-setting>
@@ -3181,7 +3181,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-3' maxwidgets='1' name='Footer Column 3' showaddelement='yes'>
           <b:widget id='LinkList6' locked='false' title='Services' type='LinkList' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='link-9'>/2026/06/seo-company-services.html</b:widget-setting>
+              <b:widget-setting name='link-9'>/p/seo-agency.html</b:widget-setting>
               <b:widget-setting name='text-9'>SEO Company</b:widget-setting>
               <b:widget-setting name='link-8'>/search/label/Blogger%20SEO</b:widget-setting>
               <b:widget-setting name='text-8'>Blogger SEO</b:widget-setting>
@@ -3232,19 +3232,19 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-5' maxwidgets='1' name='Footer Column 5' showaddelement='yes'>
           <b:widget id='LinkList7' locked='false' title='Resources' type='LinkList' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='link-8'>/2026/06/seo-audit-checklist.html</b:widget-setting>
+              <b:widget-setting name='link-8'>/p/seo-audit-checklist.html</b:widget-setting>
               <b:widget-setting name='text-8'>SEO Audit Checklist</b:widget-setting>
-              <b:widget-setting name='link-7'>/2026/06/ai-seo-guide.html</b:widget-setting>
+              <b:widget-setting name='link-7'>/p/ai-seo-guide.html</b:widget-setting>
               <b:widget-setting name='text-7'>AI SEO Guide</b:widget-setting>
-              <b:widget-setting name='link-6'>/2026/06/local-seo-checklist.html</b:widget-setting>
+              <b:widget-setting name='link-6'>/p/local-seo-checklist.html</b:widget-setting>
               <b:widget-setting name='text-6'>Local SEO Checklist</b:widget-setting>
-              <b:widget-setting name='link-5'>/2026/06/technical-seo-checklist.html</b:widget-setting>
+              <b:widget-setting name='link-5'>/p/technical-seo-checklist.html</b:widget-setting>
               <b:widget-setting name='text-5'>Technical SEO Checklist</b:widget-setting>
               <b:widget-setting name='link-4'>/p/disclaimer.html</b:widget-setting>
               <b:widget-setting name='text-4'>Disclaimer</b:widget-setting>
               <b:widget-setting name='link-3'>/p/terms.html</b:widget-setting>
               <b:widget-setting name='text-3'>Terms of Service</b:widget-setting>
-              <b:widget-setting name='link-2'>/2026/06/blogger-seo-guide-2026.html</b:widget-setting>
+              <b:widget-setting name='link-2'>/p/blogger-seo-guide.html</b:widget-setting>
               <b:widget-setting name='text-2'>Blogger SEO Guide</b:widget-setting>
               <b:widget-setting name='link-1'>/sitemap.xml</b:widget-setting>
               <b:widget-setting name='text-1'>Sitemap</b:widget-setting>
