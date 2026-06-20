@@ -1120,72 +1120,45 @@ select.lead-input { appearance: auto; cursor: pointer; }
   body { background: #fff; color: #000; }
 }
 ]]></b:skin>
+</b:if>
+<b:if cond='data:view.isLayoutMode'>
 <b:template-skin>
-  <![CDATA[
-    /* Layout dimensions - required by Blogger */
-    body#layout .header, body#layout .footer, body#layout .section {
-      padding: 8px;
-      margin-bottom: 8px;
-    }
-    body#layout .header-inner {
-      display: block;
-    }
-    body#layout .nav {
-      display: block;
-    }
-    body#layout .nav-list {
-      display: block;
-    }
-    body#layout .section {
-      min-height: 40px;
-      border: 1px dashed #ccc;
-    }
-    body#layout .widget {
-      margin-bottom: 6px;
-    }
-    body#layout .widget-content {
-      padding: 4px;
-    }
-    body#layout .draggable-widget .widget-wrap2 {
-      cursor: move;
-    }
-    body#layout .sidebar {
-      display: block;
-    }
-    body#layout .sidebar-sticky {
-      position: static;
-    }
-    body#layout .menu-toggle,
-    body#layout .theme-toggle,
-    body#layout .search-toggle,
-    body#layout .whatsapp-btn,
-    body#layout .back-to-top,
-    body#layout .search-overlay,
-    body#layout .mobile-menu,
-    body#layout .mobile-overlay {
-      display: none !important;
-    }
-    body#layout #footer-1,
-    body#layout #footer-2,
-    body#layout #footer-3,
-    body#layout #footer-4,
-    body#layout #footer-copyright {
-      width: 23%;
-      float: left;
-      margin-right: 2%;
-    }
-    body#layout #footer-copyright {
-      width: 100%;
-      float: none;
-      clear: both;
-    }
-    body#layout .footer-grid {
-      display: block;
-    }
-    body#layout .footer-bottom {
-      display: block;
-    }
-  ]]>
+<![CDATA[
+html,body#layout{width:auto;padding:0;}
+body#layout{position:relative;max-width:100%;background:#f8fafc;padding:90px 10px 0;margin:1px;border:1px solid #e2e8f0;}
+body#layout:before{content:"RankrSEO Theme v2.0";font-family:monospace;position:absolute;top:15px;right:20px;z-index:1;padding:6px 14px;font-size:13px;border-radius:6px;font-weight:600;color:#2563EB;background:#fff;border:1px solid #2563EB;}
+body#layout .header,body#layout .footer,body#layout .section{display:block;border-radius:6px;background:#f1f5f9!important;margin:0 0 10px!important;padding:14px 14px 16px!important;border:1px solid #2563EB;}
+body#layout .section h4{font-size:13px;margin:0;font-weight:600;color:#0F172A;}
+body#layout .widget{border-radius:4px;background:#fff;border:1px solid #cbd5e1;margin-bottom:6px;padding:6px;}
+body#layout .widget-content{padding:4px;}
+body#layout .draggable-widget .widget-wrap2{cursor:move;}
+body#layout .sidebar{display:block;}
+body#layout .sidebar-sticky{position:static;}
+body#layout .menu-toggle,body#layout .theme-toggle,body#layout .search-toggle,body#layout .whatsapp-btn,body#layout .back-to-top,body#layout .search-overlay,body#layout .mobile-menu,body#layout .mobile-overlay{display:none!important;}
+body#layout #footer-1,body#layout #footer-2,body#layout #footer-3,body#layout #footer-4{width:23%;float:left;margin-right:2%;}
+body#layout #footer-copyright{width:100%;float:none;clear:both;}
+body#layout .footer-grid{display:block;}
+body#layout .footer-bottom{display:block;}
+body#layout .admin-area{display:block!important;overflow:hidden;}
+body#layout .header-section{width:100%;}
+body#layout .header-left{display:flex;}
+body#layout .blog-content-area{display:flex;margin:0;}
+body#layout .blog-main{width:68%;padding:0;}
+body#layout .sidebar{width:30%;padding:0;display:block;}
+body#layout .section > h4:after{font-size:11px;font-weight:400;color:#64748b;}
+body#layout #admin > h4:after{content:" - Theme config: comments, related posts, button texts"}
+body#layout #header > h4:after{content:" - Main logo & site title"}
+body#layout #featured > h4:after{content:" - Featured posts grid"}
+body#layout #main-blog > h4:after{content:" - Blog posts feed"}
+body#layout #sidebar > h4:after{content:" - Sidebar widgets"}
+body#layout #contact-form > h4:after{content:" - Contact form widget"}
+body#layout #footer-1 > h4:after{content:" - About RankrSEO brand & social links"}
+body#layout #footer-2 > h4:after{content:" - Quick links navigation"}
+body#layout #footer-3 > h4:after{content:" - Services links"}
+body#layout #footer-4 > h4:after{content:" - Contact info"}
+body#layout #footer-5 > h4:after{content:" - Resources links"}
+body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
+]]>
 </b:template-skin>
 </b:if>
 </head>
@@ -1203,9 +1176,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
   <div class='admin-area' style='display:none'>
     <b:section class='admin-section' id='admin' maxwidgets='1' name='Theme Options (Admin Panel)' showaddelement='no'>
       <b:widget id='TextList15' locked='true' title='Facebook SDK (Plugin)' type='TextList' version='2' visible='true'>
-        <b:layouts>
-          <b:layout id='TextList' type='TextList'/>
-        </b:layouts>
         <b:includable id='main' var='this'>
           <b:include name='widget-title'/>
           <b:include name='content'/>
@@ -1215,9 +1185,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
         </b:includable>
       </b:widget>
       <b:widget id='LinkList1' locked='true' title='Variables / Comments' type='LinkList' version='2' visible='true'>
-        <b:layouts>
-          <b:layout id='LinkList' type='LinkList'/>
-        </b:layouts>
         <b:widget-settings>
           <b:widget-setting name='sorting'>NONE</b:widget-setting>
           <b:widget-setting name='text-1'>commentsSystem</b:widget-setting>
@@ -1233,9 +1200,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
         <b:includable id='content'><b:tag name='script' type='text/javascript'><b:loop values='data:links' var='link'><b:if cond='data:link.name == &quot;noThumb&quot;'>var noThumb = &quot;<data:link.target/>&quot;;</b:if> <b:if cond='data:link.name == &quot;commentsSystem&quot;'>var commentsSystem = &quot;<data:link.target/>&quot;;</b:if> </b:loop></b:tag></b:includable>
       </b:widget>
       <b:widget id='LinkList2' locked='true' title='Related Post / Show Texts' type='LinkList' version='2' visible='true'>
-        <b:layouts>
-          <b:layout id='LinkList' type='LinkList'/>
-        </b:layouts>
         <b:widget-settings>
           <b:widget-setting name='link-3'>https://www.instagram.com/rankrseo/</b:widget-setting>
           <b:widget-setting name='sorting'>NONE</b:widget-setting>
@@ -1253,9 +1217,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
         <b:includable id='content'><b:tag name='script' type='text/javascript'> <b:loop values='data:links' var='link'><b:if cond='data:link.name == &quot;relatedPostsNum&quot;'>var relatedPostsNum = <data:link.target/>;</b:if> <b:if cond='data:link.name == &quot;relatedPostsText&quot;'>var relatedPostsText = &quot;<data:link.target/>&quot;;</b:if> <b:if cond='data:link.name == &quot;loadMorePosts&quot;'>var loadMorePosts = &quot;<data:link.target/>&quot;;</b:if></b:loop></b:tag></b:includable>
       </b:widget>
       <b:widget id='LinkList3' locked='true' title='Lazy Scrolls / More Text' type='LinkList' version='2' visible='true'>
-        <b:layouts>
-          <b:layout id='LinkList' type='LinkList'/>
-        </b:layouts>
         <b:widget-settings>
           <b:widget-setting name='link-5'>https://rankrseo.mystrikingly.com/</b:widget-setting>
           <b:widget-setting name='link-3'>8</b:widget-setting>
@@ -1279,9 +1240,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
     </b:section>
         <b:section id='footer-5' maxwidgets='1' name='Footer Column 5' showaddelement='yes'>
           <b:widget id='LinkList7' locked='false' title='Resources' type='LinkList' version='2' visible='true'>
-            <b:layouts>
-              <b:layout id='LinkList' type='LinkList'/>
-            </b:layouts>
             <b:widget-settings>
               <b:widget-setting name='link-5'>/p/founder.html</b:widget-setting>
               <b:widget-setting name='link-3'>/p/terms.html</b:widget-setting>
@@ -2398,9 +2356,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
       <div class='container'>
         <b:section id='featured' maxwidgets='1' name='Featured Posts' showaddelement='yes'>
           <b:widget id='PopularPosts2' locked='true' title='Featured Posts' type='PopularPosts' version='2' visible='true'>
-            <b:layouts>
-              <b:layout id='PopularPosts' type='PopularPosts'/>
-            </b:layouts>
             <b:widget-settings>
               <b:widget-setting name='numItemsToShow'>4</b:widget-setting>
               <b:widget-setting name='showThumbnails'>true</b:widget-setting>
@@ -2610,9 +2565,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
           <div class='blog-main'>
           <b:section id='main-blog' maxwidgets='1' name='Blog Posts' showaddelement='yes'>
             <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
-              <b:layouts>
-                <b:layout id='Blog' type='Blog'/>
-              </b:layouts>
               <b:widget-settings>
                 <b:widget-setting name='showDateHeader'>false</b:widget-setting>
                 <b:widget-setting name='commentLabel'>Comments</b:widget-setting>
@@ -3413,9 +3365,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
               <div class='sidebar-sticky'>
                 <b:section id='sidebar' name='Sidebar' showaddelement='yes'>
                   <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts' version='2' visible='true'>
-                    <b:layouts>
-                      <b:layout id='PopularPosts' type='PopularPosts'/>
-                    </b:layouts>
                     <b:widget-settings>
                       <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
                       <b:widget-setting name='showThumbnails'>true</b:widget-setting>
@@ -3478,9 +3427,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
                     <b:includable id='snippetedPosts'><b:comment>Replaced</b:comment></b:includable>
                   </b:widget>
                   <b:widget id='Label1' locked='false' title='Categories' type='Label' version='2' visible='true'>
-                    <b:layouts>
-                      <b:layout id='Label' type='Label'/>
-                    </b:layouts>
                     <b:widget-settings>
                       <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
                       <b:widget-setting name='display'>CLOUD</b:widget-setting>
@@ -3519,9 +3465,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
     </b:includable>
                   </b:widget>
                   <b:widget id='HTML1' locked='false' title='About Us' type='HTML' version='2' visible='true'>
-                    <b:layouts>
-                      <b:layout id='HTML' type='HTML'/>
-                    </b:layouts>
                     <b:widget-settings>
                       <b:widget-setting name='content'><![CDATA[<div style='text-align:center'>
 <h4 style='margin-bottom:8px'>RankrSEO Agency</h4>
@@ -3539,9 +3482,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
                     </b:includable>
                   </b:widget>
                   <b:widget id='BlogSearch1' locked='false' title='Search' type='BlogSearch' version='2' visible='true'>
-                    <b:layouts>
-                      <b:layout id='BlogSearch' type='BlogSearch'/>
-                    </b:layouts>
                     <b:includable id='main'>
                       <div class='sidebar-widget'>
                         <h3 class='widget-title'>Search</h3>
@@ -3811,9 +3751,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
               <p>Fill in your details and one of our SEO strategists will analyze your site within 24 hours.</p>
               <b:section id='contact-form' maxwidgets='1' name='Contact Form' showaddelement='yes'>
                 <b:widget id='ContactForm1' locked='true' title='Contact Form' type='ContactForm' version='2' visible='true'>
-                  <b:layouts>
-                    <b:layout id='ContactForm' type='ContactForm'/>
-                  </b:layouts>
                   <b:includable id='main'>
                     <div class='contact-form-widget'>
                       <div class='widget-content'>
@@ -3872,9 +3809,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
       <div class='footer-grid'>
         <b:section id='footer-1' maxwidgets='1' name='Footer Column 1' showaddelement='yes'>
           <b:widget id='HTML9' locked='false' title='About RankrSEO' type='HTML' version='2' visible='true'>
-            <b:layouts>
-              <b:layout id='HTML' type='HTML'/>
-            </b:layouts>
             <b:widget-settings>
               <b:widget-setting name='content'><![CDATA[<a class="footer-logo" href="/"><i class="fas fa-chart-line logo-icon"></i> <span class="logo-text">Rankr<span>SEO</span></span></a><p>RankrSEO is a results-driven SEO agency and digital marketing company founded by Amit Kumar. We help businesses in USA, UK, and India increase organic visibility, generate qualified leads, and grow revenue through ethical search engine optimization, technical SEO, local SEO, ecommerce SEO, AI search optimization, content marketing, and conversion-focused websites.</p><div class="footer-social"><a aria-label="Facebook" href="https://www.facebook.com/RankrSEOs/" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="LinkedIn" href="https://in.linkedin.com/in/rankrseo" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" href="https://www.instagram.com/rankrseo/" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="YouTube" href="https://www.youtube.com/@rankrseo" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Linktree" href="https://linktr.ee/rankrseo" rel="noopener noreferrer" target="_blank"><i class="fas fa-tree"></i></a></div>]]></b:widget-setting>
             </b:widget-settings>
@@ -3885,9 +3819,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
         </b:section>
         <b:section id='footer-2' maxwidgets='1' name='Footer Column 2' showaddelement='yes'>
           <b:widget id='LinkList5' locked='false' title='Quick Links' type='LinkList' version='2' visible='true'>
-            <b:layouts>
-              <b:layout id='LinkList' type='LinkList'/>
-            </b:layouts>
             <b:widget-settings>
               <b:widget-setting name='text-9'>Sitemap</b:widget-setting>
               <b:widget-setting name='link-9'>/p/sitemap.html</b:widget-setting>
@@ -3928,9 +3859,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
         </b:section>
         <b:section id='footer-3' maxwidgets='1' name='Footer Column 3' showaddelement='yes'>
           <b:widget id='LinkList6' locked='false' title='Services' type='LinkList' version='2' visible='true'>
-            <b:layouts>
-              <b:layout id='LinkList' type='LinkList'/>
-            </b:layouts>
             <b:widget-settings>
               <b:widget-setting name='text-8'>Ecommerce SEO</b:widget-setting>
               <b:widget-setting name='link-7'>/search/label/AI%20SEO</b:widget-setting>
@@ -3969,9 +3897,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
         </b:section>
         <b:section id='footer-4' maxwidgets='1' name='Footer Column 4' showaddelement='yes'>
           <b:widget id='HTML10' locked='false' title='Contact Info' type='HTML' version='2' visible='true'>
-            <b:layouts>
-              <b:layout id='HTML' type='HTML'/>
-            </b:layouts>
             <b:widget-settings>
               <b:widget-setting name='content'><![CDATA[<ul class="footer-links contact-info"><li><i class="fas fa-map-marker-alt"></i> New Delhi, Delhi, India</li><li><i class="fas fa-phone"></i> +91 99537 32860</li><li><i class="fas fa-envelope"></i> rankrseo@gmail.com</li><li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</li></ul>]]></b:widget-setting>
             </b:widget-settings>
@@ -3985,9 +3910,6 @@ select.lead-input { appearance: auto; cursor: pointer; }
       <div class='footer-bottom'>
         <b:section id='footer-copyright' maxwidgets='1' name='Footer Copyright' showaddelement='no'>
           <b:widget id='HTML11' locked='true' title='Copyright' type='HTML' version='2' visible='true'>
-            <b:layouts>
-              <b:layout id='HTML' type='HTML'/>
-            </b:layouts>
             <b:widget-settings>
               <b:widget-setting name='content'><![CDATA[<span>&#169; <script>document.write(new Date().getFullYear())</script> RankrSEO. All rights reserved.</span><span>Powered by <a href="/">RankrSEO</a> | <a href="/p/privacy-policy.html">Privacy Policy</a> | <a href="/p/terms.html">Terms of Service</a></span>]]></b:widget-setting>
             </b:widget-settings>
