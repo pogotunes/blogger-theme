@@ -288,6 +288,32 @@
       "fix": "Merged author box rules (.oixvV-author, .author-social) and related posts rules (.Super-related) into the main 480px breakpoint block. Removed duplicate standalone media queries. Removed duplicate 480px query for .Super-related that mirrored 768px rule.",
       "prevention_rule": "RULE-031: All responsive rules for a given breakpoint must live in exactly one @media block. Component-specific overrides should be added to the shared block (with a comment grouping if helpful), never as separate standalone media queries.",
       "status": "fixed"
+    },
+    {
+      "error_id": "ERR-032",
+      "theme": "knowledge-base/rankrseo-theme.xml",
+      "category": "CSS Cross-browser",
+      "severity": "Medium",
+      "issue": "Service card gradient border uses mask-composite: exclude, unsupported in Firefox",
+      "symptom": "Firefox renders no border on service cards because mask-composite: exclude is not supported, so the entire pseudo-element is masked away",
+      "root_cause": "mask-composite is a relatively new CSS feature; Firefox supports mask-composite via -webkit-mask-composite but not the standard property, and 'exclude' behavior differs across implementations",
+      "bad_code_pattern": ".service-card::before { background: ...; -webkit-mask: ...; mask: ...; -webkit-mask-composite: xor; mask-composite: exclude; }",
+      "fix": "Added @supports not (mask-composite: exclude) block that removes the mask and instead uses a simple border-bottom with primary-color at 0.3 opacity on hover, providing a visual indicator without the gradient effect",
+      "prevention_rule": "RULE-032: Any CSS feature that uses mask-composite, conic-gradient, or other relatively new CSS features must have a @supports not (...) fallback that provides a graceful degraded experience.",
+      "status": "fixed"
+    },
+    {
+      "error_id": "ERR-033",
+      "theme": "knowledge-base/rankrseo-theme.xml",
+      "category": "UI/UX",
+      "severity": "Low",
+      "issue": "Featured post cards missing fallback background when image is absent",
+      "symptom": "If a featured post has no image, the featured-card element has no visible background, showing an empty/blank space instead of a placeholder",
+      "root_cause": "featured-card relied entirely on the post thumbnail image for visual content; no background property was set as fallback",
+      "bad_code_pattern": ".featured-card { position: relative; border-radius: var(--radius-lg); overflow: hidden; min-height: 400px; } /* no background */",
+      "fix": "Added background: linear-gradient(135deg, var(--bg-alt), var(--border-light)) fallback to featured-card so that even without an image the card is visually present",
+      "prevention_rule": "RULE-033: Any container that relies on an image for visual content must have a background fallback (gradient, solid color, or placeholder) so it remains visible when the image is missing or fails to load.",
+      "status": "fixed"
     }
   ]
 }

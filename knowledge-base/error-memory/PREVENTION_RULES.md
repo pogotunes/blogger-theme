@@ -1,6 +1,6 @@
 # Prevention Rules — Engineering Standards
 
-> 15 permanent engineering rules derived from every error encountered.
+> 33 permanent engineering rules derived from every error encountered (31 original + RULE-032, RULE-033).
 > These rules are MANDATORY for all future RankrSEO theme generation.
 
 ---
@@ -627,3 +627,39 @@ Plus line-height and letter-spacing scales.
 - [ ] No hardcoded colors outside `:root`
 
 **Violation:** UI-010 — no design system existed; CSS grew ad-hoc without tokens
+
+---
+
+## RULE-032: Cross-browser CSS Fallbacks
+
+**Severity:** Medium
+**Applies to:** All CSS with modern features
+
+**Rule:** Any CSS property that uses `mask-composite`, `conic-gradient`, or other relatively new CSS features must have a `@supports not (...)` fallback that provides a graceful degraded experience.
+
+**Rationale:** Firefox does not support `mask-composite: exclude`, causing gradient border effects to break silently. A fallback ensures the UI remains functional and visually acceptable in all browsers.
+
+**Checklist:**
+- [ ] Identify CSS features with limited browser support (caniuse.com check)
+- [ ] Add `@supports not (...)` block with fallback styling
+- [ ] Fallback should maintain readability, spacing, and semantic clarity
+
+**Violation:** ERR-032 — service card gradient border invisible in Firefox
+
+---
+
+## RULE-033: Image Container Fallbacks
+
+**Severity:** Low
+**Applies to:** All image-dependent UI components
+
+**Rule:** Any container that relies on an image for visual content must have a background fallback (gradient, solid color, or placeholder) so it remains visible when the image is missing or fails to load.
+
+**Rationale:** Featured posts, hero sections, and other image-heavy components become invisible blank spaces when images fail to load or are not set. A CSS background fallback provides basic visual presence.
+
+**Checklist:**
+- [ ] Every card/section with a background image also has a CSS background property
+- [ ] Fallback uses theme color tokens (bg-alt, border-light, or gradient)
+- [ ] Test by removing the image source
+
+**Violation:** ERR-033 — featured post cards showed blank space without image

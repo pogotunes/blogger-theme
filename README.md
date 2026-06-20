@@ -21,12 +21,14 @@ A collection of Blogger XML themes, UI components, error memory system, and SEO/
 │   │   ├── BLOGGER_XML_ARCHITECTURE.md # Bloggers tag reference
 │   │   ├── COMPONENT_LIBRARY.md        # 18 reusable UI components
 │   │   ├── THEME_ANALYSIS_REPORT.md    # 13-theme analysis
-│   │   └── XML_THEME_COMPARISON.md     # Cross-theme architecture audit
+│   │   ├── XML_THEME_COMPARISON.md     # Cross-theme architecture audit
+│   │   ├── REPO_ARCHITECTURE.md        # Repository architecture documentation
+│   │   └── SEO_STRATEGY.md             # SEO/AEO/GEO strategy guide
 │   ├── blueprints/
 │   │   └── SEO_AEO_GEO_BLUEPRINT.md    # Meta tags, JSON-LD, cards
 │   ├── error-memory/                   # Permanent error tracking system
-│   │   ├── MASTER_ERROR_MEMORY.json    # 31 errors logged & fixed
-│   │   ├── PREVENTION_RULES.md         # 31 engineering rules
+ │   │   ├── MASTER_ERROR_MEMORY.json    # 33 errors logged & fixed
+│   │   ├── PREVENTION_RULES.md         # 33 engineering rules
 │   │   ├── VALIDATION_CHECKLIST.md     # 80-item pre-import checklist
 │   │   ├── HIGH_RISK_PATTERNS.md       # 12 high-risk patterns
 │   │   ├── KNOWN_FATAL_ERRORS.md       # 8 fatal error patterns
@@ -111,7 +113,7 @@ A collection of Blogger XML themes, UI components, error memory system, and SEO/
 | HTML11 | HTML | footer-copyright | ✓ |
 
 ### Error Prevention System
-31 errors documented and fixed in `MASTER_ERROR_MEMORY.json`. 31 prevention rules in `PREVENTION_RULES.md` enforce:
+33 errors documented and fixed in `MASTER_ERROR_MEMORY.json`. 33 prevention rules in `PREVENTION_RULES.md` enforce:
 - No LinkList for navigation/header (use hardcoded HTML widgets)
 - Design token system required before CSS
 - Unique `b:includable` IDs per widget
