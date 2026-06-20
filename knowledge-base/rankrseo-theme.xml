@@ -106,7 +106,7 @@
 
 <!-- Website Schema -->
 <b:if cond='data:view.isHomepage'>
-<script type='application/ld+json'>{&quot;@context&quot;:&quot;http://schema.org&quot;,&quot;@type&quot;:&quot;WebSite&quot;,&quot;name&quot;:&quot;<data:view.title.escaped/>&quot;,&quot;url&quot;:&quot;<data:view.url.canonical/>&quot;,&quot;potentialAction&quot;:{&quot;@type&quot;:&quot;SearchAction&quot;,&quot;target&quot;:&quot;<data:view.url.canonical/>search?q={search_term_string}&quot;,&quot;query-input&quot;:&quot;required name=search_term_string&quot;}}</script>
+<script type='application/ld+json'>{&quot;@context&quot;:&quot;https://schema.org&quot;,&quot;@type&quot;:&quot;WebSite&quot;,&quot;name&quot;:&quot;<data:view.title.escaped/>&quot;,&quot;url&quot;:&quot;<data:view.url.canonical/>&quot;,&quot;potentialAction&quot;:{&quot;@type&quot;:&quot;SearchAction&quot;,&quot;target&quot;:&quot;<data:view.url.canonical/>search?q={search_term_string}&quot;,&quot;query-input&quot;:&quot;required name=search_term_string&quot;}}</script>
 </b:if>
 
 <!-- Organization + LocalBusiness Schema -->
@@ -444,7 +444,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .featured-main .featured-card { position: relative; border-radius: var(--radius-md); overflow: hidden; height: 100%; min-height: 400px; }
 .featured-main .featured-card img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; transition: transform 0.6s ease; }
 .featured-main .featured-card:hover img { transform: scale(1.05); }
-.featured-card { position: relative; border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 16/9; background: linear-gradient(135deg, var(--bg-alt), var(--border-light)); }
+.featured-card { position: relative; border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 16/9; }
 .featured-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
 .featured-card:hover img { transform: scale(1.05); }
 .featured-card-overlay { position: absolute; inset: 0; background: linear-gradient(transparent 30%, rgba(0,0,0,0.9)); display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; }
@@ -597,9 +597,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .video-info p { color: var(--primary); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
 
 /* --- Newsletter Section --- */
-/* .newsletter-section contains email signup CTA with form and privacy notice */
 .newsletter-section { background: var(--bg-alt); }
-/* --- Blog Archive Widget --- */
 .BlogArchive { padding: 0; }
 .BlogArchive #ArchiveList ul li { padding: 8px 0; border-bottom: 1px solid var(--border-light); font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
 .BlogArchive #ArchiveList ul li:last-child { border-bottom: none; }
@@ -980,9 +978,6 @@ html:not(.js-enabled) .animate-on-scroll { opacity: 1; transform: none; }
   .featured-posts { padding: 0 0 28px; }
   .post-single { padding: 72px 12px 28px; }
   .footer-grid, .footer-widgets { grid-template-columns: 1fr; }
-  .oixvV-author { flex-direction: column; align-items: center; text-align: center; padding: 24px; }
-  .author-social { justify-content: center; }
-  .Super-related { grid-template-columns: 1fr; }
 }
 
 /* --- Breadcrumb --- */
@@ -1063,6 +1058,11 @@ html:not(.js-enabled) .animate-on-scroll { opacity: 1; transform: none; }
 .author-social a:hover { background: var(--primary); border-color: var(--primary); color: #fff; transform: translateY(-2px); }
 .author-cta { margin-top: 8px; }
 
+@media (max-width: 480px) {
+  .oixvV-author { flex-direction: column; align-items: center; text-align: center; padding: 24px; }
+  .author-social { justify-content: center; }
+}
+
 /* --- Related Posts --- */
 .related-runs { margin-top: 40px; }
 .related-runs .widget-title { display: flex; align-items: center; justify-content: space-between; padding: 0 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
@@ -1080,6 +1080,9 @@ html:not(.js-enabled) .animate-on-scroll { opacity: 1; transform: none; }
 .related-post-date i { margin-right: 4px; }
 
 @media (max-width: 768px) {
+  .Super-related { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
   .Super-related { grid-template-columns: 1fr; }
 }
 
@@ -1240,24 +1243,17 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
   <div class='admin-area' style='display:none'>
     <b:section class='admin-section' id='admin' maxwidgets='1' name='Theme Options (Admin Panel)' showaddelement='no'>
       <b:widget id='TextList15' locked='true' title='Facebook SDK (Plugin)' type='TextList' version='2' visible='true'>
-        <b:includable id='main' var='this'>
-          <b:include name='widget-title'/>
-          <b:include name='content'/>
-        </b:includable>
-        <b:includable id='content'>
-          <b:include name='textlist-content'/>
-        </b:includable>
-    <b:includable id='widget-title'>
+        <b:includable id='widget-title'>
       <b:if cond='data:defaultTitle or data:title'>
         <b:if cond='data:widget.sectionId not in [&quot;ft-post&quot;, &quot;main-ads-below&quot;, &quot;main-ads2&quot;]'>
           <div class='widget-title'><h3 class='title'><data:title/></h3></div>
         </b:if>
       </b:if>
     </b:includable>
-    <b:includable id='textlist-content'>
+        <b:includable id='textlist-content'>
         <b:if cond='data:widget.sectionId == &quot;admin&quot;'>
             <b:loop values='data:items' var='item'>
-              <noscript async='async' crossorigin='anonymous' defer='defer' expr:src='data:item'/>
+              <script async='async' crossorigin='anonymous' defer='defer' expr:src='data:item'/>
             </b:loop>
             <b:else/>
             <div class='widget-content'>
@@ -1265,6 +1261,13 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             </div>
         </b:if>
     </b:includable>
+        <b:includable id='main' var='this'>
+          <b:include name='widget-title'/>
+          <b:include name='content'/>
+        </b:includable>
+        <b:includable id='content'>
+          <b:include name='textlist-content'/>
+        </b:includable>
       </b:widget>
       <b:widget id='LinkList1' locked='true' title='Variables / Comments' type='LinkList' version='2' visible='true'>
         <b:widget-settings>
@@ -1340,7 +1343,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
   </div>
 
   <!-- Mobile Overlay -->
-  <div class='mobile-overlay' id='mobileOverlay'/>
+  <div class='mobile-overlay' id='mobileOverlay'></div>
 
   <!-- Mobile Menu -->
   <aside aria-label='Mobile navigation' class='mobile-menu' id='mobileMenu' role='navigation'>
@@ -1424,9 +1427,6 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
     <b:if cond='data:view.isHomepage'>
 
     <!-- Hero Section -->
-    <b:section id='hero-section' maxwidgets='1' name='Hero Section' showaddelement='no'>
-      <b:widget id='HTML12' locked='true' title='Hero Content' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section class='hero' id='hero'>
       <div class='container'>
         <div class='hero-grid'>
@@ -1451,9 +1451,9 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           <div class='hero-visual'>
             <div class='dashboard-card'>
               <div class='dashboard-header'>
-                <span class='dashboard-dot'/>
-                <span class='dashboard-dot'/>
-                <span class='dashboard-dot'/>
+                <span class='dashboard-dot'></span>
+                <span class='dashboard-dot'></span>
+                <span class='dashboard-dot'></span>
               </div>
               <div class='dashboard-body'>
                 <div class='dashboard-metric'>
@@ -1490,14 +1490,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
 
     <!-- Featured Posts Section -->
-    <b:section id='featured-posts-wrapper' maxwidgets='1' name='Featured Posts' showaddelement='no'>
-      <b:widget id='HTML21' locked='true' title='Featured Posts' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section aria-label='Featured articles' class='featured-posts' id='featured-posts'>
       <div class='container'>
         <b:section id='featured' maxwidgets='1' name='Featured Posts' showaddelement='yes'>
@@ -1565,7 +1559,66 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             <b:includable id='bylineRegion' var='regionItems'><b:comment>Replaced</b:comment></b:includable>
             <b:includable id='commentsLink'><b:comment>Replaced</b:comment></b:includable>
             <b:includable id='commentsLinkIframe'><b:comment>Replaced</b:comment></b:includable>
-            <b:includable id='content' var='post'>
+                    <b:includable id='popular-content'>
+                    <div>
+                        <b:if cond='data:widget.sectionId == &quot;hot-posts&quot;'>
+                       <b:class name='tickerNews'/>
+                          <b:elseif cond='data:widget.sectionId == &quot;ft-post&quot;'/>
+                            <b:class name='featured-box'/><b:else/>
+                            <b:class name='popular-post post'/>
+                        </b:if>
+                        <b:class expr:name='&quot;item&quot;+data:i'/>
+                        <b:if cond='data:widget.sectionId in [&quot;ft-post&quot;]'>
+                            <b:tag class='post-filter-inner' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
+                                <b:tag class='post-filter-link background-layer' name='span'>
+                                    <b:if cond='data:post.featuredImage'><img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' expr:src='data:post.featuredImage.isYouTube ? resizeImage(data:post.featuredImage.youtubeMaxResDefaultUrl.jsonEscaped , 600, &quot;16:9&quot;) : resizeImage(data:post.featuredImage , 600, &quot;16:9&quot;)' loading='lazy'/>
+                                        <b:else/>
+                                        <img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' loading='lazy' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDII_l4W2Z3MV4ADSUxz7ZU_aiz5yLJEKWIah1nIy82tfkOnExXw1BM0xCzp5m1ejW9V3sxKC3YRJPnECKQ0sls30kovxcAaX8phyphenhyphenzStOtakZOvMxfWGGOztoKzvM09KVytaQdzBJZalI/w680/nth.png'/>
+                                    </b:if>
+                                    <b:class expr:name='data:post.featuredImage.isYouTube ? &quot;video-nos&quot; : &quot;image-nos&quot;'/>
+                                </b:tag>
+                              <b:tag class='entery-category-fly' name='div'>
+                                    <span class='post-tag'><data:post.labels.first.name/></span>
+                                    <h2 class='entry-title vcard'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></h2>
+                                    <div class='post-snip'>
+                                        <b:if cond='data:post.author.authorPhoto.image'><img class='post-author-image' expr:alt='data:post.author.name' expr:src='data:post.author.authorPhoto.image resizeImage 200'/>
+                                            <b:else/><img class='post-author-image' expr:alt='data:post.author.name' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8aWqBvyZHfuNKmz9mK9tgaClNs6xKP4bpPY6md3lHZeU_b4d0VG1On4ZxIVAMD3TVQ34nbiBHwU-kJCW4UmMDY1qpWEbwGT9XTHSWDEIjhRBPFml6rbEeijpCwsok7rK6shPrPqadioiW/s100/avatar.png'/>
+                                        </b:if>
+                                        <b:if cond='data:widgets.Blog.first.allBylineItems.author'><span class='post-author'><data:post.author.name/></span></b:if>
+                                        <span class='post-date' expr:datetime='data:post.date.iso8601'><data:post.date/></span>
+                                    </div>
+                              </b:tag>
+                              </b:tag>
+                        </b:if>
+                        <b:if cond='data:widget.sectionId in [&quot;sidebar&quot;]'>
+                        <b:tag class='post-filter-inner gaint' cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
+                        <b:tag class='post-filter-inner' cond='data:widget.sectionId != &quot;sidebar&quot; or (data:i != 0 and (data:widget.sectionId == &quot;sidebar&quot;))' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
+                          <b:tag class='post-filter-link background-layer' cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)' name='span'>
+                              <b:if cond='data:post.featuredImage'>
+                                  <img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' expr:src='data:post.featuredImage.isYouTube ? resizeImage(data:post.featuredImage.youtubeMaxResDefaultUrl.jsonEscaped , 600, &quot;16:9&quot;) : resizeImage(data:post.featuredImage , 600, &quot;16:9&quot;)' loading='lazy'/>
+                                  <b:else/><img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' loading='lazy' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDII_l4W2Z3MV4ADSUxz7ZU_aiz5yLJEKWIah1nIy82tfkOnExXw1BM0xCzp5m1ejW9V3sxKC3YRJPnECKQ0sls30kovxcAaX8phyphenhyphenzStOtakZOvMxfWGGOztoKzvM09KVytaQdzBJZalI/w680/nth.png'/>
+                              </b:if><b:class expr:name='data:post.featuredImage.isYouTube ? &quot;video-nos&quot; : &quot;image-nos&quot;'/>
+                          </b:tag>
+                        </b:tag>
+                        <b:tag expr:class='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;) ? &quot;entery-category-fly&quot; : &quot;entery-category-box&quot;' name='div'>
+                          <b:if cond='data:i == 0'><span class='post-tag'><data:post.labels.first.name/></span></b:if>
+                          <h2 class='entry-title vcard'><b:tag cond='data:widget.sectionId != &quot;sidebar&quot; or (data:i != 0 and (data:widget.sectionId == &quot;sidebar&quot;))' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></b:tag></h2>
+                          <div class='post-snip'>
+                              <b:if cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)'><span class='post-author'><data:post.author.name/></span></b:if>
+                              <span class='post-date' expr:datetime='data:post.date.iso8601'><data:post.date/></span>
+                          </div>
+                        </b:tag>
+                        </b:tag>
+                        </b:if>
+                        <b:if cond='data:widget.sectionId not in [&quot;ft-post&quot;,&quot;sidebar&quot;]'>
+                        <h2 class='entry-title vcard'><a expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></a></h2>
+                        <b:if cond='data:widget.sectionId not in [&quot;hot-posts&quot;]'>
+                        <span class='post-date'><data:post.date/></span>
+                        </b:if>
+                        </b:if>
+                    </div>
+                    </b:includable>
+                    <b:includable id='content' var='post'>
 <b:include name='popular-content'/>
 </b:includable>
             <b:includable id='emailPostIcon'><b:comment>Replaced</b:comment></b:includable>
@@ -1594,80 +1647,12 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             <b:includable id='snippetedPostThumbnail'><b:comment>Replaced</b:comment></b:includable>
             <b:includable id='snippetedPostTitle'><b:comment>Replaced</b:comment></b:includable>
             <b:includable id='snippetedPosts'><b:comment>Replaced</b:comment></b:includable>
-    <b:includable id='popular-content'>
-        <div>
-            <b:if cond='data:widget.sectionId == &quot;hot-posts&quot;'>
-           <b:class name='tickerNews'/>
-              <b:elseif cond='data:widget.sectionId == &quot;ft-post&quot;'/>
-                <b:class name='featured-box'/><b:else/>
-                <b:class name='popular-post post'/>
-            </b:if>
-            <b:class expr:name='&quot;item&quot;+data:i'/>
-            <b:if cond='data:widget.sectionId in [&quot;ft-post&quot;]'>
-                <b:tag class='post-filter-inner' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
-                    <b:tag class='post-filter-link background-layer' name='span'>
-                        <b:if cond='data:post.featuredImage'><img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' expr:src='data:post.featuredImage.isYouTube ? resizeImage(data:post.featuredImage.youtubeMaxResDefaultUrl.jsonEscaped , 600, &quot;16:9&quot;) : resizeImage(data:post.featuredImage , 600, &quot;16:9&quot;)' loading='lazy'/>
-                            <b:else/>
-                            <img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' loading='lazy' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDII_l4W2Z3MV4ADSUxz7ZU_aiz5yLJEKWIah1nIy82tfkOnExXw1BM0xCzp5m1ejW9V3sxKC3YRJPnECKQ0sls30kovxcAaX8phyphenhyphenzStOtakZOvMxfWGGOztoKzvM09KVytaQdzBJZalI/w680/nth.png'/>
-                        </b:if>
-                        <b:class expr:name='data:post.featuredImage.isYouTube ? &quot;video-nos&quot; : &quot;image-nos&quot;'/>
-                    </b:tag>
-                  <b:tag class='entery-category-fly' name='div'>
-                        <span class='post-tag'><data:post.labels.first.name/></span>
-                        <h2 class='entry-title vcard'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></h2>
-                        <div class='post-snip'>
-                            <b:if cond='data:post.author.authorPhoto.image'><img class='post-author-image' expr:alt='data:post.author.name' expr:src='data:post.author.authorPhoto.image resizeImage 200'/>
-                                <b:else/><img class='post-author-image' expr:alt='data:post.author.name' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8aWqBvyZHfuNKmz9mK9tgaClNs6xKP4bpPY6md3lHZeU_b4d0VG1On4ZxIVAMD3TVQ34nbiBHwU-kJCW4UmMDY1qpWEbwGT9XTHSWDEIjhRBPFml6rbEeijpCwsok7rK6shPrPqadioiW/s100/avatar.png'/>
-                            </b:if>
-                            <b:if cond='data:widgets.Blog.first.allBylineItems.author'><span class='post-author'><data:post.author.name/></span></b:if>
-                            <span class='post-date' expr:datetime='data:post.date.iso8601'><data:post.date/></span>
-                        </div>
-                  </b:tag>
-                  </b:tag>
-            </b:if>
-            <b:if cond='data:widget.sectionId in [&quot;sidebar&quot;]'>
-            <b:tag class='post-filter-inner gaint' cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
-            <b:tag class='post-filter-inner' cond='data:widget.sectionId != &quot;sidebar&quot; or (data:i != 0 and (data:widget.sectionId == &quot;sidebar&quot;))' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
-              <b:tag class='post-filter-link background-layer' cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)' name='span'>
-                  <b:if cond='data:post.featuredImage'>
-                      <img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' expr:src='data:post.featuredImage.isYouTube ? resizeImage(data:post.featuredImage.youtubeMaxResDefaultUrl.jsonEscaped , 600, &quot;16:9&quot;) : resizeImage(data:post.featuredImage , 600, &quot;16:9&quot;)' loading='lazy'/>
-                      <b:else/><img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' loading='lazy' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDII_l4W2Z3MV4ADSUxz7ZU_aiz5yLJEKWIah1nIy82tfkOnExXw1BM0xCzp5m1ejW9V3sxKC3YRJPnECKQ0sls30kovxcAaX8phyphenhyphenzStOtakZOvMxfWGGOztoKzvM09KVytaQdzBJZalI/w680/nth.png'/>
-                  </b:if><b:class expr:name='data:post.featuredImage.isYouTube ? &quot;video-nos&quot; : &quot;image-nos&quot;'/>
-              </b:tag>
-            </b:tag>
-            <b:tag expr:class='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;) ? &quot;entery-category-fly&quot; : &quot;entery-category-box&quot;' name='div'>
-              <b:if cond='data:i == 0'><span class='post-tag'><data:post.labels.first.name/></span></b:if>
-              <h2 class='entry-title vcard'><b:tag cond='data:widget.sectionId != &quot;sidebar&quot; or (data:i != 0 and (data:widget.sectionId == &quot;sidebar&quot;))' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></b:tag></h2>
-              <div class='post-snip'>
-                  <b:if cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)'>
-                      <b:if cond='data:post.author.authorPhoto.image'><img class='post-author-image' expr:alt='data:post.author.name' expr:src='data:post.author.authorPhoto.image resizeImage 200'/>
-                          <b:else/><img class='post-author-image' expr:alt='data:post.author.name' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8aWqBvyZHfuNKmz9mK9tgaClNs6xKP4bpPY6md3lHZeU_b4d0VG1On4ZxIVAMD3TVQ34nbiBHwU-kJCW4UmMDY1qpWEbwGT9XTHSWDEIjhRBPFml6rbEeijpCwsok7rK6shPrPqadioiW/s100/avatar.png'/>
-                      </b:if><span class='post-author'><data:post.author.name/></span>
-                  </b:if><span class='post-date'><data:post.date/></span>
-              </div>
-            </b:tag>
-            </b:tag>
-            </b:if>
-            <b:if cond='data:widget.sectionId not in [&quot;ft-post&quot;,&quot;sidebar&quot;]'>
-            <h2 class='entry-title vcard'><a expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></a></h2>
-            <b:if cond='data:widget.sectionId not in [&quot;hot-posts&quot;]'>
-            <span class='post-date'><data:post.date/></span>
-            </b:if>
-            </b:if>
-        </div>
-    </b:includable>
           </b:widget>
         </b:section>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
 
     <!-- Services Section -->
-    <b:section id='services-section' maxwidgets='1' name='Services Content' showaddelement='no'>
-      <b:widget id='HTML13' locked='true' title='Services Content' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section class='section services-section' id='services'>
       <div class='container'>
         <div class='section-title'>
@@ -1680,43 +1665,43 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             <div class='service-icon'><i class='fas fa-search'/></div>
             <h3>SEO Audit &amp; Technical Analysis</h3>
             <p>In-depth technical SEO audit covering crawl optimization, Core Web Vitals, site architecture, and on-page SEO gaps. We identify every opportunity to improve your search visibility and fix issues fast.</p>
+            <a class='service-link' href='/search/label/SEO%20Audit'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
             <div class='service-icon'><i class='fas fa-key'/></div>
             <h3>Keyword Research &amp; SEO Strategy</h3>
             <p>Data-driven keyword research targeting high-intent, low-competition search terms. We build SEO strategies aligned with buyer intent, voice search, and AI-powered search engines.</p>
+            <a class='service-link' href='/search/label/Keyword%20Research'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
             <div class='service-icon'><i class='fas fa-pen-fancy'/></div>
             <h3>SEO Content Marketing &amp; Blog Writing</h3>
             <p>Authority-building SEO content that earns backlinks, engages readers, and converts visitors. Our content marketing strategies target featured snippets, People Also Ask, and AI search answers.</p>
+            <a class='service-link' href='/search/label/Content%20Marketing'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
             <div class='service-icon'><i class='fas fa-link'/></div>
             <h3>White-Hat Link Building</h3>
             <p>Ethical, white-hat link building from authoritative domains to boost domain authority, referral traffic, and organic search rankings. We focus on editorial links, guest posts, and digital PR.</p>
+            <a class='service-link' href='/search/label/Link%20Building'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
             <div class='service-icon'><i class='fas fa-map-marker-alt'/></div>
             <h3>Local SEO Services</h3>
             <p>Google Business Profile optimization, local citation building, local keyword targeting, and review management to dominate local search results in your city or service area.</p>
+            <a class='service-link' href='/search/label/Local%20SEO'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
             <div class='service-icon'><i class='fas fa-chart-bar'/></div>
             <h3>SEO Analytics &amp; ROI Reporting</h3>
             <p>Transparent monthly dashboards and reports showing organic traffic growth, keyword rankings, conversion tracking, and measurable ROI from your SEO campaigns.</p>
+            <a class='service-link' href='/search/label/SEO'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
         </div>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
 
     <!-- Why Choose Us Section -->
-    <b:section id='why-rankrseo-section' maxwidgets='1' name='Why RankrSEO' showaddelement='no'>
-      <b:widget id='HTML14' locked='true' title='Why RankrSEO' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section class='section why-choose-section' id='about'>
       <div class='container'>
         <div class='section-title'>
@@ -1763,14 +1748,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
 
     <!-- Our Process Section -->
-    <b:section id='process-section' maxwidgets='1' name='Our Process' showaddelement='no'>
-      <b:widget id='HTML15' locked='true' title='Our Process' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section class='section process-section' id='process'>
       <div class='container'>
         <div class='section-title'>
@@ -1812,15 +1791,9 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
     </b:if>
 
     <!-- Blog Posts Section -->
-    <b:section id='blog-posts-section' maxwidgets='1' name='Blog Posts' showaddelement='no'>
-      <b:widget id='HTML23' locked='true' title='Blog Posts' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section class='section section-alt blog-posts-section' id='blog'>
       <div class='container'>
         <b:if cond='data:view.isHomepage'>
@@ -2135,7 +2108,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                       </b:if>
                       <span class='current'><data:post.title/></span>
                     </nav>
-                    <script type='application/ld+json'>{&quot;@context&quot;:&quot;http://schema.org&quot;, &quot;@type&quot;: &quot;BreadcrumbList&quot;, &quot;@id&quot;: &quot;#Breadcrumb&quot;, &quot;itemListElement&quot;: [{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 1, &quot;item&quot;: { &quot;name&quot;: &quot;<data:messages.home/>&quot;, &quot;@id&quot;: &quot;<data:blog.homepageUrl.jsonEscaped/>&quot; } },{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 2, &quot;item&quot;: { &quot;name&quot;: &quot;<b:if cond='data:post.labels'><data:post.labels.last.name/></b:if>&quot;, &quot;@id&quot;: &quot;<data:post.labels.last.url.jsonEscaped/>&quot; } },{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 3, &quot;item&quot;: { &quot;name&quot;: &quot;<data:post.title/>&quot;, &quot;@id&quot;: &quot;<data:post.url.jsonEscaped/>&quot; } }] }
+                    <script type='application/ld+json'>{&quot;@context&quot;:&quot;https://schema.org&quot;, &quot;@type&quot;: &quot;BreadcrumbList&quot;, &quot;@id&quot;: &quot;#Breadcrumb&quot;, &quot;itemListElement&quot;: [{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 1, &quot;item&quot;: { &quot;name&quot;: &quot;<data:messages.home/>&quot;, &quot;@id&quot;: &quot;<data:blog.homepageUrl.jsonEscaped/>&quot; } },{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 2, &quot;item&quot;: { &quot;name&quot;: &quot;<b:if cond='data:post.labels'><data:post.labels.last.name/></b:if>&quot;, &quot;@id&quot;: &quot;<data:post.labels.last.url.jsonEscaped/>&quot; } },{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 3, &quot;item&quot;: { &quot;name&quot;: &quot;<data:post.title/>&quot;, &quot;@id&quot;: &quot;<data:post.url.jsonEscaped/>&quot; } }] }
                     </script>
 
                     <header class='post-single-header'>
@@ -2282,7 +2255,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
       <b:if cond='data:post.labels'><em class='delimiter'/><a class='b-label' expr:href='data:post.labels.last.url'><data:post.labels.last.name/></a></b:if><em class='delimiter'/><span class='current'>
         <b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></span>
     </nav>
-    <script type='application/ld+json'>{&quot;@context&quot;:&quot;http://schema.org&quot;, &quot;@type&quot;: &quot;BreadcrumbList&quot;, &quot;@id&quot;: &quot;#Breadcrumb&quot;, &quot;itemListElement&quot;: [{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 1, &quot;item&quot;: { &quot;name&quot;: &quot;<data:messages.home/>&quot;, &quot;@id&quot;: &quot;<data:blog.homepageUrl.jsonEscaped/>&quot; } },{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 2, &quot;item&quot;: { &quot;name&quot;: &quot;<b:if cond='data:post.labels'><data:post.labels.last.name/></b:if>&quot;, &quot;@id&quot;: &quot;<data:post.labels.last.url.jsonEscaped/>&quot; } },{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 3, &quot;item&quot;: { &quot;name&quot;: &quot;<data:post.title/>&quot;, &quot;@id&quot;: &quot;<data:post.url.jsonEscaped/>&quot; } }] }
+    <script type='application/ld+json'>{&quot;@context&quot;:&quot;https://schema.org&quot;, &quot;@type&quot;: &quot;BreadcrumbList&quot;, &quot;@id&quot;: &quot;#Breadcrumb&quot;, &quot;itemListElement&quot;: [{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 1, &quot;item&quot;: { &quot;name&quot;: &quot;<data:messages.home/>&quot;, &quot;@id&quot;: &quot;<data:blog.homepageUrl.jsonEscaped/>&quot; } },{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 2, &quot;item&quot;: { &quot;name&quot;: &quot;<b:if cond='data:post.labels'><data:post.labels.last.name/></b:if>&quot;, &quot;@id&quot;: &quot;<data:post.labels.last.url.jsonEscaped/>&quot; } },{ &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 3, &quot;item&quot;: { &quot;name&quot;: &quot;<data:post.title/>&quot;, &quot;@id&quot;: &quot;<data:post.url.jsonEscaped/>&quot; } }] }
     </script>
   </b:includable>
               <b:includable id='postCard' var='post'>
@@ -2629,17 +2602,20 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
   </style>
   <!-- LINT.ThenChange(//depot/google3/java/com/google/blogger/b2/layouts/widgets/v2-style.css) -->
 </b:includable>
-    <b:includable id='translate'>
-      <b:switch var='data:message'>
-        <b:case value='relatedPostsText'/>
-        <data:messages.youMayLikeThesePosts/>
-        <b:case value='loadMorePosts'/>
-        Load More
-        <b:default/>
-        <data:message/>
-      </b:switch>
-    </b:includable>
-          </b:widget>
+            <b:includable id='customLang'>
+              <b:switch var='data:message'>
+                <b:case value='relatedPostsText'/>
+                <data:messages.youMayLikeThesePosts/>
+                <b:case value='loadMorePosts'/>
+                <data:messages.loadMorePosts/>
+                <b:default/>
+                <data:message/>
+              </b:switch>
+            </b:includable>
+            <b:includable id='translate'>
+              <b:include name='customLang'/>
+            </b:includable>
+            </b:widget>
           </b:section>
           </div>
         <b:if cond='!data:view.isHomepage and !data:view.isSingleItem'>
@@ -2681,7 +2657,66 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                     <b:includable id='bylineRegion' var='regionItems'><b:comment>Replaced</b:comment></b:includable>
                     <b:includable id='commentsLink'><b:comment>Replaced</b:comment></b:includable>
                     <b:includable id='commentsLinkIframe'><b:comment>Replaced</b:comment></b:includable>
-                    <b:includable id='content' var='post'>
+            <b:includable id='popular-content'>
+                    <div>
+                        <b:if cond='data:widget.sectionId == &quot;hot-posts&quot;'>
+                       <b:class name='tickerNews'/>
+                          <b:elseif cond='data:widget.sectionId == &quot;ft-post&quot;'/>
+                            <b:class name='featured-box'/><b:else/>
+                            <b:class name='popular-post post'/>
+                        </b:if>
+                        <b:class expr:name='&quot;item&quot;+data:i'/>
+                        <b:if cond='data:widget.sectionId in [&quot;ft-post&quot;]'>
+                            <b:tag class='post-filter-inner' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
+                                <b:tag class='post-filter-link background-layer' name='span'>
+                                    <b:if cond='data:post.featuredImage'><img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' expr:src='data:post.featuredImage.isYouTube ? resizeImage(data:post.featuredImage.youtubeMaxResDefaultUrl.jsonEscaped , 600, &quot;16:9&quot;) : resizeImage(data:post.featuredImage , 600, &quot;16:9&quot;)' loading='lazy'/>
+                                        <b:else/>
+                                        <img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' loading='lazy' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDII_l4W2Z3MV4ADSUxz7ZU_aiz5yLJEKWIah1nIy82tfkOnExXw1BM0xCzp5m1ejW9V3sxKC3YRJPnECKQ0sls30kovxcAaX8phyphenhyphenzStOtakZOvMxfWGGOztoKzvM09KVytaQdzBJZalI/w680/nth.png'/>
+                                    </b:if>
+                                    <b:class expr:name='data:post.featuredImage.isYouTube ? &quot;video-nos&quot; : &quot;image-nos&quot;'/>
+                                </b:tag>
+                              <b:tag class='entery-category-fly' name='div'>
+                                    <span class='post-tag'><data:post.labels.first.name/></span>
+                                    <h2 class='entry-title vcard'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></h2>
+                                    <div class='post-snip'>
+                                        <b:if cond='data:post.author.authorPhoto.image'><img class='post-author-image' expr:alt='data:post.author.name' expr:src='data:post.author.authorPhoto.image resizeImage 200'/>
+                                            <b:else/><img class='post-author-image' expr:alt='data:post.author.name' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8aWqBvyZHfuNKmz9mK9tgaClNs6xKP4bpPY6md3lHZeU_b4d0VG1On4ZxIVAMD3TVQ34nbiBHwU-kJCW4UmMDY1qpWEbwGT9XTHSWDEIjhRBPFml6rbEeijpCwsok7rK6shPrPqadioiW/s100/avatar.png'/>
+                                        </b:if>
+                                        <b:if cond='data:widgets.Blog.first.allBylineItems.author'><span class='post-author'><data:post.author.name/></span></b:if>
+                                        <span class='post-date' expr:datetime='data:post.date.iso8601'><data:post.date/></span>
+                                    </div>
+                              </b:tag>
+                              </b:tag>
+                        </b:if>
+                        <b:if cond='data:widget.sectionId in [&quot;sidebar&quot;]'>
+                        <b:tag class='post-filter-inner gaint' cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
+                        <b:tag class='post-filter-inner' cond='data:widget.sectionId != &quot;sidebar&quot; or (data:i != 0 and (data:widget.sectionId == &quot;sidebar&quot;))' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
+                          <b:tag class='post-filter-link background-layer' cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)' name='span'>
+                              <b:if cond='data:post.featuredImage'>
+                                  <img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' expr:src='data:post.featuredImage.isYouTube ? resizeImage(data:post.featuredImage.youtubeMaxResDefaultUrl.jsonEscaped , 600, &quot;16:9&quot;) : resizeImage(data:post.featuredImage , 600, &quot;16:9&quot;)' loading='lazy'/>
+                                  <b:else/><img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' loading='lazy' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDII_l4W2Z3MV4ADSUxz7ZU_aiz5yLJEKWIah1nIy82tfkOnExXw1BM0xCzp5m1ejW9V3sxKC3YRJPnECKQ0sls30kovxcAaX8phyphenhyphenzStOtakZOvMxfWGGOztoKzvM09KVytaQdzBJZalI/w680/nth.png'/>
+                              </b:if><b:class expr:name='data:post.featuredImage.isYouTube ? &quot;video-nos&quot; : &quot;image-nos&quot;'/>
+                          </b:tag>
+                        </b:tag>
+                        <b:tag expr:class='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;) ? &quot;entery-category-fly&quot; : &quot;entery-category-box&quot;' name='div'>
+                          <b:if cond='data:i == 0'><span class='post-tag'><data:post.labels.first.name/></span></b:if>
+                          <h2 class='entry-title vcard'><b:tag cond='data:widget.sectionId != &quot;sidebar&quot; or (data:i != 0 and (data:widget.sectionId == &quot;sidebar&quot;))' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></b:tag></h2>
+                          <div class='post-snip'>
+                              <b:if cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)'><span class='post-author'><data:post.author.name/></span></b:if>
+                              <span class='post-date' expr:datetime='data:post.date.iso8601'><data:post.date/></span>
+                          </div>
+                        </b:tag>
+                        </b:tag>
+                        </b:if>
+                        <b:if cond='data:widget.sectionId not in [&quot;ft-post&quot;,&quot;sidebar&quot;]'>
+                        <h2 class='entry-title vcard'><a expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></a></h2>
+                        <b:if cond='data:widget.sectionId not in [&quot;hot-posts&quot;]'>
+                        <span class='post-date'><data:post.date/></span>
+                        </b:if>
+                        </b:if>
+                    </div>
+                    </b:includable>
+            <b:includable id='content' var='post'>
 <b:include name='popular-content'/>
 </b:includable>
                     <b:includable id='emailPostIcon'><b:comment>Replaced</b:comment></b:includable>
@@ -2710,68 +2745,6 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                     <b:includable id='snippetedPostThumbnail'><b:comment>Replaced</b:comment></b:includable>
                     <b:includable id='snippetedPostTitle'><b:comment>Replaced</b:comment></b:includable>
                     <b:includable id='snippetedPosts'><b:comment>Replaced</b:comment></b:includable>
-    <b:includable id='popular-content'>
-        <div>
-            <b:if cond='data:widget.sectionId == &quot;hot-posts&quot;'>
-           <b:class name='tickerNews'/>
-              <b:elseif cond='data:widget.sectionId == &quot;ft-post&quot;'/>
-                <b:class name='featured-box'/><b:else/>
-                <b:class name='popular-post post'/>
-            </b:if>
-            <b:class expr:name='&quot;item&quot;+data:i'/>
-            <b:if cond='data:widget.sectionId in [&quot;ft-post&quot;]'>
-                <b:tag class='post-filter-inner' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
-                    <b:tag class='post-filter-link background-layer' name='span'>
-                        <b:if cond='data:post.featuredImage'><img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' expr:src='data:post.featuredImage.isYouTube ? resizeImage(data:post.featuredImage.youtubeMaxResDefaultUrl.jsonEscaped , 600, &quot;16:9&quot;) : resizeImage(data:post.featuredImage , 600, &quot;16:9&quot;)' loading='lazy'/>
-                            <b:else/>
-                            <img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' loading='lazy' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDII_l4W2Z3MV4ADSUxz7ZU_aiz5yLJEKWIah1nIy82tfkOnExXw1BM0xCzp5m1ejW9V3sxKC3YRJPnECKQ0sls30kovxcAaX8phyphenhyphenzStOtakZOvMxfWGGOztoKzvM09KVytaQdzBJZalI/w680/nth.png'/>
-                        </b:if>
-                        <b:class expr:name='data:post.featuredImage.isYouTube ? &quot;video-nos&quot; : &quot;image-nos&quot;'/>
-                    </b:tag>
-                  <b:tag class='entery-category-fly' name='div'>
-                        <span class='post-tag'><data:post.labels.first.name/></span>
-                        <h2 class='entry-title vcard'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></h2>
-                        <div class='post-snip'>
-                            <b:if cond='data:post.author.authorPhoto.image'><img class='post-author-image' expr:alt='data:post.author.name' expr:src='data:post.author.authorPhoto.image resizeImage 200'/>
-                                <b:else/><img class='post-author-image' expr:alt='data:post.author.name' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8aWqBvyZHfuNKmz9mK9tgaClNs6xKP4bpPY6md3lHZeU_b4d0VG1On4ZxIVAMD3TVQ34nbiBHwU-kJCW4UmMDY1qpWEbwGT9XTHSWDEIjhRBPFml6rbEeijpCwsok7rK6shPrPqadioiW/s100/avatar.png'/>
-                            </b:if>
-                            <b:if cond='data:widgets.Blog.first.allBylineItems.author'><span class='post-author'><data:post.author.name/></span></b:if>
-                            <span class='post-date' expr:datetime='data:post.date.iso8601'><data:post.date/></span>
-                        </div>
-                  </b:tag>
-                  </b:tag>
-            </b:if>
-            <b:if cond='data:widget.sectionId in [&quot;sidebar&quot;]'>
-            <b:tag class='post-filter-inner gaint' cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
-            <b:tag class='post-filter-inner' cond='data:widget.sectionId != &quot;sidebar&quot; or (data:i != 0 and (data:widget.sectionId == &quot;sidebar&quot;))' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'>
-              <b:tag class='post-filter-link background-layer' cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)' name='span'>
-                  <b:if cond='data:post.featuredImage'>
-                      <img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' expr:src='data:post.featuredImage.isYouTube ? resizeImage(data:post.featuredImage.youtubeMaxResDefaultUrl.jsonEscaped , 600, &quot;16:9&quot;) : resizeImage(data:post.featuredImage , 600, &quot;16:9&quot;)' loading='lazy'/>
-                      <b:else/><img class='snip-thumbnail' expr:alt='data:post.title ? data:post.title : data:messages.noTitle' loading='lazy' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDII_l4W2Z3MV4ADSUxz7ZU_aiz5yLJEKWIah1nIy82tfkOnExXw1BM0xCzp5m1ejW9V3sxKC3YRJPnECKQ0sls30kovxcAaX8phyphenhyphenzStOtakZOvMxfWGGOztoKzvM09KVytaQdzBJZalI/w680/nth.png'/>
-                  </b:if><b:class expr:name='data:post.featuredImage.isYouTube ? &quot;video-nos&quot; : &quot;image-nos&quot;'/>
-              </b:tag>
-            </b:tag>
-            <b:tag expr:class='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;) ? &quot;entery-category-fly&quot; : &quot;entery-category-box&quot;' name='div'>
-              <b:if cond='data:i == 0'><span class='post-tag'><data:post.labels.first.name/></span></b:if>
-              <h2 class='entry-title vcard'><b:tag cond='data:widget.sectionId != &quot;sidebar&quot; or (data:i != 0 and (data:widget.sectionId == &quot;sidebar&quot;))' expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle' name='a'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></b:tag></h2>
-              <div class='post-snip'>
-                  <b:if cond='data:i == 0 and (data:widget.sectionId == &quot;sidebar&quot;)'>
-                      <b:if cond='data:post.author.authorPhoto.image'><img class='post-author-image' expr:alt='data:post.author.name' expr:src='data:post.author.authorPhoto.image resizeImage 200'/>
-                          <b:else/><img class='post-author-image' expr:alt='data:post.author.name' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8aWqBvyZHfuNKmz9mK9tgaClNs6xKP4bpPY6md3lHZeU_b4d0VG1On4ZxIVAMD3TVQ34nbiBHwU-kJCW4UmMDY1qpWEbwGT9XTHSWDEIjhRBPFml6rbEeijpCwsok7rK6shPrPqadioiW/s100/avatar.png'/>
-                      </b:if><span class='post-author'><data:post.author.name/></span>
-                  </b:if><span class='post-date'><data:post.date/></span>
-              </div>
-            </b:tag>
-            </b:tag>
-            </b:if>
-            <b:if cond='data:widget.sectionId not in [&quot;ft-post&quot;,&quot;sidebar&quot;]'>
-            <h2 class='entry-title vcard'><a expr:href='data:post.url.canonical' expr:title='data:post.title ? data:post.title : data:messages.noTitle'><b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/></a></h2>
-            <b:if cond='data:widget.sectionId not in [&quot;hot-posts&quot;]'>
-            <span class='post-date'><data:post.date/></span>
-            </b:if>
-            </b:if>
-        </div>
-    </b:includable>
                   </b:widget>
                   <b:widget id='Label1' locked='false' title='Categories' type='Label' version='2' visible='true'>
                     <b:widget-settings>
@@ -2870,16 +2843,10 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
 
     <b:if cond='data:view.isHomepage'>
 
     <!-- Case Studies Section -->
-    <b:section id='case-studies-section' maxwidgets='1' name='Case Studies' showaddelement='no'>
-      <b:widget id='HTML16' locked='true' title='Case Studies' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section class='section case-studies-section' id='case-studies'>
       <div class='container'>
         <div class='section-title'>
@@ -2924,14 +2891,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
 
     <!-- Client Logos Section -->
-    <b:section id='client-logos-section' maxwidgets='1' name='Client Logos' showaddelement='no'>
-      <b:widget id='HTML17' locked='true' title='Client Logos' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section class='section client-logos-section'>
       <div class='container'>
         <div class='client-logos-inner'>
@@ -2946,14 +2907,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
 
     <!-- FAQ Section -->
-    <b:section id='faq-section' maxwidgets='1' name='FAQ' showaddelement='no'>
-      <b:widget id='HTML18' locked='true' title='FAQ' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section class='section' id='faq'>
       <div class='container'>
         <div class='section-title'>
@@ -3010,14 +2965,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
 
     <!-- Newsletter Section -->
-    <b:section id='newsletter-section' maxwidgets='1' name='Newsletter' showaddelement='no'>
-      <b:widget id='HTML19' locked='true' title='Newsletter' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section class='section newsletter-section' id='newsletter'>
       <div class='container'>
         <div class='newsletter-inner animate-on-scroll'>
@@ -3030,14 +2979,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
 
     <!-- Lead Magnets Section -->
-    <b:section id='lead-magnets-section' maxwidgets='1' name='Lead Magnets' showaddelement='no'>
-      <b:widget id='HTML20' locked='true' title='Lead Magnets' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section class='section lead-magnets-section' id='lead-magnets'>
       <div class='container'>
         <div class='section-title'>
@@ -3091,14 +3034,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
 
     <!-- CTA / Contact Section -->
-    <b:section id='cta-section' maxwidgets='1' name='CTA/Contact' showaddelement='no'>
-      <b:widget id='HTML22' locked='true' title='CTA/Contact' type='HTML' version='2' visible='true'>
-        <b:includable id='main' var='this'>
     <section class='section cta-section' id='contact'>
       <div class='container'>
         <div class='cta-grid'>
@@ -3182,9 +3119,6 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
-        </b:includable>
-      </b:widget>
-    </b:section>
     </b:if>
 
   </main>
@@ -3206,26 +3140,16 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-2' maxwidgets='1' name='Footer Column 2' showaddelement='yes'>
           <b:widget id='LinkList5' locked='false' title='Quick Links' type='LinkList' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='text-9'>Sitemap</b:widget-setting>
-              <b:widget-setting name='link-9'>/p/sitemap.html</b:widget-setting>
-              <b:widget-setting name='text-8'>Disclaimer</b:widget-setting>
-              <b:widget-setting name='link-7'>/p/terms.html</b:widget-setting>
-              <b:widget-setting name='link-8'>/p/disclaimer.html</b:widget-setting>
-              <b:widget-setting name='link-5'>https://rankrseo.vercel.app/</b:widget-setting>
-              <b:widget-setting name='link-6'>/p/privacy-policy.html</b:widget-setting>
-              <b:widget-setting name='link-3'>/search/label/Case%20Studies</b:widget-setting>
               <b:widget-setting name='link-4'>/p/about.html</b:widget-setting>
               <b:widget-setting name='text-1'>Blog</b:widget-setting>
               <b:widget-setting name='text-0'>Home</b:widget-setting>
               <b:widget-setting name='text-3'>Case Studies</b:widget-setting>
               <b:widget-setting name='text-2'>Services</b:widget-setting>
-              <b:widget-setting name='text-5'>Portfolio</b:widget-setting>
               <b:widget-setting name='text-4'>About Us</b:widget-setting>
-              <b:widget-setting name='text-7'>Terms of Service</b:widget-setting>
-              <b:widget-setting name='text-6'>Privacy Policy</b:widget-setting>
               <b:widget-setting name='sorting'>NONE</b:widget-setting>
-              <b:widget-setting name='link-1'>/blog</b:widget-setting>
+              <b:widget-setting name='link-1'>/</b:widget-setting>
               <b:widget-setting name='link-2'>/p/services.html</b:widget-setting>
+              <b:widget-setting name='link-3'>/search/label/Case%20Studies</b:widget-setting>
               <b:widget-setting name='link-0'>/</b:widget-setting>
             </b:widget-settings>
             <b:includable id='main'>
@@ -3248,8 +3172,9 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             <b:widget-settings>
               <b:widget-setting name='text-8'>Ecommerce SEO</b:widget-setting>
               <b:widget-setting name='link-7'>/search/label/AI%20SEO</b:widget-setting>
-              <b:widget-setting name='link-8'>/search/label/AI%20SEO</b:widget-setting>
-              <b:widget-setting name='link-5'>/p/services.html</b:widget-setting>
+              <b:widget-setting name='link-8'>/search/label/Ecommerce%20SEO</b:widget-setting>
+              <b:widget-setting name='text-5'>Digital Marketing</b:widget-setting>
+              <b:widget-setting name='link-5'>/search/label/Digital%20Marketing</b:widget-setting>
               <b:widget-setting name='link-6'>/search/label/Technical%20SEO</b:widget-setting>
               <b:widget-setting name='link-3'>/search/label/Link%20Building</b:widget-setting>
               <b:widget-setting name='link-4'>/search/label/Local%20SEO</b:widget-setting>
@@ -3295,15 +3220,12 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-5' maxwidgets='1' name='Footer Column 5' showaddelement='yes'>
           <b:widget id='LinkList7' locked='false' title='Resources' type='LinkList' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='link-5'>/p/founder.html</b:widget-setting>
               <b:widget-setting name='link-3'>/p/terms.html</b:widget-setting>
               <b:widget-setting name='link-4'>/p/disclaimer.html</b:widget-setting>
               <b:widget-setting name='text-1'>Sitemap</b:widget-setting>
               <b:widget-setting name='text-0'>Privacy Policy</b:widget-setting>
               <b:widget-setting name='text-3'>Terms of Service</b:widget-setting>
               <b:widget-setting name='text-2'>Disclaimer</b:widget-setting>
-              <b:widget-setting name='text-5'>Founder Page</b:widget-setting>
-              <b:widget-setting name='text-4'>Disclaimer</b:widget-setting>
               <b:widget-setting name='sorting'>NONE</b:widget-setting>
               <b:widget-setting name='link-1'>/sitemap.xml</b:widget-setting>
               <b:widget-setting name='link-2'>/p/disclaimer.html</b:widget-setting>
@@ -3329,7 +3251,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-copyright' maxwidgets='1' name='Footer Copyright' showaddelement='no'>
           <b:widget id='HTML11' locked='true' title='Copyright' type='HTML' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='content'><![CDATA[<span>&#169; <span id='copyright-year'></span> RankrSEO. All rights reserved.</span><span>Powered by <a href="/">RankrSEO</a> | <a href="/p/privacy-policy.html">Privacy Policy</a> | <a href="/p/terms.html">Terms of Service</a></span>]]></b:widget-setting>
+              <b:widget-setting name='content'><![CDATA[<span>&#169; <script>document.write(new Date().getFullYear())</script> RankrSEO. All rights reserved.</span><span>Powered by <a href="/">RankrSEO</a> | <a href="/p/privacy-policy.html">Privacy Policy</a> | <a href="/p/terms.html">Terms of Service</a></span>]]></b:widget-setting>
             </b:widget-settings>
             <b:includable id='main'>
               <data:content/>
@@ -3392,7 +3314,6 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         try { initBackToTop(); } catch(e) {}
         try { initStickyCtaBar(); } catch(e) {}
         try { initLeadForms(); } catch(e) {}
-        try { initCopyrightYear(); } catch(e) {}
         try { initFaqAccordion(); } catch(e) {}
         try { initRelatedPosts(); } catch(e) {}
         try { initCardReadTime(); } catch(e) {}
@@ -3930,10 +3851,6 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
       Array.prototype.forEach.call(els, function(el) {
         if (el.textContent.trim() === 'Unknown') el.textContent = blogName;
       });
-    }
-    function initCopyrightYear() {
-      var el = document.getElementById('copyright-year');
-      if (el) el.textContent = new Date().getFullYear();
     }
     //]]>
   </script>
