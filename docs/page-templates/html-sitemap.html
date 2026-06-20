@@ -1,0 +1,268 @@
+<!-- HTML SITEMAP PAGE
+     Title: HTML Sitemap
+     Permalink: /p/html-sitemap.html -->
+
+<style>
+.blog-content { max-width: 800px; margin: 0 auto; font-size: 1rem; line-height: 1.8; color: var(--text-light); }
+.blog-content h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text); }
+.blog-content h3 { font-size: 1.2rem; font-weight: 600; margin: 28px 0 12px; color: var(--text); }
+.blog-content p { margin-bottom: 16px; }
+.post-archive { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.post-archive:last-child { border-bottom: none; }
+.post-archive h4 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.ct-columns { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px 24px; }
+.ct-columns p { margin: 0; }
+.ct-columns a { color: var(--text); font-size: 14px; text-decoration: none; padding: 4px 0; display: block; transition: color 0.2s; }
+.ct-columns a:hover { color: var(--primary); }
+.ct-columns strong span { color: var(--accent); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+.sitemap-note { background: var(--bg-alt); border-radius: var(--radius-md); padding: 24px 28px; margin: 24px 0; border: 1px solid var(--border); font-size: 0.9rem; }
+.sitemap-note ul { margin: 10px 0 0; padding-left: 20px; }
+.sitemap-note ul li { margin-bottom: 4px; }
+.loading-sitemap { text-align: center; padding: 60px 20px; color: var(--text-light); }
+.loading-sitemap i { font-size: 36px; margin-bottom: 12px; color: var(--primary); }
+@media (max-width: 600px) { .ct-columns { grid-template-columns: 1fr; } }
+</style>
+
+<div class='blog-content'>
+
+<h2>HTML <span class='highlight'>Sitemap</span></h2>
+<div class='accent-line' style='width: 48px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; margin: 10px 0 20px;'></div>
+
+<p>Browse all pages and posts on RankrSEO. Use this sitemap to find exactly what you're looking for — from SEO services and GEO-targeted pages to our complete blog archive.</p>
+
+<div class='sitemap-note'>
+<strong>Quick Links:</strong>
+<ul>
+<li><a href='/'>Home</a> — RankrSEO SEO Agency</li>
+<li><a href='/p/services.html'>All Services</a> — Complete list of SEO services</li>
+<li><a href='/p/about.html'>About Us</a> — Meet the RankrSEO team</li>
+<li><a href='/p/contact-us.html'>Contact</a> — Get in touch</li>
+<li><a href='/p/free-seo-audit.html'>Free SEO Audit</a> — Claim your free audit</li>
+<li><a href='/p/privacy-policy.html'>Privacy Policy</a></li>
+<li><a href='/p/terms.html'>Terms of Service</a></li>
+<li><a href='/p/disclaimer.html'>Disclaimer</a></li>
+</ul>
+</div>
+
+<h3>Posts &amp; Pages</h3>
+<div id='sitemap-posts'>
+<div class='loading-sitemap'>
+<i class='fas fa-spinner fa-pulse'></i>
+<p>Loading sitemap...</p>
+</div>
+</div>
+
+</div>
+
+<script type='text/javascript'>
+//<![CDATA[
+var postTitle = new Array();
+var postUrl = new Array();
+var postPublished = new Array();
+var postDate = new Array();
+var postLabels = new Array();
+var postRecent = new Array();
+var sortBy = "titleasc";
+var numberfeed = 0;
+
+function bloggersitemap(a) {
+    function b() {
+        if ("entry" in a.feed) {
+            var d = a.feed.entry.length;
+            numberfeed = d;
+            ii = 0;
+            for (var h = 0; h < d; h++) {
+                var n = a.feed.entry[h];
+                var e = n.title.$t;
+                var m = n.published.$t.substring(0, 10);
+                var j;
+                for (var g = 0; g < n.link.length; g++) {
+                    if (n.link[g].rel == "alternate") {
+                        j = n.link[g].href;
+                        break
+                    }
+                }
+                var o = "";
+                for (var g = 0; g < n.link.length; g++) {
+                    if (n.link[g].rel == "enclosure") {
+                        o = n.link[g].href;
+                        break
+                    }
+                }
+                var c = "";
+                if ("category" in n) {
+                    for (var g = 0; g < n.category.length; g++) {
+                        c = n.category[g].term;
+                        var f = c.lastIndexOf(";");
+                        if (f != -1) {
+                            c = c.substring(0, f)
+                        }
+                        postLabels[ii] = c;
+                        postTitle[ii] = e;
+                        postDate[ii] = m;
+                        postUrl[ii] = j;
+                        postPublished[ii] = o;
+                        if (h < 10) {
+                            postRecent[ii] = true
+                        } else {
+                            postRecent[ii] = false
+                        }
+                        ii = ii + 1
+                    }
+                }
+            }
+        }
+    }
+    b();
+    sortBy = "titledesc";
+    sortPosts(sortBy);
+    sortlabel();
+    displayToc();
+}
+
+function sortPosts(d) {
+    function c(e, g) {
+        var f = postTitle[e];
+        postTitle[e] = postTitle[g];
+        postTitle[g] = f;
+        var f = postDate[e];
+        postDate[e] = postDate[g];
+        postDate[g] = f;
+        var f = postUrl[e];
+        postUrl[e] = postUrl[g];
+        postUrl[g] = f;
+        var f = postLabels[e];
+        postLabels[e] = postLabels[g];
+        postLabels[g] = f;
+        var f = postPublished[e];
+        postPublished[e] = postPublished[g];
+        postPublished[g] = f;
+        var f = postRecent[e];
+        postRecent[e] = postRecent[g];
+        postRecent[g] = f
+    }
+    for (var b = 0; b < postTitle.length - 1; b++) {
+        for (var a = b + 1; a < postTitle.length; a++) {
+            if (d == "titleasc") {
+                if (postTitle[b] > postTitle[a]) {
+                    c(b, a)
+                }
+            }
+            if (d == "titledesc") {
+                if (postTitle[b] < postTitle[a]) {
+                    c(b, a)
+                }
+            }
+            if (d == "dateoldest") {
+                if (postDate[b] > postDate[a]) {
+                    c(b, a)
+                }
+            }
+            if (d == "datenewest") {
+                if (postDate[b] < postDate[a]) {
+                    c(b, a)
+                }
+            }
+            if (d == "orderlabel") {
+                if (postLabels[b] > postLabels[a]) {
+                    c(b, a)
+                }
+            }
+        }
+    }
+}
+
+function sortlabel() {
+    sortBy = "orderlabel";
+    sortPosts(sortBy);
+    var a = 0;
+    var b = 0;
+    while (b < postTitle.length) {
+        temp1 = postLabels[b];
+        firsti = a;
+        do {
+            a = a + 1
+        } while (postLabels[a] == temp1);
+        b = a;
+        sortPosts2(firsti, a);
+        if (b > postTitle.length) {
+            break
+        }
+    }
+}
+
+function sortPosts2(d, c) {
+    function e(f, h) {
+        var g = postTitle[f];
+        postTitle[f] = postTitle[h];
+        postTitle[h] = g;
+        var g = postDate[f];
+        postDate[f] = postDate[h];
+        postDate[h] = g;
+        var g = postUrl[f];
+        postUrl[f] = postUrl[h];
+        postUrl[h] = g;
+        var g = postLabels[f];
+        postLabels[f] = postLabels[h];
+        postLabels[h] = g;
+        var g = postPublished[f];
+        postPublished[f] = postPublished[h];
+        postPublished[h] = g;
+        var g = postRecent[f];
+        postRecent[f] = postRecent[h];
+        postRecent[h] = g
+    }
+    for (var b = d; b < c - 1; b++) {
+        for (var a = b + 1; a < c; a++) {
+            if (postTitle[b] > postTitle[a]) {
+                e(b, a)
+            }
+        }
+    }
+}
+
+function displayToc() {
+    var container = document.getElementById('sitemap-posts');
+    if (!container) return;
+    container.innerHTML = '';
+    var a = 0;
+    var b = 0;
+    while (b < postTitle.length) {
+        temp1 = postLabels[b];
+        var section = document.createElement('div');
+        section.className = 'post-archive';
+        var heading = document.createElement('h4');
+        heading.textContent = temp1;
+        section.appendChild(heading);
+        var cols = document.createElement('div');
+        cols.className = 'ct-columns';
+        firsti = a;
+        do {
+            var p = document.createElement('p');
+            var link = document.createElement('a');
+            link.href = postUrl[a];
+            link.textContent = postTitle[a];
+            p.appendChild(link);
+            if (postRecent[a] == true) {
+                var badge = document.createElement('strong');
+                var span = document.createElement('span');
+                span.textContent = ' - New!';
+                badge.appendChild(span);
+                p.appendChild(badge);
+            }
+            cols.appendChild(p);
+            a = a + 1
+        } while (postLabels[a] == temp1);
+        b = a;
+        section.appendChild(cols);
+        container.appendChild(section);
+        sortPosts2(firsti, a);
+        if (b > postTitle.length) {
+            break
+        }
+    }
+}
+//]]>
+</script>
+
+<script src='https://rankrseo.blogspot.com/feeds/posts/summary?alt=json-in-script&amp;max-results=9999&amp;callback=bloggersitemap' type='text/javascript'></script>

@@ -3232,8 +3232,10 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-5' maxwidgets='1' name='Footer Column 5' showaddelement='yes'>
           <b:widget id='LinkList7' locked='false' title='Resources' type='LinkList' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='link-8'>/p/seo-audit-checklist.html</b:widget-setting>
-              <b:widget-setting name='text-8'>SEO Audit Checklist</b:widget-setting>
+              <b:widget-setting name="link-9">/p/html-sitemap.html</b:widget-setting>
+              <b:widget-setting name="text-9">HTML Sitemap</b:widget-setting>
+              <b:widget-setting name="link-8">/p/seo-audit-checklist.html</b:widget-setting>
+              <b:widget-setting name="text-8">SEO Audit Checklist</b:widget-setting>
               <b:widget-setting name='link-7'>/p/ai-seo-guide.html</b:widget-setting>
               <b:widget-setting name='text-7'>AI SEO Guide</b:widget-setting>
               <b:widget-setting name='link-6'>/p/local-seo-checklist.html</b:widget-setting>
