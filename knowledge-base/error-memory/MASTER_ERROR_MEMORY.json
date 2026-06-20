@@ -197,6 +197,19 @@
       "fix": "1) Reduced footer padding from 120px→80px, removed grid margin-bottom\n2) Merged social icons into brand widget content (eliminated separate footer-social section)\n3) Merged copyright + legal links into single bottom bar widget\n4) Brand logo 1.5rem→1.75rem (28px), column headings 16px→18px semibold (no uppercase), links 14px\n5) Added footer-bottom margin-top: 80px for visual separation\n6) Removed arrow pseudo-elements on link hover for cleaner look\n7) All sections changed to locked='true' + showaddelement='no'",
       "prevention_rule": "RULE-024: Footer must use 2fr/1fr/1fr/1fr grid with 64px gap. Social icons embedded in brand column. Copyright + legal links in single bottom bar widget. No fixed heights — content-driven spacing. Typography: brand 28px, headings 18px semibold, links 14px.",
       "status": "fixed"
+    },
+    {
+      "error_id": "ERR-025",
+      "theme": "knowledge-base/rankrseo-theme.xml",
+      "category": "Design System",
+      "severity": "Critical",
+      "issue": "Footer, blog, and contact sections look inconsistent and low quality",
+      "symptom": "Sections designed in isolation with no shared design tokens for spacing, typography, or component patterns. Footer spacing excessive, blog cards weak, contact section flat. No visual consistency across the theme.",
+      "root_cause": "No global spacing, typography, and component token system was defined before building individual sections. Each section was styled independently using ad-hoc values.",
+      "bad_code_pattern": "Individual sections use different padding values (120px vs 80px vs 64px), inconsistent border radii (radius-lg vs radius-xl vs radius-2xl), mismatched title/body font sizes, and no shared component pattern for cards, inputs, or buttons across sections.",
+      "fix": "1) Defined 40+ design tokens in :root (--space-*, --text-*, --shadow-*, --radius-*, --leading-*, --tracking-*, --transition-*)\n2) Applied tokens uniformly across footer (padding, gap, margins), blog (card radius, shadows, spacing), contact (grid gap, card padding, input height)\n3) Established consistent component patterns: cards use surface+border+shadow, inputs use 60px height+radius-lg+2px border, buttons use gradient+radius-lg+weight 700\n4) Harmonized typography: headings 18px semibold across sections, body 14-16px, links 14px",
+      "prevention_rule": "RULE-025: Never design individual sections before defining global design tokens. All spacing, typography, border radii, shadows, and transitions must reference CSS custom properties from :root. Section-specific overrides are only permitted for layout structure (grid, positioning) — never for raw aesthetic values.",
+      "status": "fixed"
     }
   ]
 }
