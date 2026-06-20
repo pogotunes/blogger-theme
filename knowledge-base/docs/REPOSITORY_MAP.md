@@ -1,7 +1,7 @@
 # Repository Map — Single-page-projects
 
 > Complete file inventory, architecture overview, and dependency map.
-> Generated: 2026-06-19 | Total: 76 files (excluding .git) | ~4.9 MB
+> Generated: 2026-06-20 | Total: 77 files (excluding .git) | ~4.9 MB
 
 ## Directory Tree
 
@@ -13,7 +13,8 @@
 │   │   ├── REPOSITORY_MAP.md                # This file
 │   │   ├── BLOGGER_XML_ARCHITECTURE.md      # Blogger XML architecture reference
 │   │   ├── THEME_ANALYSIS_REPORT.md         # Per-theme analysis with scores
-│   │   └── COMPONENT_LIBRARY.md             # Reusable component catalog
+│   │   ├── COMPONENT_LIBRARY.md             # Reusable component catalog
+│   │   └── XML_THEME_COMPARISON.md          # Cross-theme architecture audit
 │   ├── blueprints/
 │   │   └── SEO_AEO_GEO_BLUEPRINT.md         # SEO/AEO/GEO optimization standards
 │   ├── snippets/

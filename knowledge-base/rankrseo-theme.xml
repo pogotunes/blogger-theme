@@ -19,10 +19,14 @@
 <data:blog.meTag/>
 <b:if cond='data:view.isHomepage'>
 <meta content='RankrSEO is a results-driven SEO agency and digital marketing company offering technical SEO, local SEO, ecommerce SEO, and AI search optimization services for businesses in USA, UK, and India. Get a free SEO audit.' name='description'/>
-<b:else/>
+<b:elseif cond='data:view.description'/>
 <meta expr:content='data:view.description.escaped' name='description'/>
+<b:else/>
+<meta content='RankrSEO is a results-driven SEO agency and digital marketing company offering technical SEO, local SEO, ecommerce SEO, and AI search optimization services for businesses in USA, UK, and India.' name='description'/>
 </b:if>
-<b:if cond='!data:view.isSearch and !data:view.isLabelSearch'>
+<b:if cond='data:view.isSearch or data:view.isLabelSearch'>
+<meta content='noindex, follow' name='robots'/>
+<b:else/>
 <meta content='index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1' name='robots'/>
 </b:if>
 <b:if cond='data:view.isHomepage'>
@@ -33,11 +37,15 @@
 <title><data:view.title.escaped/> | RankrSEO</title>
 </b:if>
 
-<!-- Google AdSense -->
+<!-- Google AdSense (replace ca-pub-XXXX with your publisher ID) -->
+<b:if cond='!data:view.isLayoutMode'>
 <script async='async' crossorigin='anonymous' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6446071541338143'/>
-<!-- Google Analytics -->
+</b:if>
+<!-- Google Analytics (replace G-XXXXXXX with your measurement ID) -->
+<b:if cond='!data:view.isLayoutMode'>
 <script async='async' src='https://www.googletagmanager.com/gtag/js?id=G-E6D5N92MN9'/>
 <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag(&#39;js&#39;, new Date());gtag(&#39;config&#39;, &#39;G-E6D5N92MN9&#39;);</script>
+</b:if>
 
 <!-- Open Graph -->
 <b:if cond='data:view.isHomepage'>
@@ -53,14 +61,19 @@
 <meta expr:content='data:blog.url.canonical' property='og:url'/>
 <b:if cond='data:view.isHomepage'>
 <meta content='RankrSEO - Top SEO agency and digital marketing company. Expert technical SEO, local SEO, ecommerce SEO, and AI search optimization for USA, UK, and India.' property='og:description'/>
-<b:else/>
+<b:elseif cond='data:view.description'/>
 <meta expr:content='data:view.description.escaped' property='og:description'/>
+<b:else/>
+<meta content='RankrSEO is a results-driven SEO agency and digital marketing company offering technical SEO, local SEO, ecommerce SEO, and AI search optimization services.' property='og:description'/>
 </b:if>
 <meta content='RankrSEO | SEO Agency &amp; Digital Marketing' property='og:site_name'/>
 <b:tag cond='data:view.isMultipleItems and data:widgets.Blog.first.posts[0].featuredImage' expr:content='data:widgets.Blog.first.posts[0].featuredImage' name='meta' property='og:image'/>
 <b:if cond='data:view.featuredImage'>
 <meta expr:content='data:view.featuredImage' property='og:image'/>
 <meta expr:content='data:view.featuredImage' name='twitter:image'/>
+<b:elseif cond='!data:view.isMultipleItems'/>
+<meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDII_l4W2Z3MV4ADSUxz7ZU_aiz5yLJEKWIah1nIy82tfkOnExXw1BM0xCzp5m1ejW9V3sxKC3YRJPnECKQ0sls30kovxcAaX8phyphenhyphenzStOtakZOvMxfWGGOztoKzvM09KVytaQdzBJZalI/w1200/nth.png' property='og:image'/>
+<meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDII_l4W2Z3MV4ADSUxz7ZU_aiz5yLJEKWIah1nIy82tfkOnExXw1BM0xCzp5m1ejW9V3sxKC3YRJPnECKQ0sls30kovxcAaX8phyphenhyphenzStOtakZOvMxfWGGOztoKzvM09KVytaQdzBJZalI/w1200/nth.png' name='twitter:image'/>
 </b:if>
 <b:if cond='data:view.isPost'>
 <meta expr:content='data:blog.pageName' property='og:title'/>
@@ -77,8 +90,10 @@
 <meta expr:content='data:blog.url.canonical' name='twitter:domain'/>
 <b:if cond='data:view.isHomepage'>
 <meta content='RankrSEO - Professional SEO agency offering search engine optimization, technical SEO, local SEO, and AI-powered digital marketing services.' name='twitter:description'/>
-<b:else/>
+<b:elseif cond='data:view.description'/>
 <meta expr:content='data:view.description.escaped' name='twitter:description'/>
+<b:else/>
+<meta content='RankrSEO is a results-driven SEO agency and digital marketing company.' name='twitter:description'/>
 </b:if>
 <meta content='en_US' property='og:locale'/>
 
@@ -138,8 +153,28 @@
 <noscript><link crossorigin='anonymous' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet'/></noscript>
 
 <!-- Theme Color -->
-<meta content='#2563EB' name='theme-color'/>
+<meta content='#2563EB' media='(prefers-color-scheme: light)' name='theme-color'/>
+<meta content='#0B1121' media='(prefers-color-scheme: dark)' name='theme-color'/>
 <meta content='#2563EB' name='msapplication-navbutton-color'/>
+<meta content='yes' name='mobile-web-app-capable'/>
+<meta content='yes' name='apple-mobile-web-app-capable'/>
+<meta content='default' name='apple-mobile-web-app-status-bar-style'/>
+
+<!-- Dark Mode: set before first paint to prevent flash of wrong theme -->
+<script>
+//<![CDATA[
+(function(){
+  try {
+    var t = localStorage.getItem('rankrseo-theme');
+    if (t === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else if (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+//]]>
+</script>
 
 <b:if cond='!data:view.isLayoutMode'>
 <b:skin version='2.0.0'><![CDATA[
@@ -257,12 +292,13 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .nav { display: flex; align-items: center; }
 .nav-list { display: flex; align-items: center; gap: 2px; }
 .nav-list > li { position: relative; }
-.nav-list > li > a { display: flex; align-items: center; gap: 4px; padding: 8px 18px; color: var(--text); font-weight: 500; font-size: 14px; border-radius: var(--radius); transition: all var(--transition-fast); text-decoration: none; }
-.nav-list > li > a:hover, .nav-list > li > a.active { color: var(--primary); background: rgba(var(--primary-rgb), 0.08); }
-.nav-list > li > a .fa-chevron-down { font-size: 10px; transition: transform var(--transition-fast); }
-.nav-list > li:hover > a .fa-chevron-down { transform: rotate(180deg); }
+.nav-list > li > a, .nav-dropdown-toggle { display: flex; align-items: center; gap: 4px; padding: 8px 18px; color: var(--text); font-weight: 500; font-size: 14px; border-radius: var(--radius); transition: all var(--transition-fast); text-decoration: none; background: none; border: none; cursor: pointer; font-family: inherit; }
+.nav-list > li > a:hover, .nav-list > li > a.active, .nav-dropdown-toggle:hover { color: var(--primary); background: rgba(var(--primary-rgb), 0.08); }
+.nav-dropdown-toggle:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.nav-list > li > a .fa-chevron-down, .nav-dropdown-toggle .fa-chevron-down { font-size: 10px; transition: transform var(--transition-fast); }
+.nav-list > li:hover > a .fa-chevron-down, .nav-list > li.dropdown-open .nav-dropdown-toggle .fa-chevron-down, .nav-list > li:focus-within .nav-dropdown-toggle .fa-chevron-down { transform: rotate(180deg); }
 .dropdown-menu { position: absolute; top: 100%; left: 0; min-width: 220px; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow-lg); padding: 8px; opacity: 0; visibility: hidden; transform: translateY(8px); transition: all var(--transition); z-index: 100; }
-.nav-list > li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(4px); }
+.nav-list > li:hover .dropdown-menu, .nav-list > li.dropdown-open .dropdown-menu, .nav-list > li:focus-within .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(4px); }
 .dropdown-menu li a { display: block; padding: 10px 16px; color: var(--text); font-size: 14px; font-weight: 500; border-radius: var(--radius-sm); transition: all var(--transition-fast); text-decoration: none; }
 .dropdown-menu li a:hover { color: var(--primary); background: rgba(var(--primary-rgb), 0.08); }
 
@@ -458,7 +494,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .why-feature i { color: var(--accent); font-size: 16px; }
 
 /* --- Process Section --- */
-.process-section { background: var(--bg-alt); position: relative; }
+.process-section { background: var(--bg); position: relative; }
 .process-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 32px 16px; position: relative; }
 .process-grid::before { content: ''; position: absolute; top: 30px; left: calc(8.33% + 16px); right: calc(8.33% + 16px); height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary)); opacity: 0.2; border-radius: 2px; }
 .process-step { text-align: center; position: relative; }
@@ -486,6 +522,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .post-card-cats .cat-badge { position: relative; top: auto; left: auto; display: inline-block; width: auto; }
 .post-card-meta { font-size: 13px; color: var(--text-light); margin-bottom: 8px; display: flex; gap: 16px; flex-wrap: wrap; }
 .post-card-meta span { display: flex; align-items: center; gap: 4px; }
+.read-time-wrap:has(.read-time-card:empty) { display: none; }
 .post-card-body h3 { font-size: 1.15rem; margin-bottom: 10px; line-height: 1.4; }
 .post-card-body h3 a { color: var(--text); text-decoration: none; }
 .post-card-body h3 a:hover { color: var(--primary); }
@@ -778,7 +815,7 @@ textarea.form-input { resize: vertical; min-height: 100px; }
 .footer, #footer-section { background: var(--secondary); color: rgba(255,255,255,0.8); padding: 48px 0 0; position: relative; overflow: hidden; }
 .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(var(--primary-rgb),0.3), rgba(var(--accent-rgb),0.3), transparent); }
 .footer::after { content: ''; position: absolute; top: -120px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(var(--primary-rgb),0.06), transparent 70%); border-radius: 50%; pointer-events: none; }
-.footer-grid, .footer-widgets { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--gap-lg); position: relative; z-index: 1; }
+.footer-grid, .footer-widgets { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr; gap: var(--gap-lg); position: relative; z-index: 1; }
 .footer-brand p { margin-top: 16px; font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.5); max-width: 320px; }
 .footer-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-weight: 800; font-size: 1.4rem; color: #fff; text-decoration: none; }
 .footer-logo:hover { color: var(--primary-light); }
@@ -809,6 +846,8 @@ textarea.form-input { resize: vertical; min-height: 100px; }
 .back-to-top { position: fixed; bottom: 90px; right: 24px; z-index: 998; width: 44px; height: 44px; background: var(--primary); color: #fff; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: var(--shadow-md); transition: all var(--transition); cursor: pointer; border: none; opacity: 0; visibility: hidden; }
 .back-to-top.visible { opacity: 1; visibility: visible; }
 .back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.sticky-cta-bar.visible ~ .whatsapp-btn, .sticky-cta-bar.visible ~ .whatsapp-fab { bottom: 84px; }
+.sticky-cta-bar.visible ~ .back-to-top { bottom: 150px; }
 
 /* --- Animations (visible by default, enhanced by JS) --- */
 .animate-on-scroll { opacity: 1; transform: none; transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1); }
@@ -1124,6 +1163,27 @@ select.lead-input { appearance: auto; cursor: pointer; }
 <b:if cond='data:view.isLayoutMode'>
 <b:template-skin>
 <![CDATA[
+<b:layouts>
+<b:layout id='admin' type='section'/>
+<b:layout id='header-section' type='section'/>
+<b:layout id='featured' type='section'/>
+<b:layout id='hero-section' type='section'/>
+<b:layout id='services-section' type='section'/>
+<b:layout id='why-rankrseo-section' type='section'/>
+<b:layout id='process-section' type='section'/>
+<b:layout id='testimonials-section' type='section'/>
+<b:layout id='faq-section' type='section'/>
+<b:layout id='cta-section' type='section'/>
+<b:layout id='main-blog' type='section'/>
+<b:layout id='sidebar' type='section'/>
+<b:layout id='contact-form' type='section'/>
+<b:layout id='footer-1' type='section'/>
+<b:layout id='footer-2' type='section'/>
+<b:layout id='footer-3' type='section'/>
+<b:layout id='footer-4' type='section'/>
+<b:layout id='footer-5' type='section'/>
+<b:layout id='footer-copyright' type='section'/>
+</b:layouts>
 html,body#layout{width:auto;padding:0;}
 body#layout{position:relative;max-width:100%;background:#f8fafc;padding:90px 10px 0;margin:1px;border:1px solid #e2e8f0;}
 body#layout:before{content:"RankrSEO Theme v2.0";font-family:monospace;position:absolute;top:15px;right:20px;z-index:1;padding:6px 14px;font-size:13px;border-radius:6px;font-weight:600;color:#2563EB;background:#fff;border:1px solid #2563EB;}
@@ -1135,7 +1195,7 @@ body#layout .draggable-widget .widget-wrap2{cursor:move;}
 body#layout .sidebar{display:block;}
 body#layout .sidebar-sticky{position:static;}
 body#layout .menu-toggle,body#layout .theme-toggle,body#layout .search-toggle,body#layout .whatsapp-btn,body#layout .back-to-top,body#layout .search-overlay,body#layout .mobile-menu,body#layout .mobile-overlay{display:none!important;}
-body#layout #footer-1,body#layout #footer-2,body#layout #footer-3,body#layout #footer-4{width:23%;float:left;margin-right:2%;}
+body#layout #footer-1,body#layout #footer-2,body#layout #footer-3,body#layout #footer-4,body#layout #footer-5{width:18%;float:left;margin-right:2%;}
 body#layout #footer-copyright{width:100%;float:none;clear:both;}
 body#layout .footer-grid{display:block;}
 body#layout .footer-bottom{display:block;}
@@ -1147,10 +1207,17 @@ body#layout .blog-main{width:68%;padding:0;}
 body#layout .sidebar{width:30%;padding:0;display:block;}
 body#layout .section > h4:after{font-size:11px;font-weight:400;color:#64748b;}
 body#layout #admin > h4:after{content:" - Theme config: comments, related posts, button texts"}
-body#layout #header > h4:after{content:" - Main logo & site title"}
-body#layout #featured > h4:after{content:" - Featured posts grid"}
+body#layout #header-section > h4:after{content:" - Header: logo, navigation, dark mode toggle, search"}
+body#layout #featured > h4:after{content:" - Featured posts grid (homepage only)"}
+body#layout #hero-section > h4:after{content:" - Hero: headline, subheadline, CTA, trust badges, stats"}
+body#layout #services-section > h4:after{content:" - Services cards section"}
+body#layout #why-rankrseo-section > h4:after{content:" - Why Choose RankrSEO: metrics, features"}
+body#layout #process-section > h4:after{content:" - How It Works: 4-step process"}
+body#layout #testimonials-section > h4:after{content:" - Testimonials: client reviews and ratings"}
+body#layout #faq-section > h4:after{content:" - FAQ: expandable questions and answers"}
+body#layout #cta-section > h4:after{content:" - CTA: call-to-action with contact form"}
 body#layout #main-blog > h4:after{content:" - Blog posts feed"}
-body#layout #sidebar > h4:after{content:" - Sidebar widgets"}
+body#layout #sidebar > h4:after{content:" - Sidebar widgets (hidden on homepage)"}
 body#layout #contact-form > h4:after{content:" - Contact form widget"}
 body#layout #footer-1 > h4:after{content:" - About RankrSEO brand & social links"}
 body#layout #footer-2 > h4:after{content:" - Quick links navigation"}
@@ -1238,38 +1305,6 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:includable id='content'><b:tag name='script' type='text/javascript'> <b:loop values='data:links' var='link'><b:if cond='data:link.name == &quot;fixedSidebar&quot;'>var fixedSidebar = <data:link.target/>;</b:if> <b:if cond='data:link.name == &quot;fixedMenu&quot;'>var fixedMenu = <data:link.target/>;</b:if> <b:if cond='data:link.name == &quot;showMoreText&quot;'>var showMoreText = &quot;<data:link.target/>&quot;;</b:if><b:if cond='data:link.name == &quot;postPerPage&quot;'>var postPerPage = <data:link.target/>;</b:if></b:loop> </b:tag></b:includable>
       </b:widget>
     </b:section>
-        <b:section id='footer-5' maxwidgets='1' name='Footer Column 5' showaddelement='yes'>
-          <b:widget id='LinkList7' locked='false' title='Resources' type='LinkList' version='2' visible='true'>
-            <b:widget-settings>
-              <b:widget-setting name='link-5'>/p/founder.html</b:widget-setting>
-              <b:widget-setting name='link-3'>/p/terms.html</b:widget-setting>
-              <b:widget-setting name='link-4'>/p/disclaimer.html</b:widget-setting>
-              <b:widget-setting name='text-1'>Sitemap</b:widget-setting>
-              <b:widget-setting name='text-0'>Privacy Policy</b:widget-setting>
-              <b:widget-setting name='text-3'>Terms of Service</b:widget-setting>
-              <b:widget-setting name='text-2'>Case Studies</b:widget-setting>
-              <b:widget-setting name='text-5'>Founder Page</b:widget-setting>
-              <b:widget-setting name='text-4'>Disclaimer</b:widget-setting>
-              <b:widget-setting name='sorting'>NONE</b:widget-setting>
-              <b:widget-setting name='link-1'>/sitemap.xml</b:widget-setting>
-              <b:widget-setting name='link-2'>/search/label/Case%20Studies</b:widget-setting>
-              <b:widget-setting name='link-0'>/p/privacy-policy.html</b:widget-setting>
-            </b:widget-settings>
-            <b:includable id='main'>
-              <h4 class='footer-heading'><data:title/></h4>
-              <ul class='footer-links'>
-                <b:loop values='data:links' var='link'>
-                  <li><a expr:href='data:link.target'><data:link.name/></a></li>
-                </b:loop>
-              </ul>
-            </b:includable>
-            <b:includable id='content'>
-        <div class='widget-content widget-control'>
-            <ul><b:loop values='data:links' var='link'><li><a expr:href='data:link.target'><data:link.name/></a></li></b:loop></ul>
-        </div>
-    </b:includable>
-          </b:widget>
-        </b:section>
       </div>
 
 <b:defaultmarkups>
@@ -2247,10 +2282,10 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <ul class='nav-list'>
           <li><a aria-label='Home' expr:href='data:blog.homepageUrl'>Home</a></li>
           <li>
-            <a aria-expanded='false' aria-haspopup='true' href='#services' role='button'>
+            <button aria-controls='servicesDropdown' aria-expanded='false' aria-haspopup='true' class='nav-dropdown-toggle' id='servicesToggle' type='button'>
               Services <i class='fas fa-chevron-down'/>
-            </a>
-            <ul class='dropdown-menu' role='menu'>
+            </button>
+            <ul class='dropdown-menu' id='servicesDropdown' role='menu'>
               <li><a href='/search/label/SEO%20Audit' role='menuitem'>SEO Audit</a></li>
               <li><a href='/search/label/Technical%20SEO' role='menuitem'>Technical SEO</a></li>
               <li><a href='/search/label/Keyword%20Research' role='menuitem'>Keyword Research</a></li>
@@ -2287,6 +2322,9 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
     <b:if cond='data:view.isHomepage'>
 
     <!-- Hero Section -->
+    <b:section id='hero-section' maxwidgets='1' name='Hero Section' showaddelement='no'>
+      <b:widget id='HTML12' locked='true' title='Hero Content' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
     <section class='hero' id='hero'>
       <div class='container'>
         <div class='hero-grid'>
@@ -2350,8 +2388,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
 
     <!-- Featured Posts Section -->
+    <b:section id='featured-posts-wrapper' maxwidgets='1' name='Featured Posts' showaddelement='no'>
+      <b:widget id='HTML21' locked='true' title='Featured Posts' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
     <section aria-label='Featured articles' class='featured-posts' id='featured-posts'>
       <div class='container'>
         <b:section id='featured' maxwidgets='1' name='Featured Posts' showaddelement='yes'>
@@ -2452,8 +2496,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </b:section>
       </div>
     </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
 
     <!-- Services Section -->
+    <b:section id='services-section' maxwidgets='1' name='Services Content' showaddelement='no'>
+      <b:widget id='HTML13' locked='true' title='Services Content' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
     <section class='section services-section' id='services'>
       <div class='container'>
         <div class='section-title'>
@@ -2495,8 +2545,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
 
     <!-- Why Choose Us Section -->
+    <b:section id='why-rankrseo-section' maxwidgets='1' name='Why RankrSEO' showaddelement='no'>
+      <b:widget id='HTML14' locked='true' title='Why RankrSEO' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
     <section class='section why-choose-section' id='about'>
       <div class='container'>
         <div class='section-title'>
@@ -2543,9 +2599,64 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+    <!-- Our Process Section -->
+    <b:section id='process-section' maxwidgets='1' name='Our Process' showaddelement='no'>
+      <b:widget id='HTML15' locked='true' title='Our Process' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
+    <section class='section process-section' id='process'>
+      <div class='container'>
+        <div class='section-title'>
+          <h2>How We <span class='highlight'>Work</span></h2>
+          <div class='accent-line'/>
+          <p>A clear, proven process from first audit to ranking results &#8212; no guesswork, full transparency at every step.</p>
+        </div>
+        <div class='process-grid'>
+          <div class='process-step animate-on-scroll'>
+            <div class='process-number'>1</div>
+            <h3>Free SEO Audit</h3>
+            <p>We analyze your site&#39;s technical health, content, and competitors to find quick wins.</p>
+          </div>
+          <div class='process-step animate-on-scroll'>
+            <div class='process-number'>2</div>
+            <h3>Strategy &amp; Roadmap</h3>
+            <p>A custom SEO plan aligned with your business goals, budget, and timeline.</p>
+          </div>
+          <div class='process-step animate-on-scroll'>
+            <div class='process-number'>3</div>
+            <h3>On-Page &amp; Technical Fixes</h3>
+            <p>We implement technical SEO, content, and Core Web Vitals improvements.</p>
+          </div>
+          <div class='process-step animate-on-scroll'>
+            <div class='process-number'>4</div>
+            <h3>Content &amp; Link Building</h3>
+            <p>Authority-building content and white-hat links to grow rankings and traffic.</p>
+          </div>
+          <div class='process-step animate-on-scroll'>
+            <div class='process-number'>5</div>
+            <h3>Monitor &amp; Optimize</h3>
+            <p>Continuous tracking of rankings, traffic, and conversions with monthly tweaks.</p>
+          </div>
+          <div class='process-step animate-on-scroll'>
+            <div class='process-number'>6</div>
+            <h3>Transparent Reporting</h3>
+            <p>Clear monthly reports showing exactly what moved the needle and why.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
     </b:if>
 
     <!-- Blog Posts Section -->
+    <b:section id='blog-posts-section' maxwidgets='1' name='Blog Posts' showaddelement='no'>
+      <b:widget id='HTML23' locked='true' title='Blog Posts' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
     <section class='section section-alt blog-posts-section' id='blog'>
       <div class='container'>
         <b:if cond='data:view.isHomepage'>
@@ -3028,7 +3139,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                     <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
                     <div class='post-card-meta'>
                       <span><i class='far fa-calendar'/> <data:post.date/></span>
-                      <span><i class='far fa-clock'/> <span class='read-time-card'>1 min read</span></span>
+                      <span class='read-time-wrap'><i class='far fa-clock'/> <span class='read-time-card'/></span>
                     </div>
                     <p class='snippet'><data:post.snippets.short/></p>
                     <div class='post-card-footer'>
@@ -3523,10 +3634,16 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
 
     <b:if cond='data:view.isHomepage'>
 
     <!-- Case Studies Section -->
+    <b:section id='case-studies-section' maxwidgets='1' name='Case Studies' showaddelement='no'>
+      <b:widget id='HTML16' locked='true' title='Case Studies' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
     <section class='section case-studies-section' id='case-studies'>
       <div class='container'>
         <div class='section-title'>
@@ -3571,8 +3688,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
 
     <!-- Client Logos Section -->
+    <b:section id='client-logos-section' maxwidgets='1' name='Client Logos' showaddelement='no'>
+      <b:widget id='HTML17' locked='true' title='Client Logos' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
     <section class='section client-logos-section'>
       <div class='container'>
         <div class='client-logos-inner'>
@@ -3587,8 +3710,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
 
     <!-- FAQ Section -->
+    <b:section id='faq-section' maxwidgets='1' name='FAQ' showaddelement='no'>
+      <b:widget id='HTML18' locked='true' title='FAQ' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
     <section class='section' id='faq'>
       <div class='container'>
         <div class='section-title'>
@@ -3645,22 +3774,34 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
 
     <!-- Newsletter Section -->
+    <b:section id='newsletter-section' maxwidgets='1' name='Newsletter' showaddelement='no'>
+      <b:widget id='HTML19' locked='true' title='Newsletter' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
     <section class='section newsletter-section' id='newsletter'>
       <div class='container'>
         <div class='newsletter-inner animate-on-scroll'>
           <h2>Get Free SEO Tips &amp; Insights</h2>
           <p>Get weekly SEO tips, search engine optimization strategies, industry insights, and exclusive resources delivered to your inbox. No spam, ever.</p>
-          <form class='newsletter-form' onsubmit='event.preventDefault();alert(&quot;Thanks for subscribing!&quot;)'>
-            <input aria-label='Enter your email' placeholder='Enter your email address' required='required' type='email'/>
+          <form class='newsletter-form' data-lead-form='true'>
+            <input aria-label='Enter your email' class='lead-email-input' placeholder='Enter your email address' required='required' type='email'/>
             <button type='submit'>Subscribe <i class='fas fa-paper-plane'/></button>
           </form>
         </div>
       </div>
     </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
 
     <!-- Lead Magnets Section -->
+    <b:section id='lead-magnets-section' maxwidgets='1' name='Lead Magnets' showaddelement='no'>
+      <b:widget id='HTML20' locked='true' title='Lead Magnets' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
     <section class='section lead-magnets-section' id='lead-magnets'>
       <div class='container'>
         <div class='section-title'>
@@ -3678,8 +3819,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <li><i class='fas fa-check'/> On-page optimization</li>
               <li><i class='fas fa-check'/> Content gap analysis</li>
             </ul>
-            <form class='lead-magnet-form' onsubmit='event.preventDefault();document.getElementById(&quot;contact&quot;).scrollIntoView({behavior:&quot;smooth&quot;})'>
-              <input class='lead-input' placeholder='Your email address' required='required' type='email'/>
+            <form class='lead-magnet-form' data-lead-form='true' data-lead-message='Please send me the Free SEO Audit Checklist Guide.'>
+              <input class='lead-input lead-email-input' placeholder='Your email address' required='required' type='email'/>
               <button class='btn btn-primary btn-block' type='submit'>Download Free Checklist <i class='fas fa-download'/></button>
             </form>
           </div>
@@ -3692,8 +3833,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <li><i class='fas fa-check'/> Content strategy guide</li>
               <li><i class='fas fa-check'/> Link building tactics</li>
             </ul>
-            <form class='lead-magnet-form' onsubmit='event.preventDefault();document.getElementById(&quot;contact&quot;).scrollIntoView({behavior:&quot;smooth&quot;})'>
-              <input class='lead-input' placeholder='Your email address' required='required' type='email'/>
+            <form class='lead-magnet-form' data-lead-form='true' data-lead-message='Please send me the Ultimate SEO Playbook.'>
+              <input class='lead-input lead-email-input' placeholder='Your email address' required='required' type='email'/>
               <button class='btn btn-primary btn-block' type='submit'>Get the Playbook <i class='fas fa-download'/></button>
             </form>
           </div>
@@ -3706,16 +3847,22 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <li><i class='fas fa-check'/> Competitor comparison</li>
               <li><i class='fas fa-check'/> Priority fixes list</li>
             </ul>
-            <form class='lead-magnet-form' onsubmit='event.preventDefault();document.getElementById(&quot;contact&quot;).scrollIntoView({behavior:&quot;smooth&quot;})'>
-              <input class='lead-input' placeholder='Your email address' required='required' type='email'/>
+            <form class='lead-magnet-form' data-lead-form='true' data-lead-message='Please send me a personalized Website Audit Report.'>
+              <input class='lead-input lead-email-input' placeholder='Your email address' required='required' type='email'/>
               <button class='btn btn-primary btn-block' type='submit'>Request Free Audit <i class='fas fa-arrow-right'/></button>
             </form>
           </div>
         </div>
       </div>
     </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
 
     <!-- CTA / Contact Section -->
+    <b:section id='cta-section' maxwidgets='1' name='CTA/Contact' showaddelement='no'>
+      <b:widget id='HTML22' locked='true' title='CTA/Contact' type='HTML' version='2' visible='true'>
+        <b:includable id='main' var='this'>
     <section class='section cta-section' id='contact'>
       <div class='container'>
         <div class='cta-grid'>
@@ -3799,6 +3946,9 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
       </div>
     </section>
+        </b:includable>
+      </b:widget>
+    </b:section>
     </b:if>
 
   </main>
@@ -3906,12 +4056,44 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             </b:includable>
           </b:widget>
         </b:section>
+        <b:section id='footer-5' maxwidgets='1' name='Footer Column 5' showaddelement='yes'>
+          <b:widget id='LinkList7' locked='false' title='Resources' type='LinkList' version='2' visible='true'>
+            <b:widget-settings>
+              <b:widget-setting name='link-5'>/p/founder.html</b:widget-setting>
+              <b:widget-setting name='link-3'>/p/terms.html</b:widget-setting>
+              <b:widget-setting name='link-4'>/p/disclaimer.html</b:widget-setting>
+              <b:widget-setting name='text-1'>Sitemap</b:widget-setting>
+              <b:widget-setting name='text-0'>Privacy Policy</b:widget-setting>
+              <b:widget-setting name='text-3'>Terms of Service</b:widget-setting>
+              <b:widget-setting name='text-2'>Disclaimer</b:widget-setting>
+              <b:widget-setting name='text-5'>Founder Page</b:widget-setting>
+              <b:widget-setting name='text-4'>Disclaimer</b:widget-setting>
+              <b:widget-setting name='sorting'>NONE</b:widget-setting>
+              <b:widget-setting name='link-1'>/sitemap.xml</b:widget-setting>
+              <b:widget-setting name='link-2'>/p/disclaimer.html</b:widget-setting>
+              <b:widget-setting name='link-0'>/p/privacy-policy.html</b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main'>
+              <h4 class='footer-heading'><data:title/></h4>
+              <ul class='footer-links'>
+                <b:loop values='data:links' var='link'>
+                  <li><a expr:href='data:link.target'><data:link.name/></a></li>
+                </b:loop>
+              </ul>
+            </b:includable>
+            <b:includable id='content'>
+        <div class='widget-content widget-control'>
+            <ul><b:loop values='data:links' var='link'><li><a expr:href='data:link.target'><data:link.name/></a></li></b:loop></ul>
+        </div>
+    </b:includable>
+          </b:widget>
+        </b:section>
       </div>
       <div class='footer-bottom'>
         <b:section id='footer-copyright' maxwidgets='1' name='Footer Copyright' showaddelement='no'>
           <b:widget id='HTML11' locked='true' title='Copyright' type='HTML' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='content'><![CDATA[<span>&#169; <script>document.write(new Date().getFullYear())</script> RankrSEO. All rights reserved.</span><span>Powered by <a href="/">RankrSEO</a> | <a href="/p/privacy-policy.html">Privacy Policy</a> | <a href="/p/terms.html">Terms of Service</a></span>]]></b:widget-setting>
+              <b:widget-setting name='content'><![CDATA[<span>&#169; <span id='copyright-year'></span> RankrSEO. All rights reserved.</span><span>Powered by <a href="/">RankrSEO</a> | <a href="/p/privacy-policy.html">Privacy Policy</a> | <a href="/p/terms.html">Terms of Service</a></span>]]></b:widget-setting>
             </b:widget-settings>
             <b:includable id='main'>
               <data:content/>
@@ -3921,6 +4103,18 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
       </div>
     </div>
   </footer>
+
+  <!-- Sticky CTA Bar -->
+  <b:if cond='data:view.isHomepage'>
+  <div aria-label='Promotional offer' class='sticky-cta-bar' id='stickyCtaBar' role='complementary'>
+    <div class='sticky-cta-content'>
+      <p class='sticky-cta-text'>Get a <strong>free $497 SEO audit</strong> &#8212; limited slots this month.</p>
+      <a class='btn btn-primary' href='#contact'>Claim Free Audit</a>
+      <button aria-label='Dismiss offer' class='sticky-cta-close' id='stickyCtaClose' type='button'>&#215;</button>
+    </div>
+  </div>
+  </b:if>
+
   <!-- WhatsApp Floating Button -->
   <a aria-label='Chat on WhatsApp' class='whatsapp-btn' href='https://wa.me/919953732860?text=Hi%21%20I%20need%20help%20with%20SEO.' rel='noopener noreferrer' target='_blank'>
     <i class='fab fa-whatsapp'/>
@@ -3953,12 +4147,16 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
       function init() {
         try { initStickyHeader(); } catch(e) {}
         try { initMobileMenu(); } catch(e) {}
+        try { initDesktopDropdown(); } catch(e) {}
         try { initSearchOverlay(); } catch(e) {}
         try { initDarkMode(); } catch(e) {}
         try { initCounterAnimation(); } catch(e) {}
         try { initLazyLoading(); } catch(e) {}
         try { initScrollAnimations(); } catch(e) {}
         try { initBackToTop(); } catch(e) {}
+        try { initStickyCtaBar(); } catch(e) {}
+        try { initLeadForms(); } catch(e) {}
+        try { initCopyrightYear(); } catch(e) {}
         try { initFaqAccordion(); } catch(e) {}
         try { initRelatedPosts(); } catch(e) {}
         try { initCardReadTime(); } catch(e) {}
@@ -4026,6 +4224,50 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         });
       }
 
+      // --- Desktop Services Dropdown (keyboard accessible) ---
+      function initDesktopDropdown() {
+        var toggle = document.getElementById('servicesToggle');
+        var dropdown = document.getElementById('servicesDropdown');
+        if (!toggle || !dropdown) return;
+        var listItem = toggle.closest('li');
+
+        function closeDropdown() {
+          if (listItem) listItem.classList.remove('dropdown-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+        function openDropdown() {
+          if (listItem) listItem.classList.add('dropdown-open');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+
+        toggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var isOpen = listItem && listItem.classList.contains('dropdown-open');
+          if (isOpen) { closeDropdown(); } else { openDropdown(); }
+        });
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            closeDropdown();
+          }
+        });
+
+        document.addEventListener('click', function(e) {
+          if (listItem && !listItem.contains(e.target)) {
+            closeDropdown();
+          }
+        });
+
+        dropdown.addEventListener('focusout', function() {
+          // Defer so the newly-focused element is available to check
+          window.requestAnimationFrame(function() {
+            if (listItem && !listItem.contains(document.activeElement)) {
+              closeDropdown();
+            }
+          });
+        });
+      }
+
       // --- Mobile Dropdown Toggle (global for onclick attr) ---
       window.toggleMobileDropdown = function(el) {
         var submenu = el.nextElementSibling;
@@ -4081,10 +4323,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         var toggle = document.getElementById('themeToggle');
         if (!toggle) return;
 
-        var stored = localStorage.getItem('rankrseo-theme');
-        if (stored === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
+        // data-theme is already applied pre-paint by the inline head script.
+        // Just sync the button's accessible state on load.
+        function syncAria() {
+          var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+          toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+          toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
         }
+        syncAria();
 
         toggle.addEventListener('click', function() {
           var html = document.documentElement;
@@ -4096,6 +4342,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             html.setAttribute('data-theme', 'dark');
             localStorage.setItem('rankrseo-theme', 'dark');
           }
+          syncAria();
         });
       }
 
@@ -4253,6 +4500,59 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         }, { passive: true });
       }
 
+      // --- Sticky CTA Bar ---
+      function initStickyCtaBar() {
+        var bar = document.getElementById('stickyCtaBar');
+        var closeBtn = document.getElementById('stickyCtaClose');
+        if (!bar) return;
+
+        var dismissed = false;
+        try { dismissed = sessionStorage.getItem('rankrseo-cta-dismissed') === '1'; } catch(e) {}
+        if (dismissed) return;
+
+        var contactSection = document.getElementById('contact');
+        var heroSection = document.getElementById('hero');
+        var hiddenNearContact = false;
+
+        if ('IntersectionObserver' in window && contactSection) {
+          var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              hiddenNearContact = entry.isIntersecting;
+              updateVisibility();
+            });
+          }, { threshold: 0.1 });
+          observer.observe(contactSection);
+        }
+
+        function updateVisibility() {
+          var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+          var pastHero = heroSection ? scrollY > heroSection.offsetHeight * 0.6 : scrollY > 500;
+          if (pastHero && !hiddenNearContact) {
+            bar.classList.add('visible');
+          } else {
+            bar.classList.remove('visible');
+          }
+        }
+
+        var ticking = false;
+        window.addEventListener('scroll', function() {
+          if (!ticking) {
+            window.requestAnimationFrame(function() {
+              updateVisibility();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+
+        if (closeBtn) {
+          closeBtn.addEventListener('click', function() {
+            bar.classList.remove('visible');
+            try { sessionStorage.setItem('rankrseo-cta-dismissed', '1'); } catch(e) {}
+          });
+        }
+      }
+
       // --- Related Posts ---
       window._relatedIdx = 0;
       function initRelatedPosts() {
@@ -4346,12 +4646,58 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
 
     })();
 
+    // --- Lead Capture Forms (newsletter + lead magnets) ---
+    // Blogger themes have no backend of their own, so we route these
+    // submissions into the one real, working channel: the native Contact
+    // Form widget. We pre-fill its email (and message, if provided) and
+    // scroll it into view so the visitor just has to hit send.
+    function initLeadForms() {
+      var forms = document.querySelectorAll('[data-lead-form]');
+      if (!forms.length) return;
+
+      forms.forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var emailInput = form.querySelector('.lead-email-input');
+          var email = emailInput ? emailInput.value.trim() : '';
+          var message = form.getAttribute('data-lead-message') || '';
+
+          var contactEmail = document.querySelector('.contact-form-email');
+          var contactMessage = document.querySelector('.contact-form-email-message');
+          var contactSection = document.getElementById('contact');
+
+          if (contactEmail) contactEmail.value = email;
+          if (contactMessage && message) contactMessage.value = message;
+
+          if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          if (contactMessage) {
+            window.setTimeout(function() { contactMessage.focus(); }, 500);
+          } else if (contactEmail) {
+            window.setTimeout(function() { contactEmail.focus(); }, 500);
+          }
+
+          var btn = form.querySelector('button[type="submit"]');
+          if (btn) {
+            var original = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Almost there &#8212; confirm below';
+            window.setTimeout(function() { btn.innerHTML = original; }, 3000);
+          }
+        });
+      });
+    }
+
     function fixUnknownAuthor() {
       var blogName = 'RankrSEO';
       var els = document.querySelectorAll('.post-author, .author-name, [itemprop="name"]');
       Array.prototype.forEach.call(els, function(el) {
         if (el.textContent.trim() === 'Unknown') el.textContent = blogName;
       });
+    }
+    function initCopyrightYear() {
+      var el = document.getElementById('copyright-year');
+      if (el) el.textContent = new Date().getFullYear();
     }
     //]]>
   </script>

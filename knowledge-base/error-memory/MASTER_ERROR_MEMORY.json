@@ -210,6 +210,84 @@
       "fix": "1) Defined 40+ design tokens in :root (--space-*, --text-*, --shadow-*, --radius-*, --leading-*, --tracking-*, --transition-*)\n2) Applied tokens uniformly across footer (padding, gap, margins), blog (card radius, shadows, spacing), contact (grid gap, card padding, input height)\n3) Established consistent component patterns: cards use surface+border+shadow, inputs use 60px height+radius-lg+2px border, buttons use gradient+radius-lg+weight 700\n4) Harmonized typography: headings 18px semibold across sections, body 14-16px, links 14px",
       "prevention_rule": "RULE-025: Never design individual sections before defining global design tokens. All spacing, typography, border radii, shadows, and transitions must reference CSS custom properties from :root. Section-specific overrides are only permitted for layout structure (grid, positioning) — never for raw aesthetic values.",
       "status": "fixed"
+    },
+    {
+      "error_id": "ERR-026",
+      "theme": "knowledge-base/rankrseo-theme.xml",
+      "category": "Widget Structure",
+      "severity": "Critical",
+      "issue": "Two <b:includable id='postAuthor'> in Blog1 widget — empty one at line 2989 shadows real one at line 1644 (defaultmarkup)",
+      "symptom": "Post author name never renders on any page; empty includable takes precedence",
+      "root_cause": "An empty <b:includable id='postAuthor'/> was accidentally placed in Blog1 widget during includable list compilation, overriding the fully-implemented version from defaultmarkup",
+      "bad_code_pattern": "<b:includable id='postAuthor'/> (empty self-closing tag) — shadows the real <b:includable id='postAuthor' var='post'> in defaultmarkup",
+      "fix": "Replaced empty includable with full implementation: author name display inside <span itemprop='name'> with !data:view.isPage guard",
+      "prevention_rule": "RULE-026: Every includable override in a widget must have a complete implementation, never empty unless explicitly intended to disable the feature",
+      "status": "fixed"
+    },
+    {
+      "error_id": "ERR-027",
+      "theme": "knowledge-base/rankrseo-theme.xml",
+      "category": "JSON-LD",
+      "severity": "Critical",
+      "issue": "Duplicate BlogPosting JSON-LD schema in Blog1 widget — defined in both 'post' and 'postMeta' includables",
+      "symptom": "Google Search Console warns 'Multiple schema.org markup blocks with same type' on single post pages",
+      "root_cause": "Blog1 widget defined BlogPosting schema in <b:includable id='post'> (line 2853) AND in <b:includable id='postMeta'> (line 3102). While postMeta is currently unreachable in the Blog1 rendering chain, the duplicate definition creates confusion and risk if postMeta is later referenced.",
+      "bad_code_pattern": "<b:includable id='postMeta' var='post'>\n  <script type='application/ld+json'>{...BlogPosting schema...}</script>\n</b:includable>\n+ same schema in <b:includable id='post'>",
+      "fix": "Replaced postMeta's full schema with <b:includable id='postMeta'><b:comment>Disabled — schema in post includable</b:comment></b:includable>",
+      "prevention_rule": "RULE-027: JSON-LD schema for a given type (BlogPosting, BreadcrumbList, etc.) must be defined in exactly one includable per page. Use comments to document which includable has the canonical schema.",
+      "status": "fixed"
+    },
+    {
+      "error_id": "ERR-028",
+      "theme": "knowledge-base/rankrseo-theme.xml",
+      "category": "Responsive",
+      "severity": "High",
+      "issue": "No responsive breakpoint for very small phones (≤360px width)",
+      "symptom": "On iPhone 5/SE and other small devices (320-360px), content overflows horizontally, hero text gets clipped, service cards too wide for viewport",
+      "root_cause": "Smallest breakpoint was 480px; no CSS overrides for devices narrower than 480px",
+      "bad_code_pattern": "No @media (max-width: 360px) or @media (max-width: 320px) block exists",
+      "fix": "Added @media (max-width: 360px) breakpoint with reduced hero padding (56px 0 24px), smaller container padding (0 12px), smaller headings (clamp(1.2rem, 7vw, 1.4rem)), reduced card padding, smaller font sizes across all components",
+      "prevention_rule": "RULE-028: The responsive breakpoint spectrum must include a ≤360px tier for very small phones. At minimum, override: container padding, hero padding/headings, card padding, section padding.",
+      "status": "fixed"
+    },
+    {
+      "error_id": "ERR-029",
+      "theme": "knowledge-base/rankrseo-theme.xml",
+      "category": "Mobile Design",
+      "severity": "High",
+      "issue": "Hero vertical padding (120px) excessive on mobile screens",
+      "symptom": "Hero section uses 56% of viewport height on a 375px phone; 240px of combined padding leaves only 135px for content",
+      "root_cause": "Hero padding was set uniformly for desktop: 120px top / 64px bottom with only a modest reduction at 768px (80px / 40px)",
+      "bad_code_pattern": ".hero { padding: 120px 0 64px; } — no per-breakpoint responsive reduction",
+      "fix": "Added media query overrides: @media (max-width: 480px) { .hero { padding: 64px 0 32px; } } @media (max-width: 360px) { .hero { padding: 56px 0 24px; } }",
+      "prevention_rule": "RULE-029: Hero section must have responsive padding at every breakpoint: desktop 120px/64px, 768px 80px/40px, 480px 64px/32px, 360px 56px/24px.",
+      "status": "fixed"
+    },
+    {
+      "error_id": "ERR-030",
+      "theme": "knowledge-base/rankrseo-theme.xml",
+      "category": "Performance",
+      "severity": "Medium",
+      "issue": "Large CSS filter blur values (80-100px) cause janky scrolling on mobile",
+      "symptom": "Hero gradient orbs with blur(80px) and CTA orbs with blur(100px) cause visible frame drops on mobile browsers; compositing cost high for large blurred elements",
+      "root_cause": "Decoratives orbs sized 400-600px with heavy blur filters force mobile GPU into expensive offscreen rendering pass",
+      "bad_code_pattern": ".hero-svg-bg .gradient-orb { filter: blur(80px); } and .cta-svg-bg .gradient-orb { filter: blur(100px); } with large element dimensions (600px, 400px)",
+      "fix": "Reduced filter blur from 80px→60px (hero) and 100px→60px (CTA); reduced orb dimensions: orb-1 from 600px→400px, orb-2 from 400px→300px; reduced opacity from 0.15→0.1 (hero) and 0.1→0.08 (CTA)",
+      "prevention_rule": "RULE-030: CSS filter blur on decorative elements must not exceed 60px. Orb/element dimensions should be ≤400px. Combined with reduced opacity to maintain visual quality while keeping compositing cost manageable on mobile GPUs.",
+      "status": "fixed"
+    },
+    {
+      "error_id": "ERR-031",
+      "theme": "knowledge-base/rankrseo-theme.xml",
+      "category": "CSS Architecture",
+      "severity": "Medium",
+      "issue": "Duplicate @media (max-width: 480px) blocks scattered across CSS, leading to maintenance confusion",
+      "symptom": "Three separate 480px breakpoint blocks exist: one main block (line 920), one for author box only (line 1051), and one for related posts (line 1075). Same rules could conflict or be missed.",
+      "root_cause": "Component-specific responsive rules added as separate blocks during iterative development instead of being consolidated into the main breakpoint blocks",
+      "bad_code_pattern": "@media (max-width: 480px) { ... } /* near line 920 */\n...\n@media (max-width: 480px) { .oixvV-author { ... } } /* near line 1051 */\n@media (max-width: 480px) { .Super-related { 1fr } } /* near line 1075 */",
+      "fix": "Merged author box rules (.oixvV-author, .author-social) and related posts rules (.Super-related) into the main 480px breakpoint block. Removed duplicate standalone media queries. Removed duplicate 480px query for .Super-related that mirrored 768px rule.",
+      "prevention_rule": "RULE-031: All responsive rules for a given breakpoint must live in exactly one @media block. Component-specific overrides should be added to the shared block (with a comment grouping if helpful), never as separate standalone media queries.",
+      "status": "fixed"
     }
   ]
 }
