@@ -6,7 +6,7 @@ A collection of Blogger XML themes, UI components, error memory system, and SEO/
 
 ```
 ├── knowledge-base/                     # Theme + documentation
-│   ├── rankrseo-theme.xml              # Primary: RankrSEO Bloggers XML theme (3,859 lines)
+│   ├── rankrseo-theme.xml              # Primary: RankrSEO Bloggers XML theme (3,879 lines)
 │   ├── RANKRSEO_THEME_SPEC.md          # Master design/SEO/performance specification
 │   ├── SNIPPET_LIBRARY.xml             # 27 reusable Bloggers includable snippets
 │   ├── SEO_AEO_GEO_BLUEPRINT.md        # Complete SEO/AEO/GEO blueprint
@@ -64,42 +64,25 @@ knowledge-base/docs/
 ├── repo-architecture.md                    # Repository architecture (349 lines)
 ├── xml-theme-comparison.md                 # Cross-theme comparison (384 lines)
 ├── seo-strategy.md                         # SEO/AEO/GEO strategy (219 lines)
-├── page-inventory.md                       # Internal link audit — 20 URLs, 7 missing pages
-├── keyword-map.md                          # Keyword strategy — 5 clusters, long-tail keywords
-├── content-clusters.md                     # 9 topic clusters with pillar/supporting structure
+├── page-inventory.md                       # Full 92-page inventory (guide)
+├── keyword-map.md                          # Keyword strategy — 150+ keywords across all pages
+├── content-clusters.md                     # 9 clusters with internal linking map
 ├── page-templates/                         # 7 paste-ready HTML pages for Blogger Pages
-│   ├── about.html                          # About Us page (1200+ words)
-│   ├── services.html                       # Services page (2000+ words)
-│   ├── contact.html                        # Contact page (800+ words)
-│   ├── free-seo-audit.html                 # Free SEO Audit lead-gen page (1500+ words)
-│   ├── privacy-policy.html                 # Privacy Policy legal page
-│   ├── terms.html                          # Terms & Conditions legal page
-│   └── disclaimer.html                     # Disclaimer legal page
-└── blog-templates/                         # 21 paste-ready HTML blog post templates
-    ├── SEO SERVICES (12):
-    │   ├── seo-agency.html                 # RankrSEO agency overview
-    │   ├── technical-seo-services.html     # Technical SEO deep-dive
-    │   ├── local-seo-services.html         # Local SEO deep-dive
-    │   ├── seo-audit-services.html         # SEO audit deep-dive
-    │   ├── ecommerce-seo.html              # Ecommerce SEO deep-dive
-    │   ├── enterprise-seo.html             # Enterprise SEO deep-dive
-    │   ├── blogger-seo.html                # Blogger-specific SEO
-    │   ├── wordpress-seo.html              # WordPress-specific SEO
-    │   ├── ai-seo-services.html            # AI SEO / GEO deep-dive
-    │   ├── link-building.html              # Link building deep-dive
-    │   ├── content-marketing.html          # Content marketing deep-dive
-    │   └── digital-marketing.html          # Full-funnel digital marketing
-    ├── GEO PAGES (6):
-    │   ├── seo-services-india.html         # India market targeting
-    │   ├── seo-services-delhi.html         # Delhi NCR market targeting
-    │   ├── seo-services-uk.html            # UK market targeting
-    │   ├── seo-services-london.html        # London market targeting
-    │   ├── seo-services-usa.html           # USA market targeting
-    │   └── seo-services-new-york.html      # NYC market targeting
-    └── RESOURCES (3):
-        ├── seo-audit-checklist.html        # 50+ point SEO audit checklist
-        ├── ai-seo-guide.html               # Complete AI SEO / GEO guide
-        └── local-seo-checklist.html        # Comprehensive local SEO checklist
+│   ├── about.html, services.html, contact.html
+│   ├── free-seo-audit.html, privacy-policy.html
+│   └── terms.html, disclaimer.html
+└── blog-templates/                         # 85 paste-ready HTML blog post templates
+    ├── SERVICE PAGES (12): seo-agency, technical-seo, local-seo, ecommerce-seo,
+    │   enterprise-seo, seo-audit, blogger-seo, wordpress-seo, ai-seo,
+    │   link-building, content-marketing, digital-marketing
+    ├── MONEY PAGES (5): seo-consultant, seo-company, affordable-seo,
+    │   small-business-seo, startup-seo
+    ├── CONVERSION PAGES (4): case-studies, testimonials, pricing, book-consultation
+    ├── GEO PAGES (22): India(8), UK(4), USA(5), Canada(2), Australia(3)
+    ├── RESOURCES (3): seo-audit-checklist, ai-seo-guide, local-seo-checklist
+    └── BLOG CLUSTERS (39): 9 clusters covering SEO Agency, Technical SEO,
+        Local SEO, Ecommerce SEO, SEO Audit, AI SEO, Blogger SEO,
+        Link Building, Content Marketing
 ```
 
 ## RankrSEO Theme
@@ -118,6 +101,7 @@ knowledge-base/docs/
 - **Sticky header** with desktop dropdown nav + mobile hamburger menu
 - **23 widgetized sections**: admin, hero, featured posts, services, why-rankrseo, process, blog + sidebar, case studies, client logos, FAQ, newsletter, lead magnets, CTA + contact form, 5 footer columns, copyright
 - **0 b:defaultmarkup** (removed to fix Blogger "Update failed" error)
+- **92 paste-ready HTML templates** for quick Blogger page/post creation
 - **5 JSON-LD schema types**: WebSite, BlogPosting, BreadcrumbList, Organization+LocalBusiness, Service+OfferCatalog, FAQPage
 - **Full Bloggers features**: posts (index + single), comments (embedded + threaded), labels (cloud), search (overlay + widget), archives (flat), pagination (load more + prev/next)
 - **Agency sections**: hero with dashboard card, services grid, process timeline, testimonials, FAQ accordion, lead magnet downloads, CTA with contact form

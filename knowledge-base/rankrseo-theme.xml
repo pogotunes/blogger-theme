@@ -1359,12 +1359,13 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           <ul class='dropdown-menu-mobile'>
             <li><a href='/search/label/SEO%20Audit'>SEO Audit</a></li>
             <li><a href='/search/label/Technical%20SEO'>Technical SEO</a></li>
-            <li><a href='/search/label/Keyword%20Research'>Keyword Research</a></li>
+            <li><a href='/search/label/Local%20SEO'>Local SEO</a></li>
+            <li><a href='/search/label/Ecommerce%20SEO'>Ecommerce SEO</a></li>
+            <li><a href='/search/label/AI%20SEO'>AI SEO / GEO</a></li>
+            <li><a href='/search/label/Blogger%20SEO'>Blogger SEO</a></li>
             <li><a href='/search/label/Content%20Marketing'>Content Marketing</a></li>
             <li><a href='/search/label/Link%20Building'>Link Building</a></li>
-            <li><a href='/search/label/Local%20SEO'>Local SEO</a></li>
-            <li><a href='/search/label/AI%20SEO'>AI SEO</a></li>
-            <li><a href='/search/label/Ecommerce%20SEO'>Ecommerce SEO</a></li>
+            <li><a href='/search/label/Digital%20Marketing'>Digital Marketing</a></li>
           </ul>
         </li>
         <li><a expr:href='data:blog.homepageUrl'>Blog</a></li>
@@ -1393,12 +1394,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             <ul class='dropdown-menu' id='servicesDropdown' role='menu'>
               <li><a href='/search/label/SEO%20Audit' role='menuitem'>SEO Audit</a></li>
               <li><a href='/search/label/Technical%20SEO' role='menuitem'>Technical SEO</a></li>
-              <li><a href='/search/label/Keyword%20Research' role='menuitem'>Keyword Research</a></li>
+              <li><a href='/search/label/Local%20SEO' role='menuitem'>Local SEO</a></li>
+              <li><a href='/search/label/Ecommerce%20SEO' role='menuitem'>Ecommerce SEO</a></li>
+              <li><a href='/search/label/AI%20SEO' role='menuitem'>AI SEO / GEO</a></li>
+              <li><a href='/search/label/Blogger%20SEO' role='menuitem'>Blogger SEO</a></li>
               <li><a href='/search/label/Content%20Marketing' role='menuitem'>Content Marketing</a></li>
               <li><a href='/search/label/Link%20Building' role='menuitem'>Link Building</a></li>
-              <li><a href='/search/label/Local%20SEO' role='menuitem'>Local SEO</a></li>
-              <li><a href='/search/label/AI%20SEO' role='menuitem'>AI SEO</a></li>
-              <li><a href='/search/label/Ecommerce%20SEO' role='menuitem'>Ecommerce SEO</a></li>
+              <li><a href='/search/label/Digital%20Marketing' role='menuitem'>Digital Marketing</a></li>
+              <li><a href='/p/services.html' role='menuitem'>All Services</a></li>
             </ul>
           </li>
           <li><a aria-label='Blog' expr:href='data:blog.homepageUrl'>Blog</a></li>
@@ -3140,17 +3143,25 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-2' maxwidgets='1' name='Footer Column 2' showaddelement='yes'>
           <b:widget id='LinkList5' locked='false' title='Quick Links' type='LinkList' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='link-4'>/p/about.html</b:widget-setting>
-              <b:widget-setting name='text-1'>Blog</b:widget-setting>
-              <b:widget-setting name='text-0'>Home</b:widget-setting>
-              <b:widget-setting name='text-3'>Case Studies</b:widget-setting>
-              <b:widget-setting name='text-2'>Services</b:widget-setting>
-              <b:widget-setting name='text-4'>About Us</b:widget-setting>
+              <b:widget-setting name='link-7'>/p/contact.html</b:widget-setting>
+              <b:widget-setting name='link-8'>/p/free-seo-audit.html</b:widget-setting>
+              <b:widget-setting name='link-5'>/2026/06/seo-pricing-guide.html</b:widget-setting>
+              <b:widget-setting name='link-6'>/2026/06/seo-consultant-services.html</b:widget-setting>
+              <b:widget-setting name='text-5'>Pricing</b:widget-setting>
+              <b:widget-setting name='text-6'>SEO Consultant</b:widget-setting>
+              <b:widget-setting name='text-7'>Contact</b:widget-setting>
+              <b:widget-setting name='text-8'>Free SEO Audit</b:widget-setting>
               <b:widget-setting name='sorting'>NONE</b:widget-setting>
-              <b:widget-setting name='link-1'>/</b:widget-setting>
-              <b:widget-setting name='link-2'>/p/services.html</b:widget-setting>
+              <b:widget-setting name='text-4'>About Us</b:widget-setting>
+              <b:widget-setting name='link-4'>/p/about.html</b:widget-setting>
               <b:widget-setting name='link-3'>/search/label/Case%20Studies</b:widget-setting>
+              <b:widget-setting name='text-3'>Case Studies</b:widget-setting>
+              <b:widget-setting name='link-2'>/p/services.html</b:widget-setting>
+              <b:widget-setting name='text-2'>Services</b:widget-setting>
+              <b:widget-setting name='link-1'>/</b:widget-setting>
+              <b:widget-setting name='text-1'>Blog</b:widget-setting>
               <b:widget-setting name='link-0'>/</b:widget-setting>
+              <b:widget-setting name='text-0'>Home</b:widget-setting>
             </b:widget-settings>
             <b:includable id='main'>
               <h4 class='footer-heading'><data:title/></h4>
@@ -3170,26 +3181,27 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-3' maxwidgets='1' name='Footer Column 3' showaddelement='yes'>
           <b:widget id='LinkList6' locked='false' title='Services' type='LinkList' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='text-8'>Ecommerce SEO</b:widget-setting>
-              <b:widget-setting name='link-7'>/search/label/AI%20SEO</b:widget-setting>
-              <b:widget-setting name='link-8'>/search/label/Ecommerce%20SEO</b:widget-setting>
-              <b:widget-setting name='text-5'>Digital Marketing</b:widget-setting>
-              <b:widget-setting name='link-5'>/search/label/Digital%20Marketing</b:widget-setting>
-              <b:widget-setting name='link-6'>/search/label/Technical%20SEO</b:widget-setting>
-              <b:widget-setting name='link-3'>/search/label/Link%20Building</b:widget-setting>
-              <b:widget-setting name='link-4'>/search/label/Local%20SEO</b:widget-setting>
-              <b:widget-setting name='text-1'>Keyword Research</b:widget-setting>
-              <b:widget-setting name='text-0'>SEO Audit</b:widget-setting>
-              <b:widget-setting name='text-3'>Link Building</b:widget-setting>
-              <b:widget-setting name='text-2'>Content Marketing</b:widget-setting>
-              <b:widget-setting name='text-5'>Content Marketing</b:widget-setting>
-              <b:widget-setting name='text-4'>Local SEO</b:widget-setting>
-              <b:widget-setting name='text-7'>AI SEO Optimization</b:widget-setting>
-              <b:widget-setting name='text-6'>Technical SEO</b:widget-setting>
-              <b:widget-setting name='sorting'>NONE</b:widget-setting>
-              <b:widget-setting name='link-1'>/search/label/Keyword%20Research</b:widget-setting>
-              <b:widget-setting name='link-2'>/search/label/Content%20Marketing</b:widget-setting>
+              <b:widget-setting name='link-9'>/2026/06/seo-company-services.html</b:widget-setting>
+              <b:widget-setting name='text-9'>SEO Company</b:widget-setting>
+              <b:widget-setting name='link-8'>/search/label/Blogger%20SEO</b:widget-setting>
+              <b:widget-setting name='text-8'>Blogger SEO</b:widget-setting>
+              <b:widget-setting name='link-7'>/search/label/Digital%20Marketing</b:widget-setting>
+              <b:widget-setting name='text-7'>Digital Marketing</b:widget-setting>
+              <b:widget-setting name='link-6'>/search/label/Content%20Marketing</b:widget-setting>
+              <b:widget-setting name='text-6'>Content Marketing</b:widget-setting>
+              <b:widget-setting name='link-5'>/search/label/Link%20Building</b:widget-setting>
+              <b:widget-setting name='text-5'>Link Building</b:widget-setting>
+              <b:widget-setting name='link-4'>/search/label/AI%20SEO</b:widget-setting>
+              <b:widget-setting name='text-4'>AI SEO / GEO</b:widget-setting>
+              <b:widget-setting name='link-3'>/search/label/Ecommerce%20SEO</b:widget-setting>
+              <b:widget-setting name='text-3'>Ecommerce SEO</b:widget-setting>
+              <b:widget-setting name='link-2'>/search/label/Local%20SEO</b:widget-setting>
+              <b:widget-setting name='text-2'>Local SEO</b:widget-setting>
+              <b:widget-setting name='link-1'>/search/label/Technical%20SEO</b:widget-setting>
+              <b:widget-setting name='text-1'>Technical SEO</b:widget-setting>
               <b:widget-setting name='link-0'>/search/label/SEO%20Audit</b:widget-setting>
+              <b:widget-setting name='text-0'>SEO Audit</b:widget-setting>
+              <b:widget-setting name='sorting'>NONE</b:widget-setting>
             </b:widget-settings>
             <b:includable id='main'>
               <h4 class='footer-heading'><data:title/></h4>
@@ -3220,16 +3232,25 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-5' maxwidgets='1' name='Footer Column 5' showaddelement='yes'>
           <b:widget id='LinkList7' locked='false' title='Resources' type='LinkList' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='link-3'>/p/terms.html</b:widget-setting>
+              <b:widget-setting name='link-8'>/2026/06/seo-audit-checklist.html</b:widget-setting>
+              <b:widget-setting name='text-8'>SEO Audit Checklist</b:widget-setting>
+              <b:widget-setting name='link-7'>/2026/06/ai-seo-guide.html</b:widget-setting>
+              <b:widget-setting name='text-7'>AI SEO Guide</b:widget-setting>
+              <b:widget-setting name='link-6'>/2026/06/local-seo-checklist.html</b:widget-setting>
+              <b:widget-setting name='text-6'>Local SEO Checklist</b:widget-setting>
+              <b:widget-setting name='link-5'>/2026/06/technical-seo-checklist.html</b:widget-setting>
+              <b:widget-setting name='text-5'>Technical SEO Checklist</b:widget-setting>
               <b:widget-setting name='link-4'>/p/disclaimer.html</b:widget-setting>
-              <b:widget-setting name='text-1'>Sitemap</b:widget-setting>
-              <b:widget-setting name='text-0'>Privacy Policy</b:widget-setting>
+              <b:widget-setting name='text-4'>Disclaimer</b:widget-setting>
+              <b:widget-setting name='link-3'>/p/terms.html</b:widget-setting>
               <b:widget-setting name='text-3'>Terms of Service</b:widget-setting>
-              <b:widget-setting name='text-2'>Disclaimer</b:widget-setting>
-              <b:widget-setting name='sorting'>NONE</b:widget-setting>
+              <b:widget-setting name='link-2'>/2026/06/blogger-seo-guide-2026.html</b:widget-setting>
+              <b:widget-setting name='text-2'>Blogger SEO Guide</b:widget-setting>
               <b:widget-setting name='link-1'>/sitemap.xml</b:widget-setting>
-              <b:widget-setting name='link-2'>/p/disclaimer.html</b:widget-setting>
+              <b:widget-setting name='text-1'>Sitemap</b:widget-setting>
               <b:widget-setting name='link-0'>/p/privacy-policy.html</b:widget-setting>
+              <b:widget-setting name='text-0'>Privacy Policy</b:widget-setting>
+              <b:widget-setting name='sorting'>NONE</b:widget-setting>
             </b:widget-settings>
             <b:includable id='main'>
               <h4 class='footer-heading'><data:title/></h4>

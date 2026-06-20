@@ -1,0 +1,58 @@
+<!-- BLOG POST: Blogger Speed Optimization Guide
+     Title: Blogger Speed Optimization Guide — Make Your Blogspot Fast
+     Labels: Blogger SEO, Blog
+     Permalink: /2026/06/blogger-speed-optimization-guide.html -->
+
+<style>.blog-content { max-width: 780px; margin: 0 auto; font-size: 1rem; line-height: 1.8; color: var(--text-light); }
+.blog-content h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text); }
+.blog-content h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 12px; color: var(--text); }
+.blog-content p { margin-bottom: 16px; }
+.blog-content ul { margin: 12px 0 20px; padding-left: 24px; }
+.blog-content ul li { margin-bottom: 8px; }
+.blog-content ul li strong { color: var(--text); }
+.highlight { color: var(--primary); }
+.cta-box { text-align: center; background: var(--bg-alt); border-radius: var(--radius-md); padding: 40px 28px; margin: 40px 0; border: 1px solid var(--border); }
+.cta-box h3 { margin-top: 0; }
+.cta-box p { margin-bottom: 20px; }
+.btn-primary { display: inline-block; padding: 14px 32px; background: var(--primary); color: #fff; border-radius: var(--radius); font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid var(--primary); }
+.btn-primary:hover { background: var(--primary-dark); }
+.tip-box { background: var(--bg-alt); border-left: 4px solid var(--primary); padding: 16px 20px; margin: 20px 0; border-radius: 0 var(--radius) var(--radius) 0; }
+.faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; }
+.faq-q { padding: 14px 18px; font-weight: 600; background: var(--bg-card); }
+.faq-a { padding: 0 18px 18px; font-size: 0.92rem; color: var(--text-light); }</style>
+
+<div class='blog-content'>
+
+<p>Site speed is a critical ranking factor, and Blogger sites often suffer from bloat due to default widgets, unoptimized themes, and large images. <strong class='highlight'>Blogger speed optimization</strong> focuses on platform-specific techniques to make your Blogspot site load in under two seconds.</p>
+
+<h2>Why Speed Matters for Blogger</h2>
+<p>Google uses Core Web Vitals as ranking signals. Fast-loading Blogger sites get better rankings, lower bounce rates, and higher ad revenue. Since Blogger does not offer server-level caching, front-end optimization is the primary lever for speed improvements.</p>
+
+<h2>Blogger-Specific Speed Techniques</h2>
+<h3>Lazy Loading for Images &amp; Videos</h3>
+<p>Add the loading="lazy" attribute to all images and iframes in your Blogger theme. This defers off-screen resources until users scroll near them, dramatically reducing initial page load time. Implement lazy loading through theme XML edits or JavaScript libraries.</p>
+
+<h3>CSS &amp; JavaScript Optimization</h3>
+<p>Inline critical CSS for above-the-fold content and defer non-critical CSS. Load JavaScript asynchronously using the async or defer attributes. Minimize HTTP requests by combining CSS and JS files where possible. Remove unused CSS from your theme.</p>
+
+<h3>Image Optimization for Blogspot</h3>
+<p>Compress all images before uploading. Use modern formats like WebP and AVIF. Resize images to the exact dimensions needed. Blogger hosts images on Google servers which is fast, but oversized images still slow down pages.</p>
+
+<h3>Async Loading for Widgets</h3>
+<p>Default Blogger widgets like Popular Posts, Labels, and Blog Archive load synchronously and block rendering. Convert them to async loading where possible or remove unnecessary widgets entirely. Each widget adds JavaScript execution time.</p>
+
+<div class='tip-box'>
+  <strong>Key Insight:</strong> Test your Blogger site speed using Google PageSpeed Insights and GTmetrix. Focus on Largest Contentful Paint (LCP), First Input Delay (FID), and Cumulative Layout Shift (CLS). Most Blogger speed issues are fixable through theme edits.
+</div>
+
+<h2>Frequently Asked Questions</h2>
+<div class='faq-item'><div class='faq-q'>Is Blogger slow by default?</div><div class='faq-a'>Blogger itself is fast because it's hosted on Google's infrastructure. Slowness comes from unoptimized themes, excessive widgets, and large images.</div></div>
+<div class='faq-item'><div class='faq-q'>Can I use a CDN with Blogger?</div><div class='faq-a'>Blogger uses Google's CDN by default. You can further optimize by using a third-party CDN for external resources like fonts and scripts.</div></div>
+<div class='faq-item'><div class='faq-q'>Will AMP make my Blogger site faster?</div><div class='faq-a'>Blogger has built-in AMP support. Enabling AMP can improve mobile speed, but a well-optimized regular theme can be just as fast without AMP limitations.</div></div>
+
+<div class='cta-box'>
+  <h3>Speed Up Your Blogger Site</h3>
+  <p>Get a free performance audit and discover specific optimizations to make your Blogspot site lightning fast.</p>
+  <a class='btn-primary' href='/p/free-seo-audit'>Free Speed Audit</a>
+</div>
+</div>

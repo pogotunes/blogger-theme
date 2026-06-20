@@ -1,0 +1,76 @@
+<!-- BLOG POST: Crawl Budget Optimization Guide
+     Title: Crawl Budget Optimization Guide — Help Google Crawl What Matters
+     Labels: Technical SEO, Blog
+     Permalink: /2026/06/crawl-budget-optimization-guide.html -->
+
+<style>.blog-content { max-width: 780px; margin: 0 auto; font-size: 1rem; line-height: 1.8; color: var(--text-light); }
+.blog-content h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text); }
+.blog-content h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 12px; color: var(--text); }
+.blog-content p { margin-bottom: 16px; }
+.blog-content ul { margin: 12px 0 20px; padding-left: 24px; }
+.blog-content ul li { margin-bottom: 8px; }
+.blog-content ul li strong { color: var(--text); }
+.highlight { color: var(--primary); }
+.cta-box { text-align: center; background: var(--bg-alt); border-radius: var(--radius-md); padding: 40px 28px; margin: 40px 0; border: 1px solid var(--border); }
+.cta-box h3 { margin-top: 0; }
+.cta-box p { margin-bottom: 20px; }
+.btn-primary { display: inline-block; padding: 14px 32px; background: var(--primary); color: #fff; border-radius: var(--radius); font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid var(--primary); }
+.btn-primary:hover { background: var(--primary-dark); }
+.faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; }
+.faq-q { padding: 14px 18px; font-weight: 600; background: var(--bg-card); }
+.faq-a { padding: 0 18px 18px; font-size: 0.92rem; color: var(--text-light); }</style>
+
+<div class='blog-content'>
+
+<p><strong class='highlight'>Crawl budget</strong> refers to the number of pages Googlebot crawls on your site within a given timeframe combined with the frequency of those crawls. For large sites, optimizing crawl budget ensures Google discovers and re-crawls important pages while ignoring low-value ones.</p>
+
+<h2>What Is Crawl Budget?</h2>
+<p>Crawl budget is determined by two factors: crawl rate limit (how fast Googlebot can crawl without overwhelming your server) and crawl demand (how many pages Google thinks need to be crawled). Not every site has a crawl budget problem — but sites with 10,000+ pages, thin content, or frequent updates benefit significantly from optimization.</p>
+
+<h2>1. Optimize Your XML Sitemap</h2>
+<p>Your XML sitemap is the primary way Google discovers your pages. Keep it clean and focused:</p>
+<ul>
+  <li>Include only canonical, indexable pages worth crawling.</li>
+  <li>Set appropriate priority and change frequency tags.</li>
+  <li>Keep each sitemap under 50MB or 50,000 URLs.</li>
+  <li>Use multiple sitemaps organized by content type in a sitemap index.</li>
+  <li>Remove redirected, noindexed, or thin pages from the sitemap.</li>
+</ul>
+
+<h2>2. Configure robots.txt Effectively</h2>
+<p>Block Googlebot from wasting crawl budget on low-value areas:</p>
+<ul>
+  <li>Disallow admin panels, login pages, search result pages, and tag pages.</li>
+  <li>Block parameter-based URLs (sort, filter, session IDs).</li>
+  <li>Use crawl-delay sparingly — only if server performance requires it.</li>
+  <li>Test your robots.txt in Search Console's robots.txt Tester.</li>
+</ul>
+
+<h2>3. Use Internal Linking to Guide Crawlers</h2>
+<p>Search engines follow links to discover pages. A strong internal linking structure helps Google prioritize important pages:</p>
+<ul>
+  <li>Link to your most important pages from the homepage and navigation.</li>
+  <li>Use contextual internal links within content — avoid footer-only links.</li>
+  <li>Create hub pages that link to supporting articles (pillar-cluster model).</li>
+  <li>Fix broken internal links that waste crawl budget on dead ends.</li>
+</ul>
+
+<h2>4. Consolidate Duplicate Content</h2>
+<p>Duplicate pages waste crawl budget. Use canonical tags, 301 redirects, or noindex to consolidate similar URLs. Watch for duplicate content from WWW/non-WWW, HTTP/HTTPS, trailing slash variants, and URL parameters.</p>
+
+<h2>5. Improve Server Performance</h2>
+<p>Googlebot adjusts crawl rate based on server response time. A slow server tells Google to crawl less. Improve server speed, use a CDN, implement caching, and ensure stable uptime to maintain a healthy crawl rate.</p>
+
+<h2>6. Monitor Crawl Stats in Search Console</h2>
+<p>Google Search Console provides a Crawl Stats report showing average crawl requests per day, bandwidth, and response times. Monitor this to detect crawl problems early. A sudden drop in crawl rate may indicate a server issue or a Google algorithm change affecting your site.</p>
+
+<h2>Frequently Asked Questions</h2>
+<div class='faq-item'><div class='faq-q'>Does crawl budget matter for small sites?</div><div class='faq-a'>Not usually. Sites under 5,000 pages rarely face crawl budget issues unless they have severe server problems or massive duplicate content.</div></div>
+<div class='faq-item'><div class='faq-q'>How do I check my crawl budget?</div><div class='faq-a'>Check Google Search Console &gt; Settings &gt; Crawl Stats. Compare crawled URLs vs. total indexed pages to see if budget is being wasted.</div></div>
+
+<div class='cta-box'>
+  <h3>Optimize Your Site's Crawl Efficiency</h3>
+  <p>Our technical SEO audit includes a full crawl budget analysis with actionable recommendations.</p>
+  <a class='btn-primary' href='/p/free-seo-audit'>Request Your Crawl Audit</a>
+</div>
+</div>

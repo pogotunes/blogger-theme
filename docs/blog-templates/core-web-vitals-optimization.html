@@ -1,0 +1,74 @@
+<!-- BLOG POST: Core Web Vitals Optimization Guide
+     Title: Core Web Vitals Optimization Guide — Improve LCP, FID & CLS
+     Labels: Technical SEO, Core Web Vitals, Blog
+     Permalink: /2026/06/core-web-vitals-optimization-guide.html -->
+
+<style>.blog-content { max-width: 780px; margin: 0 auto; font-size: 1rem; line-height: 1.8; color: var(--text-light); }
+.blog-content h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text); }
+.blog-content h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 12px; color: var(--text); }
+.blog-content p { margin-bottom: 16px; }
+.blog-content ul { margin: 12px 0 20px; padding-left: 24px; }
+.blog-content ul li { margin-bottom: 8px; }
+.blog-content ul li strong { color: var(--text); }
+.highlight { color: var(--primary); }
+.cta-box { text-align: center; background: var(--bg-alt); border-radius: var(--radius-md); padding: 40px 28px; margin: 40px 0; border: 1px solid var(--border); }
+.cta-box h3 { margin-top: 0; }
+.cta-box p { margin-bottom: 20px; }
+.btn-primary { display: inline-block; padding: 14px 32px; background: var(--primary); color: #fff; border-radius: var(--radius); font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid var(--primary); }
+.btn-primary:hover { background: var(--primary-dark); }
+.faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; }
+.faq-q { padding: 14px 18px; font-weight: 600; background: var(--bg-card); }
+.faq-a { padding: 0 18px 18px; font-size: 0.92rem; color: var(--text-light); }</style>
+
+<div class='blog-content'>
+
+<p><strong class='highlight'>Core Web Vitals</strong> are Google's set of real-world performance metrics that directly impact user experience and search rankings. With the INP replacing FID in 2024, there are now three critical metrics: LCP, INP, and CLS. This guide provides actionable optimization techniques for each.</p>
+
+<h2>LCP (Largest Contentful Paint) — Target: Under 2.5s</h2>
+<p>LCP measures the time it takes for the largest visible element to render. Common culprits are hero images, large text blocks, and slow server response.</p>
+<ul>
+  <li><strong>Optimize images</strong> — Use WebP or AVIF, compress aggressively, and specify width/height to prevent layout shifts.</li>
+  <li><strong>Preload key resources</strong> — Use <code>&lt;link rel="preload"&gt;</code> for hero images and above-fold fonts.</li>
+  <li><strong>Improve server response time</strong> — Use a CDN, optimize database queries, and consider server-side caching (Redis, Varnish).</li>
+  <li><strong>Minimize render-blocking resources</strong> — Defer non-critical CSS and JS, inline critical CSS.</li>
+  <li><strong>Use a performance CDN</strong> — Cloudflare, KeyCDN, or Fastly can significantly reduce TTFB.</li>
+</ul>
+
+<h2>INP (Interaction to Next Paint) — Target: Under 200ms</h2>
+<p>INP measures responsiveness to user interactions like clicks and taps. It replaced FID to capture the full interaction latency, not just the first input.</p>
+<ul>
+  <li><strong>Break up long tasks</strong> — Split JavaScript execution into chunks under 50ms using <code>setTimeout</code> or <code>requestIdleCallback</code>.</li>
+  <li><strong>Reduce third-party scripts</strong> — Analytics, chat widgets, and ad scripts are major contributors. Audit and remove unnecessary ones.</li>
+  <li><strong>Use web workers</strong> — Offload heavy computations to background threads.</li>
+  <li><strong>Debounce event handlers</strong> — Prevent excessive function calls during rapid interactions.</li>
+  <li><strong>Optimize your framework</strong> — React, Angular, and Vue can cause INP issues if components re-render unnecessarily.</li>
+</ul>
+
+<h2>CLS (Cumulative Layout Shift) — Target: Under 0.1</h2>
+<p>CLS measures visual stability — unexpected movement of page elements. It's often caused by images without dimensions, dynamic embeds, and late-loading fonts.</p>
+<ul>
+  <li><strong>Set explicit dimensions</strong> — Always include width/height on images, videos, and iframes.</li>
+  <li><strong>Reserve space for dynamic content</strong> — Use min-height placeholders for ads, embeds, and lazy-loaded components.</li>
+  <li><strong>Use font-display: swap</strong> — Prevents invisible text and layout shifts from custom fonts.</li>
+  <li><strong>Avoid inserting content above existing content</strong> — Banners, cookie notices, and popups that push content down are major CLS offenders.</li>
+</ul>
+
+<h2>WordPress &amp; Blogger-Specific Fixes</h2>
+<p><strong>WordPress:</strong> Use a lightweight theme (GeneratePress, Astra), enable caching with WP Rocket or W3 Total Cache, optimize images with Smush or ShortPixel, and use a CDN like Cloudflare. Avoid heavy page builders.</p>
+<p><strong>Blogger:</strong> Switch to a lightweight custom template, remove unnecessary widgets, optimize images before uploading, and minimize third-party scripts. Use Blogger's built-in mobile template options.</p>
+
+<h2>Tools to Measure Core Web Vitals</h2>
+<ul>
+  <li>Google Search Console — Core Web Vitals report (real-user data)</li>
+  <li>PageSpeed Insights — Lab and field data with recommendations</li>
+  <li>Chrome DevTools — Performance panel and Lighthouse</li>
+  <li>CrUX (Chrome User Experience Report) — Aggregate field data</li>
+  <li>Web Vitals Chrome Extension — Real-time dashboard</li>
+</ul>
+
+<div class='cta-box'>
+  <h3>Struggling With Core Web Vitals?</h3>
+  <p>Let our technical SEO team diagnose and fix your performance issues. We'll get your site passing Core Web Vitals.</p>
+  <a class='btn-primary' href='/p/free-seo-audit'>Get a Performance Audit</a>
+</div>
+</div>

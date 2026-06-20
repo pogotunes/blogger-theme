@@ -1,0 +1,71 @@
+<!-- BLOG POST: JavaScript SEO Best Practices
+     Title: JavaScript SEO Best Practices — Make JS Sites Search-Engine Friendly
+     Labels: Technical SEO, Blog
+     Permalink: /2026/06/javascript-seo-best-practices.html -->
+
+<style>.blog-content { max-width: 780px; margin: 0 auto; font-size: 1rem; line-height: 1.8; color: var(--text-light); }
+.blog-content h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text); }
+.blog-content h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 12px; color: var(--text); }
+.blog-content p { margin-bottom: 16px; }
+.blog-content ul { margin: 12px 0 20px; padding-left: 24px; }
+.blog-content ul li { margin-bottom: 8px; }
+.blog-content ul li strong { color: var(--text); }
+.highlight { color: var(--primary); }
+.cta-box { text-align: center; background: var(--bg-alt); border-radius: var(--radius-md); padding: 40px 28px; margin: 40px 0; border: 1px solid var(--border); }
+.cta-box h3 { margin-top: 0; }
+.cta-box p { margin-bottom: 20px; }
+.btn-primary { display: inline-block; padding: 14px 32px; background: var(--primary); color: #fff; border-radius: var(--radius); font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid var(--primary); }
+.btn-primary:hover { background: var(--primary-dark); }
+.faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; }
+.faq-q { padding: 14px 18px; font-weight: 600; background: var(--bg-card); }
+.faq-a { padding: 0 18px 18px; font-size: 0.92rem; color: var(--text-light); }</style>
+
+<div class='blog-content'>
+
+<p>Modern websites rely heavily on <strong class='highlight'>JavaScript</strong> — React, Next.js, Vue, Angular, and other frameworks power dynamic user experiences. However, JavaScript-heavy sites present unique challenges for search engine crawlers. These best practices ensure Google can properly render and index your JS-generated content.</p>
+
+<h2>SSR vs. CSR: Choose the Right Rendering Strategy</h2>
+<p><strong>Server-Side Rendering (SSR)</strong> generates HTML on the server and sends a fully rendered page to both users and crawlers. <strong>Client-Side Rendering (CSR)</strong> sends a minimal HTML shell and executes JavaScript in the browser to populate content. For SEO, SSR or static site generation (SSG) is strongly preferred because Googlebot receives fully rendered HTML without needing to execute JavaScript.</p>
+<ul>
+  <li><strong>SSR (Next.js, Nuxt, Remix)</strong> — Best for dynamic content that needs SEO.</li>
+  <li><strong>SSG (Gatsby, Astro, 11ty)</strong> — Best for content-heavy sites; pre-builds HTML at build time.</li>
+  <li><strong>CSR (Create React App, Vue CLI)</strong> — Use with caution; requires additional SEO tooling (React Helmet, prerendering).</li>
+</ul>
+
+<h2>Lazy Loading &amp; SEO Impact</h2>
+<p>Lazy loading improves page speed but can hide content from Googlebot if not implemented correctly. Follow these guidelines:</p>
+<ul>
+  <li>Use native <code>loading="lazy"</code> for images — Googlebot respects this attribute.</li>
+  <li>For content lazy loading, ensure initial HTML includes the full text. Use progressive enhancement — don't lazy-load core content.</li>
+  <li>Test with Google's URL Inspection Tool to verify all content is visible in the rendered HTML.</li>
+</ul>
+
+<h2>Googlebot's JavaScript Rendering</h2>
+<p>Googlebot uses a modern Chromium-based renderer (evergreen Googlebot) that processes JavaScript similarly to Chrome. However, there are important differences:</p>
+<ul>
+  <li>Googlebot may defer crawling and rendering of JS-heavy pages.</li>
+  <li>Complex single-page applications (SPAs) require careful route design — use the History API, not hash-based routing.</li>
+  <li>Ensure critical content and links are available in the initial HTML response, not injected after JavaScript execution.</li>
+</ul>
+
+<h2>Hydration &amp; Partial Hydration</h2>
+<p>Hydration is the process of attaching JavaScript event handlers to server-rendered HTML. Full hydration (used in traditional SSR) can bloat page size and hurt performance. Consider partial hydration patterns (Islands architecture) used by Astro and Qwik, which hydrate only interactive components.</p>
+
+<h2>Common JavaScript SEO Mistakes</h2>
+<ul>
+  <li>Using <code>#</code> hash-based routing instead of the History API — Google can't crawl hash fragments.</li>
+  <li>Dynamically injecting title tags and meta descriptions via JavaScript — hardcode these in the HTML head.</li>
+  <li>Blocking JavaScript in robots.txt — this prevents Google from rendering your pages.</li>
+  <li>Not providing meaningful loading states or error handling when JS fails.</li>
+  <li>Infinite scroll without proper pagination links — Googlebot can't scroll.</li>
+</ul>
+
+<h2>Testing JavaScript SEO</h2>
+<p>Use Google's URL Inspection Tool in Search Console to see the rendered HTML. Run the "View Tested Page" feature to compare the original source with the rendered result. Lighthouse and Chrome DevTools can also help identify JS rendering issues.</p>
+
+<div class='cta-box'>
+  <h3>Need Help With JavaScript SEO?</h3>
+  <p>Our technical SEO specialists will audit your JS framework implementation and fix rendering issues.</p>
+  <a class='btn-primary' href='/p/free-seo-audit'>Get a JS SEO Audit</a>
+</div>
+</div>
