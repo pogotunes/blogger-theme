@@ -46,7 +46,7 @@ Our team includes certified SEO professionals, content strategists, technical de
 - Results: Focus on leads and revenue, not vanity metrics
 - Innovation: Stay ahead of AI search and algorithm changes
 
-### Case Studies Section
+### Portfolio / Case Studies Section
 
 > +284% organic traffic for a SaaS startup (6 months)
 > +156% lead generation for a local service business

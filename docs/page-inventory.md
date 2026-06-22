@@ -67,7 +67,8 @@
 
 | # | Post Title | Slug | Labels |
 |---|-----------|------|--------|
-| 1 | SEO Case Studies | `/2026/06/seo-case-studies.html` | Case Studies, SEO |
+| 1 | Portfolio — Our Work | `/p/portfolio.html` | Portfolio, Projects |
+| 2 | SEO Case Studies | `/2026/06/seo-case-studies.html` | Case Studies, SEO |
 | 2 | Client Testimonials | `/2026/06/seo-client-testimonials.html` | Testimonials, SEO |
 | 3 | SEO Pricing Guide | `/2026/06/seo-pricing-guide.html` | Pricing, SEO |
 | 4 | Book a Consultation | `/2026/06/book-seo-consultation.html` | Consultation, SEO |

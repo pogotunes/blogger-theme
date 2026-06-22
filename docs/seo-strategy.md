@@ -121,8 +121,8 @@ RankrSEO is a Blogger XML theme designed for an SEO agency targeting English-spe
 
 ## 8. Internal Linking Structure
 
-- Navigation: Home > Services (dropdown) > Blog > Case Studies > About > Contact
-- Footer: Quick Links (Home, Blog, Case Studies, About, Services, Portfolio) + Services list + Resources
+- Navigation: Home > Services (dropdown) > Blog > Portfolio > About > Contact
+- Footer: Quick Links (Home, Blog, Portfolio, About, Services, Contact) + Services list + Resources
 - Content: Posts link to service pages and related articles
 
 ## 9. Performance Budget

@@ -234,7 +234,7 @@ Each is a third-party free Blogger theme from Pikitemplates.com, included for re
 
 | Type | Count | Widget IDs | Purpose |
 |---|---|---|---|
-| HTML | 16 | HTML1, HTML9, HTML10, HTML11, HTML12, HTML13, HTML14, HTML15, HTML16, HTML17, HTML18, HTML19, HTML20, HTML21, HTML22, HTML23 | Custom content sections (Hero, Services, Why Us, Process, Case Studies, FAQ, Newsletter, CTA, Featured Posts, etc.) |
+| HTML | 16 | HTML1, HTML9, HTML10, HTML11, HTML12, HTML13, HTML14, HTML15, HTML16, HTML17, HTML18, HTML19, HTML20, HTML21, HTML22, HTML23 | Custom content sections (Hero, Services, Why Us, Process, Portfolio, FAQ, Newsletter, CTA, Featured Posts, etc.) |
 | LinkList | 6 | LinkList1, LinkList2, LinkList3, LinkList5, LinkList6, LinkList7 | Configuration lists (variables, related post settings, navigation, quick links, services menu, resources) |
 | PopularPosts | 2 | PopularPosts1, PopularPosts2 | Sidebar popular posts, featured posts section |
 | Label | 1 | Label1 | Category labels widget (sidebar) |

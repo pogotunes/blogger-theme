@@ -578,7 +578,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .testimonial-author-info strong { color: #fff; font-size: 15px; display: block; }
 .testimonial-author-info span { color: rgba(255,255,255,0.5); font-size: 13px; }
 
-/* --- Case Studies Section --- */
+/* --- Portfolio / Case Studies Section --- */
 .case-studies-section { background: var(--bg); }
 .case-studies-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--gap-lg); }
 .case-study-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 36px; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
@@ -2867,47 +2867,47 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
 
     <b:if cond='data:view.isHomepage'>
 
-    <!-- Case Studies Section -->
+    <!-- Portfolio Section -->
     <section class='section case-studies-section' id='case-studies'>
       <div class='container'>
         <div class='section-title'>
-          <h2>Proven <span class='highlight'>Results</span></h2>
+          <h2>Our <span class='highlight'>Projects</span></h2>
           <div class='accent-line'/>
-          <p>Real data from real campaigns. No fluff, no fake numbers.</p>
+          <p>Real projects we've built and managed. See our work in action.</p>
         </div>
         <div class='case-studies-grid'>
           <div class='case-study-card animate-on-scroll'>
-            <span class='cs-badge cs-badge-traffic'><i class='fas fa-chart-line'/> +284% Traffic</span>
-            <h3>B2B SaaS Platform | 284% Organic Traffic Growth</h3>
+            <span class='cs-badge cs-badge-traffic'><i class='fas fa-recycle'/> Scrap Pickup Platform</span>
+            <h3>ScrapCo — Connecting Households with Verified Recyclers</h3>
             <div class='cs-stats'>
-              <div class='cs-stat'><span class='cs-number'>284%</span><span class='cs-label'>Traffic Lift</span></div>
-              <div class='cs-stat'><span class='cs-number'>23K</span><span class='cs-label'>Monthly Visits</span></div>
-              <div class='cs-stat'><span class='cs-number'>340</span><span class='cs-label'>Leads/Mo</span></div>
+              <div class='cs-stat'><span class='cs-number'>Next.js</span><span class='cs-label'>Framework</span></div>
+              <div class='cs-stat'><span class='cs-number'>Expo</span><span class='cs-label'>Mobile App</span></div>
+              <div class='cs-stat'><span class='cs-number'>Live</span><span class='cs-label'>Status</span></div>
             </div>
-            <p class='cs-desc'>Comprehensive content strategy + technical SEO overhaul drove a B2B SaaS from 6K to 23K organic visits/month and 340 qualified leads within 6 months.</p>
-            <a class='cs-link' href='/search/label/Case%20Studies'>Read Case Study <i class='fas fa-arrow-right'/></a>
+            <p class='cs-desc'>A modern scrap pickup platform featuring live pricing, digital weighing, transparent transactions, and real-time vendor matching. Built with Next.js and Expo for a seamless cross-platform experience.</p>
+            <a class='cs-link' href='https://www.scrapco.app/' target='_blank' rel='noopener'>Visit Project <i class='fas fa-external-link-alt'/></a>
           </div>
           <div class='case-study-card animate-on-scroll'>
-            <span class='cs-badge cs-badge-rankings'><i class='fas fa-trophy'/> 47 Keywords in Top 3</span>
-            <h3>E-Commerce Brand | 312% Organic Conversion Lift</h3>
+            <span class='cs-badge cs-badge-rankings'><i class='fas fa-tshirt'/> Laundry Service</span>
+            <h3>EZDRY — On-Demand Laundry Pickup &amp; Delivery</h3>
             <div class='cs-stats'>
-              <div class='cs-stat'><span class='cs-number'>47</span><span class='cs-label'>Top 3 KW</span></div>
-              <div class='cs-stat'><span class='cs-number'>89</span><span class='cs-label'>Top 10 KW</span></div>
-              <div class='cs-stat'><span class='cs-number'>312%</span><span class='cs-label'>Conv. Lift</span></div>
+              <div class='cs-stat'><span class='cs-number'>Next.js</span><span class='cs-label'>Framework</span></div>
+              <div class='cs-stat'><span class='cs-number'>MongoDB</span><span class='cs-label'>Database</span></div>
+              <div class='cs-stat'><span class='cs-number'>Live</span><span class='cs-label'>Status</span></div>
             </div>
-            <p class='cs-desc'>On-page optimization and authority link building drove 47 keywords to top 3 positions. Organic conversions increased 312% with a 4.2x ROAS.</p>
-            <a class='cs-link' href='/search/label/Case%20Studies'>Read Case Study <i class='fas fa-arrow-right'/></a>
+            <p class='cs-desc'>A full-featured laundry service platform with pickup/delivery scheduling, real-time order tracking, digital payments, and route optimization for delivery partners.</p>
+            <a class='cs-link' href='https://www.ezdry.in/' target='_blank' rel='noopener'>Visit Project <i class='fas fa-external-link-alt'/></a>
           </div>
           <div class='case-study-card animate-on-scroll'>
-            <span class='cs-badge cs-badge-revenue'><i class='fas fa-dollar-sign'/> 156% Revenue Uplift</span>
-            <h3>Local Service Business | 156% Revenue Increase</h3>
+            <span class='cs-badge cs-badge-revenue'><i class='fab fa-blogger'/> Content Blog</span>
+            <h3>Amit Kr Blog — Tech Tutorials &amp; Insights</h3>
             <div class='cs-stats'>
-              <div class='cs-stat'><span class='cs-number'>156%</span><span class='cs-label'>Revenue Lift</span></div>
-              <div class='cs-stat'><span class='cs-number'>4.8x</span><span class='cs-label'>ROI Multiple</span></div>
-              <div class='cs-stat'><span class='cs-number'>890</span><span class='cs-label'>Leads/Mo</span></div>
+              <div class='cs-stat'><span class='cs-number'>Blogger</span><span class='cs-label'>Platform</span></div>
+              <div class='cs-stat'><span class='cs-number'>SEO</span><span class='cs-label'>Optimized</span></div>
+              <div class='cs-stat'><span class='cs-number'>Live</span><span class='cs-label'>Status</span></div>
             </div>
-            <p class='cs-desc'>Local SEO + GBP optimization helped a multi-location service business generate 890 leads/month from organic search with a 4.8x return on SEO investment.</p>
-            <a class='cs-link' href='/search/label/Case%20Studies'>Read Case Study <i class='fas fa-arrow-right'/></a>
+            <p class='cs-desc'>A content-rich Blogger blog covering technology, tutorials, and insights. Optimized for search performance with custom SEO strategies, Schema markup, and speed optimization.</p>
+            <a class='cs-link' href='https://amitkr26.blogspot.com/' target='_blank' rel='noopener'>Visit Blog <i class='fas fa-external-link-alt'/></a>
           </div>
         </div>
       </div>
