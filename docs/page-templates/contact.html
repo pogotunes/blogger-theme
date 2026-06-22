@@ -30,6 +30,26 @@
   .trust-badge .label { font-size: 0.8rem; color: var(--text-light); margin-top: 4px; }
   @media (max-width: 768px) { .page-hero h1 { font-size: 1.8rem; } .contact-grid { grid-template-columns: 1fr; } }
 </style>
+<div class="page-feature-image">
+<svg viewBox="0 0 1200 300" style="width:100%;border-radius:16px;margin-bottom:32px;display:block;">
+  <defs>
+    <linearGradient id="pg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <pattern id="pdots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="rgba(255,255,255,0.1)"/>
+    </pattern>
+  </defs>
+  <rect fill="url(#pg)" width="1200" height="300" rx="12"/>
+  <rect fill="url(#pdots)" width="1200" height="300" rx="12"/>
+  <g transform="translate(600,150)" text-anchor="middle">
+    <circle r="100" fill="rgba(255,255,255,0.04)"/>
+    <text y="-10" fill="rgba(255,255,255,0.9)" font-size="36" font-weight="700">RankrSEO</text>
+    <text y="22" fill="rgba(255,255,255,0.5)" font-size="16">Data-Driven SEO Solutions</text>
+  </g>
+</svg>
+</div>
 
 <div class='page-section page-hero'>
   <h1>Let's Grow Your <span class='highlight'>Organic Traffic</span></h1>
@@ -102,5 +122,5 @@
 <div style='text-align: center; margin: 40px 0; padding: 32px; background: var(--bg-alt); border-radius: var(--radius-md); border: 1px solid var(--border);'>
   <h2 style='margin-top: 0;'>Prefer a Faster Option?</h2>
   <p>Get an instant free SEO audit of your website — no forms, no waiting.</p>
-  <a class='btn-primary' href='/p/free-seo-audit.html'>Get Free SEO Audit</a>
+  <a class='btn-primary' href='/p/free-seo-audit.html'><i class='fas fa-search'></i> Get Free SEO Audit</a>
 </div>
