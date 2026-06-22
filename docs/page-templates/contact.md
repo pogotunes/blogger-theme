@@ -1,7 +1,7 @@
 # Contact — RankrSEO
 
 > **Page Type:** Blogger Page
-> **Slug:** `/p/contact.html`
+> **Slug:** `/p/contact-us.html`
 > **Target Keyword:** contact SEO agency
 > **Word Count:** 500-800 words
 
@@ -33,6 +33,6 @@
 ## CTA
 ```html
 <div class='cta-box'>
-  <p>Prefer a quick audit? Get your <a href='/p/free-seo-audit'>Free SEO Audit</a> instantly.</p>
+  <p>Prefer a quick audit? Get your <a href='/p/free-seo-audit.html'>Free SEO Audit</a> instantly.</p>
 </div>
 ```

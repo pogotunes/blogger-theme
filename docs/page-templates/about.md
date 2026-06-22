@@ -17,7 +17,7 @@
 <div class='about-hero'>
   <h1>We Are <span class='highlight'>RankrSEO</span></h1>
   <p class='subtitle'>A data-driven SEO agency obsessed with measurable results for businesses in USA, UK, and India.</p>
-  <a class='btn-primary' href='/p/free-seo-audit'>Get Your Free SEO Audit</a>
+  <a class='btn-primary' href='/p/free-seo-audit.html'>Get Your Free SEO Audit</a>
 </div>
 ```
 
@@ -57,7 +57,7 @@ Our team includes certified SEO professionals, content strategists, technical de
 <div class='cta-section'>
   <h2>Ready to Grow Your Organic Traffic?</h2>
   <p>Book a free SEO audit and strategy session with our team.</p>
-  <a class='btn-primary' href='/p/free-seo-audit'>Book Free Audit</a>
+  <a class='btn-primary' href='/p/free-seo-audit.html'>Book Free Audit</a>
 </div>
 ```
 

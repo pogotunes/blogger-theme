@@ -16,53 +16,53 @@
 <div class='services-hero'>
   <h1>Comprehensive <span class='highlight'>SEO Services</span></h1>
   <p class='subtitle'>End-to-end search engine optimization services designed to grow your organic traffic, leads, and revenue.</p>
-  <a class='btn-primary' href='/p/free-seo-audit'>Get Free Audit</a>
+  <a class='btn-primary' href='/p/free-seo-audit.html'>Get Free Audit</a>
 </div>
 ```
 
 ### Service Listings
 List each service with description, benefits, and link to dedicated label page.
 
-**1. Technical SEO Services** → `/search/label/Technical%20SEO`
+**1. Technical SEO Services** → `/p/technical-seo-services.html`
 - Core Web Vitals optimization
 - Site architecture & crawl optimization
 - Schema markup implementation
 - JavaScript SEO
 - Page speed optimization
 
-**2. Local SEO Services** → `/search/label/Local%20SEO`
+**2. Local SEO Services** → `/p/local-seo-services.html`
 - Google Business Profile optimization
 - Local citation building
 - Review management
 - Local keyword targeting
 
-**3. Ecommerce SEO** → `/search/label/Ecommerce%20SEO`
+**3. Ecommerce SEO** → `/p/ecommerce-seo.html`
 - Shopify/BigCommerce/WooCommerce optimization
 - Product page SEO
 - Category structure optimization
 - Technical ecommerce SEO
 
-**4. SEO Audit** → `/search/label/SEO%20Audit`
+**4. SEO Audit** → `/p/seo-audit-services.html`
 - Comprehensive technical audit
 - Competitor gap analysis
 - Actionable recommendations
 
-**5. Content Marketing** → `/search/label/Content%20Marketing`
+**5. Content Marketing** → `/p/content-marketing.html`
 - SEO content strategy
 - Blog writing and optimization
 - Pillar page development
 
-**6. Link Building** → `/search/label/Link%20Building`
+**6. Link Building** → `/p/link-building.html`
 - White-hat link acquisition
 - Guest posting
 - Digital PR
 
-**7. AI SEO** → `/search/label/AI%20SEO`
+**7. AI SEO** → `/p/ai-seo-services.html`
 - ChatGPT optimization
 - Answer engine optimization
 - Google SGE readiness
 
 ### CTA
 ```html
-<a class='btn-primary' href='/p/contact.html'>Discuss Your Project</a>
+<a class='btn-primary' href='/p/contact-us.html'>Discuss Your Project</a>
 ```
