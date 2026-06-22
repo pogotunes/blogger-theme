@@ -14,6 +14,8 @@
 <link expr:href='data:blog.url' hreflang='en-GB' rel='alternate'/>
 <link expr:href='data:blog.url' hreflang='en-CA' rel='alternate'/>
 <link expr:href='data:blog.url' hreflang='en-AU' rel='alternate'/>
+<link expr:href='data:blog.url' hreflang='hi' rel='alternate'/>
+<link expr:href='data:blog.url' hreflang='hi-IN' rel='alternate'/>
 <link expr:href='data:view.url.canonical' rel='canonical'/>
 <data:blog.feedLinks/>
 <data:blog.meTag/>
@@ -217,24 +219,14 @@
   --gap: 24px; --gap-sm: 16px; --gap-lg: 32px;
 }
 [data-theme="dark"] {
-  --bg: #0B1121; --bg-alt: #111827; --bg-card: #1A2332;
-  --text: #E2E8F0; --text-light: #94A3B8; --text-lighter: #64748B;
-  --border: #1E293B; --border-light: #1E293B;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.4);
-  --shadow: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3);
-  --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -4px rgba(0,0,0,0.4);
-  --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.5), 0 8px 10px -6px rgba(0,0,0,0.4);
-  --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.6);
-  --glow-primary: 0 0 20px rgba(var(--primary-rgb),0.1), 0 0 40px rgba(var(--primary-rgb),0.05);
-  --glow-accent: 0 0 20px rgba(var(--accent-rgb),0.1), 0 0 40px rgba(var(--accent-rgb),0.05);
-}
-[data-theme="dark"] {
   --bg: #0B1121; --bg-alt: #111827; --bg-card: #1E293B;
   --text: #F1F5F9; --text-light: #94A3B8; --text-lighter: #64748B;
   --border: #334155; --border-light: #1E293B;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.4); --shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
   --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.5); --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.5);
   --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.6);
+  --glow-primary: 0 0 20px rgba(var(--primary-rgb),0.1), 0 0 40px rgba(var(--primary-rgb),0.05);
+  --glow-accent: 0 0 20px rgba(var(--accent-rgb),0.1), 0 0 40px rgba(var(--accent-rgb),0.05);
 }
 
 /* --- Reset --- */
@@ -305,6 +297,10 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .cta-svg-bg .gradient-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; }
 .cta-svg-bg .orb-1 { width: 500px; height: 500px; background: var(--accent); top: -200px; right: -100px; }
 .cta-svg-bg .orb-2 { width: 350px; height: 350px; background: var(--primary); bottom: -150px; left: -80px; }
+
+/* --- Accessibility --- */
+.skip-to-content { position: absolute; top: -100%; left: 16px; z-index: 10000; padding: 12px 24px; background: var(--primary); color: #fff; font-size: 14px; font-weight: 600; border-radius: var(--radius-sm); text-decoration: none; transition: top 0.2s; }
+.skip-to-content:focus { top: 16px; }
 
 /* --- Header --- */
 .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.75); backdrop-filter: blur(20px) saturate(1.8); -webkit-backdrop-filter: blur(20px) saturate(1.8); border-bottom: 1px solid rgba(226,232,240,0.5); height: var(--header-h); transition: all var(--transition); }
@@ -552,7 +548,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .main-sidebar { width: 100%; }
 .post-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
 .post-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: var(--shadow-xl), var(--glow-primary); border-color: var(--primary); }
-.post-card-img { display: block; aspect-ratio: 16/9; overflow: hidden; }
+.post-card-img { display: block; aspect-ratio: 16/9; overflow: hidden; position: relative; }
 .post-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
 .post-card:hover .post-card-img img { transform: scale(1.08); }
 .post-card-body { padding: 20px; position: relative; }
@@ -887,6 +883,7 @@ textarea.form-input { resize: vertical; min-height: 100px; }
 /* --- WhatsApp FAB --- */
 .whatsapp-btn, .whatsapp-fab { position: fixed; bottom: 24px; right: 24px; z-index: 999; width: 56px; height: 56px; background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 6px 16px rgba(37,211,102,0.4); transition: all var(--transition-bounce); text-decoration: none; }
 .whatsapp-btn:hover, .whatsapp-fab:hover { transform: scale(1.12) translateY(-3px); color: #fff; box-shadow: 0 12px 32px rgba(37,211,102,0.5); }
+@media (max-width: 640px) { .whatsapp-btn, .whatsapp-fab { bottom: 16px; right: 16px; width: 48px; height: 48px; font-size: 22px; } }
 .back-to-top { position: fixed; bottom: 90px; right: 24px; z-index: 998; width: 44px; height: 44px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: var(--shadow-md); transition: all var(--transition); cursor: pointer; border: none; opacity: 0; visibility: hidden; }
 .back-to-top.visible { opacity: 1; visibility: visible; }
 .back-to-top:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg), var(--glow-primary); }
@@ -1113,7 +1110,7 @@ html:not(.js-enabled) .animate-on-scroll { opacity: 1; transform: none; }
 .author-name a:hover { color: var(--primary); }
 .author-expertise { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
 .author-expertise i { color: #f59e0b; }
-.author-description > p { font-size: 14px; color: var(--text-light); line-height: 1.7; margin-bottom: 16px; }
+.author-description > p, .description-alt { font-size: 14px; color: var(--text-light); line-height: 1.7; margin-bottom: 16px; display: block; }
 .author-social { display: flex; gap: 8px; margin-bottom: 16px; }
 .author-social a { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-full); color: var(--text-light); font-size: 14px; text-decoration: none; transition: all var(--transition-fast); }
 .author-social a:hover { background: var(--primary); border-color: var(--primary); color: #fff; transform: translateY(-2px); }
@@ -1208,9 +1205,8 @@ select.lead-input { appearance: auto; cursor: pointer; }
 .client-logos-inner { text-align: center; }
 .client-logo-label { font-size: 13px; color: var(--text-lighter); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
 .client-logos { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
-.client-logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--text-light); opacity: 0.65; transition: all var(--transition-fast); }
-.client-logo:hover { opacity: 1; transform: translateY(-2px); }
-.client-logo i { font-size: 20px; color: var(--primary); }
+.client-logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--text-light); letter-spacing: 0.02em; opacity: 0.5; transition: all var(--transition-fast); }
+.client-logo:hover { opacity: 0.75; transform: translateY(-2px); color: var(--primary); }
 
 @media print {
   .sticky-cta-bar, .whatsapp-fab, .header, .footer, .sidebar, .search-overlay, .mobile-menu, .mobile-overlay { display: none !important; }
@@ -1224,6 +1220,18 @@ select.lead-input { appearance: auto; cursor: pointer; }
 <b:layouts>
 <b:layout id='admin' type='section'/>
 <b:layout id='featured' type='section'/>
+<b:layout id='hero-section' type='section'/>
+<b:layout id='services-section' type='section'/>
+<b:layout id='why-rankrseo-section' type='section'/>
+<b:layout id='process-section' type='section'/>
+<b:layout id='testimonials-section' type='section'/>
+<b:layout id='faq-section' type='section'/>
+<b:layout id='cta-section' type='section'/>
+<b:layout id='blog-posts-section' type='section'/>
+<b:layout id='case-studies-section' type='section'/>
+<b:layout id='client-logos-section' type='section'/>
+<b:layout id='newsletter-section' type='section'/>
+<b:layout id='lead-magnets-section' type='section'/>
 <b:layout id='main-blog' type='section'/>
 <b:layout id='sidebar' type='section'/>
 <b:layout id='contact-form' type='section'/>
@@ -1272,6 +1280,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
 </b:if>
 </head>
 <body expr:class='data:blog.pageType' id='mainContent'>
+  <a class='skip-to-content' href='#main-content'>Skip to main content</a>
   <b:class cond='data:view.isHomepage' name='home'/>
   <b:class cond='data:view.isPage' name='item-view'/>
   <b:class cond='data:view.isMultipleItems' name='feed-view'/>
@@ -1376,12 +1385,12 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
 
   <!-- Search Overlay -->
   <div aria-label='Search' aria-modal='true' class='search-overlay' id='searchOverlay' role='dialog'>
-    <button aria-label='Close search' class='search-close' id='searchClose'><i class='fas fa-times'/></button>
+    <button aria-label='Close search' class='search-close' id='searchClose'><i aria-hidden='true' class='fas fa-times'/></button>
     <div class='search-overlay-inner'>
       <h2>Search the site</h2>
       <form action='/search' class='search-form' method='get' role='search'>
         <input aria-label='Search for...' name='q' placeholder='Type your search...' type='search'/>
-        <button aria-label='Search' type='submit'><i class='fas fa-search'/> Search</button>
+        <button aria-label='Search' type='submit'><i aria-hidden='true' class='fas fa-search'/> Search</button>
       </form>
     </div>
   </div>
@@ -1392,14 +1401,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
   <!-- Mobile Menu -->
   <aside aria-label='Mobile navigation' class='mobile-menu' id='mobileMenu' role='navigation'>
     <div class='mobile-menu-header'>
-      <span class='header-logo'><i class='fas fa-chart-line logo-icon'/> <span class='logo-text'>Rankr<span>SEO</span></span></span>
-      <button aria-label='Close menu' class='mobile-menu-close' id='mobileMenuClose'><i class='fas fa-times'/></button>
+      <span class='header-logo'><i aria-hidden='true' class='fas fa-chart-line logo-icon'/> <span class='logo-text'>Rankr<span>SEO</span></span></span>
+      <button aria-label='Close menu' class='mobile-menu-close' id='mobileMenuClose'><i aria-hidden='true' class='fas fa-times'/></button>
     </div>
     <nav>
       <ul class='mobile-nav-list' id='mobileNavList'>
         <li><a expr:href='data:blog.homepageUrl'>Home</a></li>
         <li>
-          <button class='mobile-dropdown-toggle' onclick='toggleMobileDropdown(this)' type='button'>Services <i class='fas fa-chevron-down'/></button>
+          <button class='mobile-dropdown-toggle' onclick='toggleMobileDropdown(this)' type='button'>Services <i aria-hidden='true' class='fas fa-chevron-down'/></button>
           <ul class='dropdown-menu-mobile'>
             <li><a href='/p/seo-audit-services.html'>SEO Audit</a></li>
             <li><a href='/p/technical-seo-services.html'>Technical SEO</a></li>
@@ -1424,7 +1433,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
   <header class='header' id='header' role='banner'>
     <div class='header-inner'>
       <a class='header-logo' expr:href='data:blog.homepageUrl'>
-        <i class='fas fa-chart-line logo-icon'/>
+        <i aria-hidden='true' class='fas fa-chart-line logo-icon'/>
         <span class='logo-text'>Rankr<span>SEO</span></span>
       </a>
 
@@ -1433,7 +1442,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           <li><a aria-label='Home' expr:href='data:blog.homepageUrl'>Home</a></li>
           <li>
             <button aria-controls='servicesDropdown' aria-expanded='false' aria-haspopup='true' class='nav-dropdown-toggle' id='servicesToggle' type='button'>
-              Services <i class='fas fa-chevron-down'/>
+              Services <i aria-hidden='true' class='fas fa-chevron-down'/>
             </button>
             <ul class='dropdown-menu' id='servicesDropdown' role='menu'>
               <li><a href='/p/seo-audit-services.html' role='menuitem'>SEO Audit</a></li>
@@ -1457,14 +1466,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
 
       <div class='header-actions'>
         <button aria-label='Toggle dark mode' class='theme-toggle' id='themeToggle'>
-          <i class='fas fa-moon'/>
-          <i class='fas fa-sun'/>
+          <i aria-hidden='true' class='fas fa-moon'/>
+          <i aria-hidden='true' class='fas fa-sun'/>
         </button>
         <button aria-label='Open search' class='search-toggle' id='searchToggle'>
-          <i class='fas fa-search'/>
+          <i aria-hidden='true' class='fas fa-search'/>
         </button>
         <button aria-label='Open menu' class='menu-toggle' id='menuToggle'>
-          <i class='fas fa-bars'/>
+          <i aria-hidden='true' class='fas fa-bars'/>
         </button>
       </div>
     </div>
@@ -1478,7 +1487,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
       <div class='container'>
         <div class='hero-grid'>
           <div class='hero-content'>
-            <div class='hero-badge'><i class='fas fa-star'/> Top-Rated SEO Agency</div>
+            <div class='hero-badge'><i aria-hidden='true' class='fas fa-star'/> Top-Rated SEO Agency</div>
             <h1>Top SEO Agency —<br/><span class='gradient-text'>AI Search &amp; Digital Marketing</span></h1>
             <p class='speakable-summary'>Most agencies chase rankings. We engineer search visibility. Our technical audits, entity-driven content, and AI search optimization have pushed 500+ sites into Google's top 10 — including clients in SaaS, ecommerce, and local service who now dominate their markets across the US, UK, and India.</p>
             <div class='hero-results'>
@@ -1487,12 +1496,12 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <div class='hero-result-item'><span class='hero-result-num' data-target='4'>4.9</span><span class='hero-result-label'>Client Rating</span></div>
             </div>
             <div class='hero-buttons'>
-              <a class='btn btn-primary btn-lg' href='#contact'><i class='fas fa-search'/> Get Your Free SEO Audit</a>
-              <a class='btn btn-secondary btn-lg' href='/p/portfolio.html'><i class='fas fa-briefcase'/> View Our Portfolio</a>
+              <a class='btn btn-primary btn-lg' href='#contact'><i aria-hidden='true' class='fas fa-search'/> Get Your Free SEO Audit</a>
+              <a class='btn btn-secondary btn-lg' href='/p/portfolio.html'><i aria-hidden='true' class='fas fa-briefcase'/> View Our Portfolio</a>
             </div>
             <div class='hero-trust'>
-              <span><i class='fas fa-check-circle'/> 98% Client Satisfaction</span>
-              <span><i class='fas fa-check-circle'/> 200+ Campaigns Delivered</span>
+              <span><i aria-hidden='true' class='fas fa-check-circle'/> 98% Client Satisfaction</span>
+              <span><i aria-hidden='true' class='fas fa-check-circle'/> 200+ Campaigns Delivered</span>
             </div>
           </div>
           <div class='hero-visual'>
@@ -1557,7 +1566,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                       <div class='featured-card'>
                         <a expr:href='data:post.url'>
                           <b:if cond='data:post.featuredImage'>
-                            <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='lazy'/>
+                            <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='eager'/>
                           </b:if>
                         </a>
                         <div class='featured-card-overlay'>
@@ -1581,7 +1590,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                       <div class='featured-card'>
                         <a expr:href='data:post.url'>
                           <b:if cond='data:post.featuredImage'>
-                            <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='lazy'/>
+                            <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='eager'/>
                           </b:if>
                         </a>
                         <div class='featured-card-overlay'>
@@ -1709,40 +1718,40 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
         <div class='services-grid'>
           <div class='service-card animate-on-scroll'>
-            <div class='service-icon'><i class='fas fa-search'/></div>
+            <div class='service-icon'><i aria-hidden='true' class='fas fa-search'/></div>
             <h3>SEO Audit &amp; Technical Analysis</h3>
             <p>Most sites leak 30–50% of ranking potential through crawl errors, slow Core Web Vitals, and broken internal links. We find every leak and tell you exactly what to fix — and in what order — so your pages actually get indexed and ranked.</p>
-            <a class='service-link' href='/p/seo-audit-services.html'>See how we audit <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/seo-audit-services.html'>See how we audit <i aria-hidden='true' class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
-            <div class='service-icon'><i class='fas fa-key'/></div>
+            <div class='service-icon'><i aria-hidden='true' class='fas fa-key'/></div>
             <h3>Keyword Research &amp; SEO Strategy</h3>
             <p>Chasing high-volume keywords nobody searches for is a waste of budget. We map search intent to commercial value, find low-competition gaps your competitors missed, and build strategies that target actual buyer behavior — not just search volume.</p>
-            <a class='service-link' href='/search/label/Keyword%20Research'>Explore our keyword process <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/search/label/Keyword%20Research'>Explore our keyword process <i aria-hidden='true' class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
-            <div class='service-icon'><i class='fas fa-pen-fancy'/></div>
+            <div class='service-icon'><i aria-hidden='true' class='fas fa-pen-fancy'/></div>
             <h3>SEO Content Marketing &amp; Blog Writing</h3>
             <p>Google's algorithm now prioritizes topical authority over individual keywords. We build content clusters around your core expertise, optimize for featured snippets and People Also Ask, and structure content so AI search engines cite your site as a source.</p>
-            <a class='service-link' href='/p/content-marketing.html'>Read our content playbook <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/content-marketing.html'>Read our content playbook <i aria-hidden='true' class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
-            <div class='service-icon'><i class='fas fa-link'/></div>
+            <div class='service-icon'><i aria-hidden='true' class='fas fa-link'/></div>
             <h3>White-Hat Link Building</h3>
             <p>Paid links and PBNs get your site penalized — we've cleaned up too many of those messes. Our approach is pure white-hat: editorial backlinks from real publishers, resource page placements, and broken link replacement that builds sustainable domain authority.</p>
-            <a class='service-link' href='/p/link-building.html'>How we build links <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/link-building.html'>How we build links <i aria-hidden='true' class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
-            <div class='service-icon'><i class='fas fa-map-marker-alt'/></div>
+            <div class='service-icon'><i aria-hidden='true' class='fas fa-map-marker-alt'/></div>
             <h3>Local SEO Services</h3>
             <p>Google Business Profile is just the start. We audit your NAP consistency across every directory, optimize your local landing pages for "near me" and city-specific searches, and build location-specific content that captures hyperlocal traffic.</p>
-            <a class='service-link' href='/p/local-seo-services.html'>Local SEO deep-dive <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/local-seo-services.html'>Local SEO deep-dive <i aria-hidden='true' class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
-            <div class='service-icon'><i class='fas fa-chart-bar'/></div>
+            <div class='service-icon'><i aria-hidden='true' class='fas fa-chart-bar'/></div>
             <h3>SEO Analytics &amp; ROI Reporting</h3>
             <p>We don't send vanity reports full of impressions and rankings that don't matter. Every monthly report ties keyword movement to organic sessions, leads, and revenue — so you know exactly what your SEO spend is producing.</p>
-            <a class='service-link' href='/p/seo-agency.html'>What we track <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/seo-agency.html'>What we track <i aria-hidden='true' class='fas fa-arrow-right'/></a>
           </div>
         </div>
       </div>
@@ -1759,22 +1768,22 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <div class='why-choose-grid'>
           <div class='why-choose-metrics animate-on-scroll'>
             <div class='metric-card metric-primary'>
-              <div class='metric-card-icon'><i class='fas fa-chart-line'/></div>
+              <div class='metric-card-icon'><i aria-hidden='true' class='fas fa-chart-line'/></div>
               <div class='metric-card-value'>284%</div>
               <div class='metric-card-label'>Avg. Traffic Increase</div>
             </div>
             <div class='metric-card metric-accent'>
-              <div class='metric-card-icon'><i class='fas fa-trophy'/></div>
+              <div class='metric-card-icon'><i aria-hidden='true' class='fas fa-trophy'/></div>
               <div class='metric-card-value'>156</div>
               <div class='metric-card-label'>Avg. Sessions/Day</div>
             </div>
             <div class='metric-card metric-secondary'>
-              <div class='metric-card-icon'><i class='fas fa-key'/></div>
+              <div class='metric-card-icon'><i aria-hidden='true' class='fas fa-key'/></div>
               <div class='metric-card-value'>47</div>
               <div class='metric-card-label'>Avg. Top 3 Keywords</div>
             </div>
             <div class='metric-card metric-success'>
-              <div class='metric-card-icon'><i class='fas fa-smile'/></div>
+              <div class='metric-card-icon'><i aria-hidden='true' class='fas fa-smile'/></div>
               <div class='metric-card-value'>98%</div>
               <div class='metric-card-label'>Client Satisfaction</div>
             </div>
@@ -1783,12 +1792,12 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             <p>RankrSEO was built by SEO engineers who got tired of agencies selling "growth" without understanding crawl budgets, entity salience, or semantic search. Every campaign we run — whether it's technical SEO for a SaaS platform, local optimization for a law firm, or AI search strategy for an ecommerce brand — follows the same principle: fix the technical foundation first, then build content that answers real questions better than anyone else.</p>
             <p>We don't do one-size-fits-all. Before we write a line of strategy, we audit your site's crawl efficiency, map your competitive landscape, and identify the exact queries where you can win — not just the high-volume keywords everyone else is chasing.</p>
             <div class='why-choose-features'>
-              <div class='why-feature'><i class='fas fa-check-circle'/> Forensic crawl audit before any strategy work</div>
-              <div class='why-feature'><i class='fas fa-check-circle'/> Entity-based content architecture (not keyword stuffing)</div>
-              <div class='why-feature'><i class='fas fa-check-circle'/> Monthly reporting tied to pipeline, not vanity metrics</div>
-              <div class='why-feature'><i class='fas fa-check-circle'/> Same SEO strategist throughout your engagement</div>
-              <div class='why-feature'><i class='fas fa-check-circle'/> Technical SEO &amp; Core Web Vitals</div>
-              <div class='why-feature'><i class='fas fa-check-circle'/> No Long-Term Contracts</div>
+              <div class='why-feature'><i aria-hidden='true' class='fas fa-check-circle'/> Forensic crawl audit before any strategy work</div>
+              <div class='why-feature'><i aria-hidden='true' class='fas fa-check-circle'/> Entity-based content architecture (not keyword stuffing)</div>
+              <div class='why-feature'><i aria-hidden='true' class='fas fa-check-circle'/> Monthly reporting tied to pipeline, not vanity metrics</div>
+              <div class='why-feature'><i aria-hidden='true' class='fas fa-check-circle'/> Same SEO strategist throughout your engagement</div>
+              <div class='why-feature'><i aria-hidden='true' class='fas fa-check-circle'/> Technical SEO &amp; Core Web Vitals</div>
+              <div class='why-feature'><i aria-hidden='true' class='fas fa-check-circle'/> No Long-Term Contracts</div>
             </div>
             <a class='btn btn-primary' href='/p/about.html'>Learn More About Us</a>
           </div>
@@ -2050,7 +2059,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                   <h2 class='error-title'><data:messages.theresNothingHere/></h2>
                   <p class='error-text'><data:navMessage/></p>
                   <div class='error-actions'>
-                    <a class='btn btn-primary' expr:href='data:blog.homepageUrl'><i class='fas fa-home'/> <data:messages.home/></a>
+                    <a class='btn btn-primary' expr:href='data:blog.homepageUrl'><i aria-hidden='true' class='fas fa-home'/> <data:messages.home/></a>
                     <a class='btn btn-outline' href='/search'>Browse Blog</a>
                   </div>
                 </div>
@@ -2074,7 +2083,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <b:includable id='home'>
                 <b:include name='searchMessage'/>
                 <b:if cond='data:posts.length == 0'>
-                  <div class='no-posts'><i class='fas fa-newspaper'/><h3>No Posts Yet</h3><p>Stay tuned &#8212; great content is coming soon.</p></div>
+                  <div class='no-posts'><i aria-hidden='true' class='fas fa-newspaper'/><h3>No Posts Yet</h3><p>Stay tuned &#8212; great content is coming soon.</p></div>
                 <b:else/>
                 <div class='posts-grid'>
                   <b:loop index='i' values='data:posts' var='post'>
@@ -2094,7 +2103,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                 </b:if>
                 <b:if cond='data:view.isHomepage'>
                 <div class='section-cta'>
-                  <a class='btn btn-primary btn-lg' href='/search'><i class='fas fa-arrow-right'/> View All Posts</a>
+                  <a class='btn btn-primary btn-lg' href='/search'><i aria-hidden='true' class='fas fa-arrow-right'/> View All Posts</a>
                 </div>
                 </b:if>
                 </b:if>
@@ -2145,10 +2154,10 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
   </b:includable>
               <b:includable id='nextprev'>
                   <b:if cond='data:newerPageUrl'>
-                    <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' id='Blog1_blog-pager-newer-link'><i class='fas fa-chevron-left'/> Newer Posts</a>
+                    <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' id='Blog1_blog-pager-newer-link'><i aria-hidden='true' class='fas fa-chevron-left'/> Newer Posts</a>
                   </b:if>
                   <b:if cond='data:olderPageUrl'>
-                    <a class='blog-pager-older-link' expr:href='data:olderPageUrl' id='Blog1_blog-pager-older-link'>Older Posts <i class='fas fa-chevron-right'/></a>
+                    <a class='blog-pager-older-link' expr:href='data:olderPageUrl' id='Blog1_blog-pager-older-link'>Older Posts <i aria-hidden='true' class='fas fa-chevron-right'/></a>
                   </b:if>
                 </b:includable>
               <b:includable id='otherSharingButton'><b:comment>Disabled</b:comment></b:includable>
@@ -2212,7 +2221,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                     <b:if cond='data:post.labels'>
                       <div class='post-tags'>
                         <b:loop values='data:post.labels' var='label'>
-                          <a expr:aria-label='data:label.name' expr:href='data:label.url'><i class='fas fa-tag'/> <data:label.name/></a>
+                          <a expr:aria-label='data:label.name' expr:href='data:label.url'><i aria-hidden='true' class='fas fa-tag'/> <data:label.name/></a>
                         </b:loop>
                       </div>
                     </b:if>
@@ -2237,14 +2246,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                       </b:if>
                       <div class='author-description'>
                         <h4 class='author-name'><data:post.author.name/></h4>
-                        <p class='author-expertise'><i class='fas fa-medal'/> Founder &amp; CEO, RankrSEO</p>
+                        <p class='author-expertise'><i aria-hidden='true' class='fas fa-medal'/> Founder &amp; CEO, RankrSEO</p>
                         <p><data:post.author.aboutMe/></p>
                         <div class='author-social'>
-                          <a aria-label='Website' expr:href='data:blog.homepageUrl' rel='noopener noreferrer' target='_blank'><i class='fas fa-globe'/></a>
+                          <a aria-label='Website' expr:href='data:blog.homepageUrl' rel='noopener noreferrer' target='_blank'><i aria-hidden='true' class='fas fa-globe'/></a>
                           <a aria-label='LinkedIn' href='https://in.linkedin.com/in/rankrseo' rel='noopener noreferrer' target='_blank'><i class='fab fa-linkedin-in'/></a>
                           <a aria-label='Instagram' href='https://www.instagram.com/rankrseo/' rel='noopener noreferrer' target='_blank'><i class='fab fa-instagram'/></a>
                         </div>
-                        <a class='btn btn-primary btn-sm author-cta' href='/p/about.html'>Meet Our Team <i class='fas fa-arrow-right'/></a>
+                        <a class='btn btn-primary btn-sm author-cta' href='/p/about.html'>Meet Our Team <i aria-hidden='true' class='fas fa-arrow-right'/></a>
                       </div>
                     </div>
 
@@ -2253,7 +2262,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                         <h3>Need Expert SEO Help?</h3>
                         <p>Get a free, no-obligation SEO audit from RankrSEO. Discover exactly what&#39;s holding your site back from ranking #1 on Google and getting more organic traffic.</p>
                         <div class='post-cta-buttons'>
-                          <a class='btn btn-primary btn-lg' href='/p/free-seo-audit.html'><i class='fas fa-search'/> Get Your Free SEO Audit</a>
+                          <a class='btn btn-primary btn-lg' href='/p/free-seo-audit.html'><i aria-hidden='true' class='fas fa-search'/> Get Your Free SEO Audit</a>
                         </div>
                       </div>
                     </div>
@@ -2262,12 +2271,12 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                       <nav class='post-navigation'>
                         <b:if cond='data:newerPageUrl'>
                           <a class='post-nav-link' expr:href='data:newerPageUrl'>
-                            <span class='nav-label'><i class='fas fa-chevron-left'/> <data:messages.newer/></span>
+                            <span class='nav-label'><i aria-hidden='true' class='fas fa-chevron-left'/> <data:messages.newer/></span>
                           </a>
                         </b:if>
                         <b:if cond='data:olderPageUrl'>
                           <a class='post-nav-link next' expr:href='data:olderPageUrl'>
-                            <span class='nav-label'><data:messages.older/> <i class='fas fa-chevron-right'/></span>
+                            <span class='nav-label'><data:messages.older/> <i aria-hidden='true' class='fas fa-chevron-right'/></span>
                           </a>
                         </b:if>
                       </nav>
@@ -2332,7 +2341,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                     <p class='snippet'><data:post.snippets.short/></p>
                     <div class='post-card-footer'>
                       <span class='author'><i class='far fa-user'/> <data:post.author.name/></span>
-                      <a class='read-more' expr:href='data:post.url'>Read Article <i class='fas fa-arrow-right'/></a>
+                      <a class='read-more' expr:href='data:post.url'>Read Article <i aria-hidden='true' class='fas fa-arrow-right'/></a>
                     </div>
                   </div>
                 </article>
@@ -2500,7 +2509,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
       </div>
       <div class='post-inner-comments flex'>
       <b:if cond='data:post.allowComments'><span class='comment-bubble show'><data:post.numberOfComments/></span></b:if>
-      <b:if cond='data:view.isPost'><div class='share-top'><i class='fas fa-share-alt'/></div></b:if>
+      <b:if cond='data:view.isPost'><div class='share-top'><i aria-hidden='true' class='fas fa-share-alt'/></div></b:if>
       </div>
     </div>
   </b:includable>
@@ -2849,7 +2858,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                         <div class='widget-content'>
                           <form class='search-form' expr:action='data:blog.homepageUrl + &quot;search&quot;' role='search'>
                             <input aria-label='Search this blog' name='q' placeholder='Search...' type='text'/>
-                            <button aria-label='Submit search' type='submit'><i class='fas fa-search'/></button>
+                            <button aria-label='Submit search' type='submit'><i aria-hidden='true' class='fas fa-search'/></button>
                           </form>
                         </div>
                       </div>
@@ -2897,7 +2906,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
         <div class='case-studies-grid'>
           <div class='case-study-card animate-on-scroll'>
-            <span class='cs-badge cs-badge-traffic'><i class='fas fa-recycle'/> Scrap Pickup Platform</span>
+            <span class='cs-badge cs-badge-traffic'><i aria-hidden='true' class='fas fa-recycle'/> Scrap Pickup Platform</span>
             <h3>ScrapCo — Connecting Households with Verified Recyclers</h3>
             <div class='cs-stats'>
               <div class='cs-stat'><span class='cs-number'>Next.js</span><span class='cs-label'>Framework</span></div>
@@ -2905,10 +2914,10 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <div class='cs-stat'><span class='cs-number'>Live</span><span class='cs-label'>Status</span></div>
             </div>
             <p class='cs-desc'>A modern scrap pickup platform featuring live pricing, digital weighing, transparent transactions, and real-time vendor matching. Built with Next.js and Expo for a seamless cross-platform experience.</p>
-            <a class='cs-link' href='https://www.scrapco.app/' target='_blank' rel='noopener'>Visit Project <i class='fas fa-external-link-alt'/></a>
+            <a class='cs-link' href='https://www.scrapco.app/' target='_blank' rel='noopener'>Visit Project <i aria-hidden='true' class='fas fa-external-link-alt'/></a>
           </div>
           <div class='case-study-card animate-on-scroll'>
-            <span class='cs-badge cs-badge-rankings'><i class='fas fa-tshirt'/> Laundry Service</span>
+            <span class='cs-badge cs-badge-rankings'><i aria-hidden='true' class='fas fa-tshirt'/> Laundry Service</span>
             <h3>EZDRY — On-Demand Laundry Pickup &amp; Delivery</h3>
             <div class='cs-stats'>
               <div class='cs-stat'><span class='cs-number'>Next.js</span><span class='cs-label'>Framework</span></div>
@@ -2916,10 +2925,10 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <div class='cs-stat'><span class='cs-number'>Live</span><span class='cs-label'>Status</span></div>
             </div>
             <p class='cs-desc'>A full-featured laundry service platform with pickup/delivery scheduling, real-time order tracking, digital payments, and route optimization for delivery partners.</p>
-            <a class='cs-link' href='https://www.ezdry.in/' target='_blank' rel='noopener'>Visit Project <i class='fas fa-external-link-alt'/></a>
+            <a class='cs-link' href='https://www.ezdry.in/' target='_blank' rel='noopener'>Visit Project <i aria-hidden='true' class='fas fa-external-link-alt'/></a>
           </div>
           <div class='case-study-card animate-on-scroll'>
-            <span class='cs-badge cs-badge-revenue'><i class='fas fa-user'/> Personal Portfolio</span>
+            <span class='cs-badge cs-badge-revenue'><i aria-hidden='true' class='fas fa-user'/> Personal Portfolio</span>
             <h3>Amit Kumar — Portfolio &amp; Blog</h3>
             <div class='cs-stats'>
               <div class='cs-stat'><span class='cs-number'>Blogger</span><span class='cs-label'>Platform</span></div>
@@ -2927,7 +2936,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <div class='cs-stat'><span class='cs-number'>Live</span><span class='cs-label'>Status</span></div>
             </div>
             <p class='cs-desc'>A personal portfolio and blog showcasing projects, tutorials, and articles on technology and development. Built with the RankrSEO Blogger theme for performance and search visibility.</p>
-            <a class='cs-link' href='https://amitkr26.blogspot.com/' target='_blank' rel='noopener'>Visit Portfolio <i class='fas fa-external-link-alt'/></a>
+            <a class='cs-link' href='https://amitkr26.blogspot.com/' target='_blank' rel='noopener'>Visit Portfolio <i aria-hidden='true' class='fas fa-external-link-alt'/></a>
           </div>
         </div>
       </div>
@@ -2939,11 +2948,11 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <div class='client-logos-inner'>
           <p class='client-logo-label'>Trusted by businesses of all sizes</p>
           <div class='client-logos'>
-            <span class='client-logo'><i class='fas fa-building'/> TechCorp</span>
-            <span class='client-logo'><i class='fas fa-store'/> ShopLocal</span>
-            <span class='client-logo'><i class='fas fa-laptop'/> SaaSPro</span>
-            <span class='client-logo'><i class='fas fa-hospital'/> HealthPlus</span>
-            <span class='client-logo'><i class='fas fa-graduation-cap'/> EduLearn</span>
+            <span class='client-logo' aria-label='TechCorp'>TechCorp</span>
+            <span class='client-logo' aria-label='ShopLocal'>ShopLocal</span>
+            <span class='client-logo' aria-label='SaaSPro'>SaaSPro</span>
+            <span class='client-logo' aria-label='HealthPlus'>HealthPlus</span>
+            <span class='client-logo' aria-label='EduLearn'>EduLearn</span>
           </div>
         </div>
       </div>
@@ -2961,7 +2970,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           <div class='faq-item animate-on-scroll'>
             <button aria-expanded='false' class='faq-question' onclick='toggleFaq(this)'>
               <span>How long does it take to see SEO results?</span>
-              <i class='fas fa-chevron-down'/>
+              <i aria-hidden='true' class='fas fa-chevron-down'/>
             </button>
             <div class='faq-answer'>
               <p>SEO is a long-term investment. Most clients start seeing meaningful improvements within 3-6 months, with significant results typically appearing within 6-12 months. Timelines vary based on competition, current site authority, and scope of work. As an experienced SEO agency, we set realistic expectations and deliver measurable progress with transparent monthly reporting.</p>
@@ -2970,7 +2979,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           <div class='faq-item animate-on-scroll'>
             <button aria-expanded='false' class='faq-question' onclick='toggleFaq(this)'>
               <span>What&#39;s included in your SEO audit?</span>
-              <i class='fas fa-chevron-down'/>
+              <i aria-hidden='true' class='fas fa-chevron-down'/>
             </button>
             <div class='faq-answer'>
               <p>Our comprehensive SEO audit covers technical health (crawlability, indexation, Core Web Vitals), on-page optimization (meta tags, content, internal linking), off-page analysis (backlink profile, competitors), and actionable recommendations prioritized by impact. We also include AI search readiness analysis to ensure your content is optimized for ChatGPT, Gemini, and other AI search engines.</p>
@@ -2979,7 +2988,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           <div class='faq-item animate-on-scroll'>
             <button aria-expanded='false' class='faq-question' onclick='toggleFaq(this)'>
               <span>Do you guarantee #1 rankings?</span>
-              <i class='fas fa-chevron-down'/>
+              <i aria-hidden='true' class='fas fa-chevron-down'/>
             </button>
             <div class='faq-answer'>
               <p>No ethical SEO agency can guarantee #1 rankings, as search algorithms depend on many factors outside our control. However, we guarantee consistent, data-driven SEO strategy and transparent reporting. Our track record: 98% client satisfaction, 284% average organic traffic lift, and measurable results for every engagement.</p>
@@ -2988,7 +2997,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           <div class='faq-item animate-on-scroll'>
             <button aria-expanded='false' class='faq-question' onclick='toggleFaq(this)'>
               <span>What makes RankrSEO different from other SEO agencies?</span>
-              <i class='fas fa-chevron-down'/>
+              <i aria-hidden='true' class='fas fa-chevron-down'/>
             </button>
             <div class='faq-answer'>
               <p>We combine deep technical SEO expertise with a genuine focus on business outcomes. Every SEO strategy is custom-tailored, data-backed, and aligned with your revenue goals. We provide transparent monthly reporting, a dedicated account manager, white-hat link building, and strategies optimized for both Google and AI-powered search engines.</p>
@@ -2997,7 +3006,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           <div class='faq-item animate-on-scroll'>
             <button aria-expanded='false' class='faq-question' onclick='toggleFaq(this)'>
               <span>Do you work with small businesses?</span>
-              <i class='fas fa-chevron-down'/>
+              <i aria-hidden='true' class='fas fa-chevron-down'/>
             </button>
             <div class='faq-answer'>
               <p>Absolutely. We work with businesses of all sizes, from local startups and brick-and-mortar stores to established enterprises across USA, UK, and India. We offer scalable SEO packages that grow with your business, including local SEO services for small businesses with limited budgets.</p>
@@ -3015,7 +3024,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           <p>Get weekly SEO tips, search engine optimization strategies, industry insights, and exclusive resources delivered to your inbox. No spam, ever.</p>
           <form class='newsletter-form' data-lead-form='true'>
             <input aria-label='Enter your email' class='lead-email-input' placeholder='Enter your email address' required='required' type='email'/>
-            <button type='submit'>Subscribe <i class='fas fa-paper-plane'/></button>
+            <button type='submit'>Subscribe <i aria-hidden='true' class='fas fa-paper-plane'/></button>
           </form>
         </div>
       </div>
@@ -3031,45 +3040,45 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         </div>
         <div class='lead-magnets-grid'>
           <div class='lead-magnet-card animate-on-scroll'>
-            <div class='lead-magnet-icon'><i class='fas fa-search-plus'/></div>
+            <div class='lead-magnet-icon'><i aria-hidden='true' class='fas fa-search-plus'/></div>
             <h3>Free SEO Audit Checklist Guide</h3>
             <p>A comprehensive 47-point SEO audit checklist to evaluate your website&#39;s technical health, on-page optimization, and find quick SEO wins.</p>
             <ul class='lead-magnet-features'>
-              <li><i class='fas fa-check'/> Technical SEO check</li>
-              <li><i class='fas fa-check'/> On-page optimization</li>
-              <li><i class='fas fa-check'/> Content gap analysis</li>
+              <li><i aria-hidden='true' class='fas fa-check'/> Technical SEO check</li>
+              <li><i aria-hidden='true' class='fas fa-check'/> On-page optimization</li>
+              <li><i aria-hidden='true' class='fas fa-check'/> Content gap analysis</li>
             </ul>
             <form class='lead-magnet-form' data-lead-form='true' data-lead-message='Please send me the Free SEO Audit Checklist Guide.'>
               <input class='lead-input lead-email-input' placeholder='Your email address' required='required' type='email'/>
-              <button class='btn btn-primary btn-block' type='submit'>Download Free Checklist <i class='fas fa-download'/></button>
+              <button class='btn btn-primary btn-block' type='submit'>Download Free Checklist <i aria-hidden='true' class='fas fa-download'/></button>
             </form>
           </div>
           <div class='lead-magnet-card animate-on-scroll'>
-            <div class='lead-magnet-icon'><i class='fas fa-list-check'/></div>
+            <div class='lead-magnet-icon'><i aria-hidden='true' class='fas fa-list-check'/></div>
             <h3>Ultimate SEO Playbook</h3>
             <p>Complete SEO playbook covering keyword research, content strategy, and link building tactics.</p>
             <ul class='lead-magnet-features'>
-              <li><i class='fas fa-check'/> Keyword research template</li>
-              <li><i class='fas fa-check'/> Content strategy guide</li>
-              <li><i class='fas fa-check'/> Link building tactics</li>
+              <li><i aria-hidden='true' class='fas fa-check'/> Keyword research template</li>
+              <li><i aria-hidden='true' class='fas fa-check'/> Content strategy guide</li>
+              <li><i aria-hidden='true' class='fas fa-check'/> Link building tactics</li>
             </ul>
             <form class='lead-magnet-form' data-lead-form='true' data-lead-message='Please send me the Ultimate SEO Playbook.'>
               <input class='lead-input lead-email-input' placeholder='Your email address' required='required' type='email'/>
-              <button class='btn btn-primary btn-block' type='submit'>Get the Playbook <i class='fas fa-download'/></button>
+              <button class='btn btn-primary btn-block' type='submit'>Get the Playbook <i aria-hidden='true' class='fas fa-download'/></button>
             </form>
           </div>
           <div class='lead-magnet-card animate-on-scroll'>
-            <div class='lead-magnet-icon'><i class='fas fa-rocket'/></div>
+            <div class='lead-magnet-icon'><i aria-hidden='true' class='fas fa-rocket'/></div>
             <h3>Website Audit Report</h3>
             <p>Get a personalized website audit with actionable recommendations from our SEO experts.</p>
             <ul class='lead-magnet-features'>
-              <li><i class='fas fa-check'/> Custom analysis</li>
-              <li><i class='fas fa-check'/> Competitor comparison</li>
-              <li><i class='fas fa-check'/> Priority fixes list</li>
+              <li><i aria-hidden='true' class='fas fa-check'/> Custom analysis</li>
+              <li><i aria-hidden='true' class='fas fa-check'/> Competitor comparison</li>
+              <li><i aria-hidden='true' class='fas fa-check'/> Priority fixes list</li>
             </ul>
             <form class='lead-magnet-form' data-lead-form='true' data-lead-message='Please send me a personalized Website Audit Report.'>
               <input class='lead-input lead-email-input' placeholder='Your email address' required='required' type='email'/>
-              <button class='btn btn-primary btn-block' type='submit'>Request Free Audit <i class='fas fa-arrow-right'/></button>
+              <button class='btn btn-primary btn-block' type='submit'>Request Free Audit <i aria-hidden='true' class='fas fa-arrow-right'/></button>
             </form>
           </div>
         </div>
@@ -3081,33 +3090,33 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
       <div class='container'>
         <div class='cta-grid'>
           <div class='cta-content'>
-            <div class='cta-rating'><i class='fas fa-star'/><i class='fas fa-star'/><i class='fas fa-star'/><i class='fas fa-star'/><i class='fas fa-star'/> <span>4.9/5 from 200+ reviews</span></div>
+            <div class='cta-rating'><i aria-hidden='true' class='fas fa-star'/><i aria-hidden='true' class='fas fa-star'/><i aria-hidden='true' class='fas fa-star'/><i aria-hidden='true' class='fas fa-star'/><i aria-hidden='true' class='fas fa-star'/> <span>4.9/5 from 200+ reviews</span></div>
             <h2>Ready to Dominate <span class='highlight'>SEO &amp; AI Search?</span></h2>
             <p>Get a free, no-obligation SEO strategy session. RankrSEO&#39;s experts will audit your site and show you exactly how to grow organic traffic and revenue.</p>
             <ul class='cta-benefits'>
-              <li><i class='fas fa-check-circle'/> Free comprehensive SEO audit worth $497</li>
-              <li><i class='fas fa-check-circle'/> Custom strategy tailored to your business goals</li>
-              <li><i class='fas fa-check-circle'/> No commitment, no obligation</li>
-              <li><i class='fas fa-check-circle'/> Results within 3-6 months</li>
+              <li><i aria-hidden='true' class='fas fa-check-circle'/> Free comprehensive SEO audit worth $497</li>
+              <li><i aria-hidden='true' class='fas fa-check-circle'/> Custom strategy tailored to your business goals</li>
+              <li><i aria-hidden='true' class='fas fa-check-circle'/> No commitment, no obligation</li>
+              <li><i aria-hidden='true' class='fas fa-check-circle'/> Results within 3-6 months</li>
             </ul>
             <div class='cta-buttons'>
-              <a class='btn btn-primary btn-lg' href='https://calendly.com/rankrseo/consultation' rel='noopener noreferrer' target='_blank'><i class='fas fa-calendar-check'/> Book Your Free Strategy Session</a>
+              <a class='btn btn-primary btn-lg' href='https://calendly.com/rankrseo/consultation' rel='noopener noreferrer' target='_blank'><i aria-hidden='true' class='fas fa-calendar-check'/> Book Your Free Strategy Session</a>
               <a class='btn btn-secondary btn-lg' href='https://wa.me/919953732860?text=Hi%21%20I%20need%20SEO%20help%20for%20my%20business.' rel='noopener noreferrer' target='_blank'><i class='fab fa-whatsapp'/> Chat on WhatsApp</a>
             </div>
             <div class='cta-trust-badges'>
-              <span><i class='fas fa-shield-alt'/> 100% Confidential</span>
-              <span><i class='fas fa-clock'/> Free, No Obligation</span>
-              <span><i class='fas fa-users'/> 500+ Businesses Trust Us</span>
+              <span><i aria-hidden='true' class='fas fa-shield-alt'/> 100% Confidential</span>
+              <span><i aria-hidden='true' class='fas fa-clock'/> Free, No Obligation</span>
+              <span><i aria-hidden='true' class='fas fa-users'/> 500+ Businesses Trust Us</span>
             </div>
             <div class='cta-contact-info'>
-              <span><i class='fas fa-envelope'/> rankrseo@gmail.com</span>
-              <span><i class='fas fa-phone'/> +91 99537 32860</span>
-              <span><i class='fas fa-map-marker-alt'/> New Delhi, India</span>
+              <span><i aria-hidden='true' class='fas fa-envelope'/> rankrseo@gmail.com</span>
+              <span><i aria-hidden='true' class='fas fa-phone'/> +91 99537 32860</span>
+              <span><i aria-hidden='true' class='fas fa-map-marker-alt'/> New Delhi, India</span>
             </div>
           </div>
           <div class='cta-form'>
             <div class='cta-form-card'>
-              <div class='cta-form-badge'><i class='fas fa-file-invoice'/> Free Audit</div>
+              <div class='cta-form-badge'><i aria-hidden='true' class='fas fa-file-invoice'/> Free Audit</div>
               <h3>Claim Your Free SEO Audit</h3>
               <p>Fill in your details and one of our SEO strategists will analyze your site within 24 hours.</p>
               <b:section id='contact-form' maxwidgets='1' name='Contact Form' showaddelement='yes'>
@@ -3128,27 +3137,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
                   </b:includable>
                   <b:includable id='content'>
   <div class='contact-form-widget'>
-    <div class='form'>
+    <div class='widget-content'>
       <form name='contact-form'>
-        <p/>
-        <data:contactFormNameMsg/>
-        <br/>
-        <input class='contact-form-name' expr:id='data:widget.instanceId + &quot;_contact-form-name&quot;' name='name' size='30' type='text' value=''/>
-        <p/>
-        <data:contactFormEmailMsg/> <span style='font-weight: bolder;'>*</span>
-        <br/>
-        <input class='contact-form-email' expr:id='data:widget.instanceId + &quot;_contact-form-email&quot;' name='email' size='30' type='text' value=''/>
-        <p/>
-        <data:contactFormMessageMsg/> <span style='font-weight: bolder;'>*</span>
-        <br/>
-        <textarea class='contact-form-email-message' cols='25' expr:id='data:widget.instanceId + &quot;_contact-form-email-message&quot;' name='email-message' rows='5'/>
-        <p/>
+        <input class='contact-form-name' expr:id='data:widget.instanceId + &quot;_contact-form-name&quot;' expr:placeholder='data:contactFormNameMsg' name='name' size='30' type='text' value=''/>
+        <input class='contact-form-email' expr:id='data:widget.instanceId + &quot;_contact-form-email&quot;' expr:placeholder='data:contactFormEmailMsg' name='email' size='30' type='text' value=''/>
+        <textarea class='contact-form-email-message' cols='25' expr:id='data:widget.instanceId + &quot;_contact-form-email-message&quot;' expr:placeholder='data:contactFormMessageMsg' name='email-message' rows='5'/>
         <input class='contact-form-button contact-form-button-submit' expr:id='data:widget.instanceId + &quot;_contact-form-submit&quot;' expr:value='data:contactFormSendMsg' type='button'/>
-        <p/>
-        <div style='text-align: center; max-width: 222px; width: 100%'>
-          <p class='contact-form-error-message' expr:id='data:widget.instanceId + &quot;_contact-form-error-message&quot;'/>
-          <p class='contact-form-success-message' expr:id='data:widget.instanceId + &quot;_contact-form-success-message&quot;'/>
-        </div>
+        <p class='contact-form-error-message' expr:id='data:widget.instanceId + &quot;_contact-form-error-message&quot;'/>
+        <p class='contact-form-success-message' expr:id='data:widget.instanceId + &quot;_contact-form-success-message&quot;'/>
       </form>
     </div>
   </div>
@@ -3257,7 +3253,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-4' maxwidgets='1' name='Footer Column 4' showaddelement='yes'>
           <b:widget id='HTML10' locked='false' title='Contact Info' type='HTML' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='content'><![CDATA[<ul class="footer-links contact-info"><li><i class="fas fa-map-marker-alt"></i> New Delhi, Delhi, India</li><li><i class="fas fa-phone"></i> +91 99537 32860</li><li><i class="fas fa-envelope"></i> rankrseo@gmail.com</li><li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</li></ul><h4 class='footer-heading' style='margin-top:24px;'>Our Work</h4><ul class='footer-links'><li><a href='/p/portfolio.html'><i class='fas fa-briefcase'></i> View Portfolio</a></li></ul>]]></b:widget-setting>
+              <b:widget-setting name='content'><![CDATA[<ul class="footer-links contact-info"><li><i class="fas fa-map-marker-alt"></i> New Delhi, Delhi, India</li><li><i class="fas fa-phone"></i> +91 99537 32860</li><li><i class="fas fa-envelope"></i> rankrseo@gmail.com</li><li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</li></ul><h4 class='footer-heading' style='margin-top:24px;'>Our Work</h4><ul class='footer-links'><li><a href='/p/portfolio.html'><i aria-hidden='true' class='fas fa-briefcase'></i> View Portfolio</a></li></ul>]]></b:widget-setting>
             </b:widget-settings>
             <b:includable id='main'>
               <h4 class='footer-heading'><data:title/></h4>
@@ -3337,7 +3333,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
 
   <!-- Back to Top -->
   <button aria-label='Back to top' class='back-to-top' id='backToTop' onclick='window.scrollTo({top:0,behavior:&quot;smooth&quot;})'>
-    <i class='fas fa-arrow-up'/>
+    <i aria-hidden='true' class='fas fa-arrow-up'/>
   </button>
 
   <!-- Vanilla JavaScript -->
@@ -3561,7 +3557,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
 
       // --- Counter Animation ---
       function initCounterAnimation() {
-        var counters = document.querySelectorAll('.counter');
+        var counters = document.querySelectorAll('.hero-result-num[data-target]');
         if (!counters.length) return;
 
         var animated = false;
@@ -3573,6 +3569,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           counters.forEach(function(counter) {
             var target = parseInt(counter.getAttribute('data-target'), 10);
             if (isNaN(target)) target = 0;
+            var suffix = counter.textContent.replace(/[\d.]/g, '').trim();
+            var start = 0;
             var duration = 2000;
             var startTime = null;
 
@@ -3581,11 +3579,11 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               var progress = Math.min((timestamp - startTime) / duration, 1);
               var eased = 1 - Math.pow(1 - progress, 3);
               var current = Math.floor(eased * target);
-              counter.textContent = current;
+              counter.textContent = current + suffix;
               if (progress < 1) {
                 window.requestAnimationFrame(step);
               } else {
-                counter.textContent = target;
+                counter.textContent = target + suffix;
               }
             }
 
