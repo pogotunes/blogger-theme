@@ -99,13 +99,18 @@ border-color:var(--primary)
 .contact-form-button-submit{
 width:100%;
 padding:14px 20px;
-background:var(--primary);
+background:linear-gradient(135deg,var(--primary),#1D4ED8);
 color:#fff;
 border:none;
 border-radius:12px;
 font-size:15px;
 font-weight:700;
-cursor:pointer
+cursor:pointer;
+transition:all 0.2s
+}
+.contact-form-button-submit:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 28px rgba(var(--primary-rgb),0.4)
 }
 
 .contact-form-error-message,
@@ -169,7 +174,12 @@ background:var(--primary);
 color:#fff;
 text-decoration:none;
 border-radius:12px;
-font-weight:700
+font-weight:700;
+transition:all 0.3s ease
+}
+.btn-primary:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 28px rgba(var(--primary-rgb),0.4)
 }
 
 @media(max-width:768px){
@@ -177,6 +187,30 @@ font-weight:700
 .contact-grid{grid-template-columns:1fr}
 }
 </style>
+
+<div style="text-align:center;margin-bottom:24px;">
+<svg viewBox="0 0 800 300" style="width:100%;max-width:800px;border-radius:16px;display:block;margin:0 auto;">
+  <defs>
+    <linearGradient id="chg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <pattern id="cdots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.12)"/>
+    </pattern>
+  </defs>
+  <rect fill="url(#chg)" width="800" height="300" rx="16"/>
+  <rect fill="url(#cdots)" width="800" height="300" rx="16"/>
+  <g transform="translate(400,150)" text-anchor="middle">
+    <circle r="120" fill="rgba(255,255,255,0.05)"/>
+    <circle r="80" fill="rgba(255,255,255,0.03)"/>
+    <path d="M-30-15 L30-15 L15 15 L-15 15 Z" fill="rgba(255,255,255,0.12)"/>
+    <path d="M-50-25 L50-25 L25 25 L-25 25 Z" fill="rgba(255,255,255,0.06)"/>
+    <text y="50" fill="rgba(255,255,255,0.9)" font-size="36" font-weight="800">Get in Touch</text>
+    <text y="80" fill="rgba(255,255,255,0.6)" font-size="16">We'd love to hear from you</text>
+  </g>
+</svg>
+</div>
 
 <div class="page-hero">
 <h1>Let's Grow Your <span class="highlight">Organic Traffic</span></h1>
@@ -211,7 +245,7 @@ Ready to dominate search rankings? Fill out the form below and our team will get
 
 <div class="contact-form-card">
 <h3>Send Us a Message</h3>
-<p>Fill in your details and we’ll respond within 24 hours.</p>
+<p>Fill in your details and we'll respond within 24 hours.</p>
 
 <div class="contact-form-widget">
 <form name="contact-form">
@@ -264,12 +298,12 @@ Ready to dominate search rankings? Fill out the form below and our team will get
 <div class="project-links">
 <a href="https://www.scrapco.app/" target="_blank">ScrapCo</a>
 <a href="https://www.ezdry.in/" target="_blank">EZDRY</a>
-<a href="https://amitkr26.blogspot.com/" target="_blank">Amit Blog</a>
+<a href="https://amitkr26.blogspot.com/" target="_blank">Amit Kumar — Portfolio</a>
 </div>
 </div>
 
 <div class="cta-box">
 <h2>Prefer a Faster Option?</h2>
 <p>Get an instant free SEO audit of your website.</p>
-<a class="btn-primary" href="/p/free-seo-audit.html">Get Free SEO Audit</a>
+<a class="btn-primary" href="/p/free-seo-audit.html"><i class="fas fa-search"></i> Get Free SEO Audit</a>
 </div>
