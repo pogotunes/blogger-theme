@@ -1289,6 +1289,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
       <b:widget id='LinkList3' locked='true' title='Lazy Scrolls / More Text' type='LinkList' version='2' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='link-5'>https://rankrseo.blogspot.com/</b:widget-setting>
+          <b:widget-setting name='link-6'>https://rankrseo.vercel.app/</b:widget-setting>
+          <b:widget-setting name='text-6'>Live Demo</b:widget-setting>
           <b:widget-setting name='link-3'>8</b:widget-setting>
           <b:widget-setting name='link-4'>{getContent} $label={recent}</b:widget-setting>
           <b:widget-setting name='text-1'>fixedMenu</b:widget-setting>
