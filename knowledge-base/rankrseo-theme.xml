@@ -1668,37 +1668,37 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             <div class='service-icon'><i class='fas fa-search'/></div>
             <h3>SEO Audit &amp; Technical Analysis</h3>
             <p>In-depth technical SEO audit covering crawl optimization, Core Web Vitals, site architecture, and on-page SEO gaps. We identify every opportunity to improve your search visibility and fix issues fast.</p>
-            <a class='service-link' href='/search/label/SEO%20Audit'>Learn More <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/seo-audit-services.html'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
             <div class='service-icon'><i class='fas fa-key'/></div>
             <h3>Keyword Research &amp; SEO Strategy</h3>
             <p>Data-driven keyword research targeting high-intent, low-competition search terms. We build SEO strategies aligned with buyer intent, voice search, and AI-powered search engines.</p>
-            <a class='service-link' href='/search/label/Keyword%20Research'>Learn More <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/seo-agency.html'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
             <div class='service-icon'><i class='fas fa-pen-fancy'/></div>
             <h3>SEO Content Marketing &amp; Blog Writing</h3>
             <p>Authority-building SEO content that earns backlinks, engages readers, and converts visitors. Our content marketing strategies target featured snippets, People Also Ask, and AI search answers.</p>
-            <a class='service-link' href='/search/label/Content%20Marketing'>Learn More <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/content-marketing.html'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
             <div class='service-icon'><i class='fas fa-link'/></div>
             <h3>White-Hat Link Building</h3>
             <p>Ethical, white-hat link building from authoritative domains to boost domain authority, referral traffic, and organic search rankings. We focus on editorial links, guest posts, and digital PR.</p>
-            <a class='service-link' href='/search/label/Link%20Building'>Learn More <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/link-building.html'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
             <div class='service-icon'><i class='fas fa-map-marker-alt'/></div>
             <h3>Local SEO Services</h3>
             <p>Google Business Profile optimization, local citation building, local keyword targeting, and review management to dominate local search results in your city or service area.</p>
-            <a class='service-link' href='/search/label/Local%20SEO'>Learn More <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/local-seo-services.html'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
             <div class='service-icon'><i class='fas fa-chart-bar'/></div>
             <h3>SEO Analytics &amp; ROI Reporting</h3>
             <p>Transparent monthly dashboards and reports showing organic traffic growth, keyword rankings, conversion tracking, and measurable ROI from your SEO campaigns.</p>
-            <a class='service-link' href='/search/label/SEO'>Learn More <i class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/seo-agency.html'>Learn More <i class='fas fa-arrow-right'/></a>
           </div>
         </div>
       </div>
