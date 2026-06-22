@@ -2899,15 +2899,15 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             <a class='cs-link' href='https://www.ezdry.in/' target='_blank' rel='noopener'>Visit Project <i class='fas fa-external-link-alt'/></a>
           </div>
           <div class='case-study-card animate-on-scroll'>
-            <span class='cs-badge cs-badge-revenue'><i class='fab fa-blogger'/> Content Blog</span>
-            <h3>Amit Kr Blog — Tech Tutorials &amp; Insights</h3>
+            <span class='cs-badge cs-badge-revenue'><i class='fas fa-user'/> Personal Portfolio</span>
+            <h3>Amit Kumar — Portfolio &amp; Blog</h3>
             <div class='cs-stats'>
               <div class='cs-stat'><span class='cs-number'>Blogger</span><span class='cs-label'>Platform</span></div>
               <div class='cs-stat'><span class='cs-number'>SEO</span><span class='cs-label'>Optimized</span></div>
               <div class='cs-stat'><span class='cs-number'>Live</span><span class='cs-label'>Status</span></div>
             </div>
-            <p class='cs-desc'>A content-rich Blogger blog covering technology, tutorials, and insights. Optimized for search performance with custom SEO strategies, Schema markup, and speed optimization.</p>
-            <a class='cs-link' href='https://amitkr26.blogspot.com/' target='_blank' rel='noopener'>Visit Blog <i class='fas fa-external-link-alt'/></a>
+            <p class='cs-desc'>A personal portfolio and blog showcasing projects, tutorials, and articles on technology and development. Built with the RankrSEO Blogger theme for performance and search visibility.</p>
+            <a class='cs-link' href='https://amitkr26.blogspot.com/' target='_blank' rel='noopener'>Visit Portfolio <i class='fas fa-external-link-alt'/></a>
           </div>
         </div>
       </div>
