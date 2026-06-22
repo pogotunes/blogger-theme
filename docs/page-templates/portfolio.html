@@ -1,0 +1,107 @@
+<!-- PAGE: Portfolio
+     Title: Our Portfolio — Projects & Case Studies
+     Permalink: /p/portfolio.html -->
+<meta content="Explore our portfolio of web projects including ScrapCo scrap pickup platform, EZDRY laundry service, and the Amit Kr blog. See how we build modern, performant web applications." name="description"/>
+
+<style>
+.portfolio-hero { text-align: center; padding: 48px 0 24px; }
+.portfolio-hero h1 { font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin: 24px 0 12px; }
+.portfolio-hero p { font-size: 1.05rem; color: var(--text-light); max-width: 560px; margin: 0 auto; }
+.portfolio-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; margin: 40px 0; }
+.portfolio-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0; overflow: hidden; transition: all var(--transition); }
+.portfolio-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl), var(--glow-primary); border-color: var(--primary); }
+.portfolio-card-img { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; overflow: hidden; }
+.portfolio-card-img::before { content: ''; position: absolute; inset: 0; opacity: 0.1; }
+.portfolio-card-body { padding: 24px; }
+.portfolio-card-body h3 { margin: 0 0 8px; font-size: 1.15rem; font-weight: 700; }
+.portfolio-card-body p { font-size: 0.92rem; color: var(--text-light); line-height: 1.6; margin: 0 0 16px; }
+.portfolio-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.portfolio-tag { padding: 4px 12px; font-size: 12px; font-weight: 500; border-radius: 999px; background: rgba(99,102,241,0.08); color: #6366F1; }
+.portfolio-card-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--primary); text-decoration: none; }
+.portfolio-card-link:hover { gap: 10px; }
+@media (max-width: 768px) { .portfolio-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="portfolio-hero">
+<svg viewBox="0 0 800 300" style="width:100%;max-width:800px;border-radius:16px;display:block;margin:0 auto;">
+  <defs>
+    <linearGradient id="phg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <pattern id="pdots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.12)"/>
+    </pattern>
+  </defs>
+  <rect fill="url(#phg)" width="800" height="300" rx="16"/>
+  <rect fill="url(#pdots)" width="800" height="300" rx="16"/>
+  <g transform="translate(400,150)" text-anchor="middle">
+    <circle r="120" fill="rgba(255,255,255,0.05)"/>
+    <circle r="80" fill="rgba(255,255,255,0.03)"/>
+    <path d="M-30-15 L30-15 L15 15 L-15 15 Z" fill="rgba(255,255,255,0.12)"/>
+    <path d="M-50-25 L50-25 L25 25 L-25 25 Z" fill="rgba(255,255,255,0.06)"/>
+    <text y="50" fill="rgba(255,255,255,0.9)" font-size="36" font-weight="800">Our Portfolio</text>
+    <text y="80" fill="rgba(255,255,255,0.6)" font-size="16">Projects we've built and managed</text>
+  </g>
+</svg>
+<h1>Our Work</h1>
+<p>Real projects we've built, managed, and helped grow.</p>
+</div>
+
+<div class="portfolio-grid">
+
+<div class="portfolio-card">
+  <div class="portfolio-card-img" style="background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);">
+    <i class="fas fa-recycle" style="color:#06B6D4;"></i>
+  </div>
+  <div class="portfolio-card-body">
+    <h3>ScrapCo</h3>
+    <p>A modern scrap pickup platform connecting households and businesses with verified recycling vendors. Features live pricing, digital weighing, and transparent transactions.</p>
+    <div class="portfolio-tags">
+      <span class="portfolio-tag">Next.js</span>
+      <span class="portfolio-tag">React</span>
+      <span class="portfolio-tag">Expo</span>
+    </div>
+    <a class="portfolio-card-link" href="https://www.scrapco.app/" target="_blank" rel="noopener">Visit Site <i class="fas fa-arrow-right"></i></a>
+  </div>
+</div>
+
+<div class="portfolio-card">
+  <div class="portfolio-card-img" style="background:linear-gradient(135deg,#0f3443,#34e89e);">
+    <i class="fas fa-tshirt" style="color:#fff;"></i>
+  </div>
+  <div class="portfolio-card-body">
+    <h3>EZDRY</h3>
+    <p>A laundry service platform offering pickup and delivery with real-time order tracking, digital payment integration, and route optimization for delivery partners.</p>
+    <div class="portfolio-tags">
+      <span class="portfolio-tag">Next.js</span>
+      <span class="portfolio-tag">Node.js</span>
+      <span class="portfolio-tag">MongoDB</span>
+    </div>
+    <a class="portfolio-card-link" href="https://www.ezdry.in/" target="_blank" rel="noopener">Visit Site <i class="fas fa-arrow-right"></i></a>
+  </div>
+</div>
+
+<div class="portfolio-card">
+  <div class="portfolio-card-img" style="background:linear-gradient(135deg,#6366F1,#8b5cf6);">
+    <i class="fab fa-blogger" style="color:#fff;"></i>
+  </div>
+  <div class="portfolio-card-body">
+    <h3>Amit Kr Blog</h3>
+    <p>A content-rich Blogger blog covering technology, tutorials, and insights. Optimized for search with custom SEO strategies and performance improvements.</p>
+    <div class="portfolio-tags">
+      <span class="portfolio-tag">Blogger</span>
+      <span class="portfolio-tag">SEO</span>
+      <span class="portfolio-tag">Content</span>
+    </div>
+    <a class="portfolio-card-link" href="https://amitkr26.blogspot.com/" target="_blank" rel="noopener">Visit Blog <i class="fas fa-arrow-right"></i></a>
+  </div>
+</div>
+
+</div>
+
+<div class="cta-box">
+  <h3>Want a Project Like This?</h3>
+  <p>Let's discuss your next web project. Get a free consultation and quote.</p>
+  <a class="btn-primary" href="/p/free-seo-audit.html"><i class="fas fa-search"></i> Get Free Audit</a>
+</div>

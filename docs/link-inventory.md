@@ -7,11 +7,11 @@
 
 | Metric | Count |
 |--------|-------|
-| Total internal links scanned | 46 |
-| Links ✅ correct | 45 |
+| Total internal links scanned | 50 |
+| Links ✅ correct | 49 |
 | Links ❌ broken/wrong | 0 |
 | Links 🔗 placeholder (#) | 3 |
-| Links updated | 6 |
+| Links updated | 8 |
 
 ---
 
@@ -31,7 +31,7 @@
 | 8 | `/p/content-marketing.html` | Label page (auto) | ✅ Auto-generated | — |
 | 9 | `/p/link-building.html` | Label page (auto) | ✅ Auto-generated | — |
 | 10 | `/p/digital-marketing.html` | Label page (auto) | ✅ Auto-generated | — |
-| 11 | `/p/case-studies.html` | Label page (auto) | ✅ Auto-generated | — |
+| 11 | `/p/portfolio.html` | Portfolio page | ✅ New | Added |
 | 12 | `/p/services.html` | All Services | ✅ Correct | — |
 | 13 | `/p/about.html` | About page | ✅ Correct | — |
 | 14 | `/p/contact-us.html` | Contact page | ✅ FIXED (was `/p/contact.html`) | Updated |
@@ -50,7 +50,7 @@
 | 8 | `/p/content-marketing.html` | Label page | ✅ Auto-generated | — |
 | 9 | `/p/link-building.html` | Label page | ✅ Auto-generated | — |
 | 10 | `/p/digital-marketing.html` | Label page | ✅ Auto-generated | — |
-| 11 | `/p/case-studies.html` | Label page | ✅ Auto-generated | — |
+| 11 | `/p/portfolio.html` | Portfolio | ✅ Added | New |
 | 12 | `/p/about.html` | About page | ✅ Correct | — |
 | 13 | `/p/contact-us.html` | Contact page | ✅ FIXED (was `/p/contact.html`) | Updated |
 
@@ -59,7 +59,7 @@
 | # | Link | Target | Status | Action |
 |---|------|--------|--------|--------|
 | 1 | `#contact` | CTA section (same page) | ✅ Anchor | — |
-| 2 | `/p/case-studies.html` | Label page | ✅ Auto-generated | — |
+| 2 | `/p/portfolio.html` | Portfolio page | ✅ Updated | Was `/search/label/Case%20Studies` |
 
 ### Service Cards (Homepage)
 
@@ -98,11 +98,11 @@
 |---|------|--------|--------|--------|
 | 1 | `/p/services.html` | Services page | ✅ Correct | — |
 
-### Case Studies Section
+### Portfolio / CTA Section
 
 | # | Link | Target | Status | Action |
 |---|------|--------|--------|--------|
-| 1 | `/p/case-studies.html` | Label page (×3) | ✅ Auto-generated | — |
+| 1 | `/p/portfolio.html` | Portfolio page | ✅ Updated | Replaced Case Studies link |
 
 ### Contact/CTA Section
 
@@ -124,7 +124,7 @@
 | 1 | Home | `/` | ✅ Correct | — |
 | 2 | Blog | `/` | ✅ Correct | — |
 | 3 | Services | `/p/services.html` | ✅ Correct | — |
-| 4 | Case Studies | `/p/case-studies.html` | ✅ Correct | — |
+| 4 | Portfolio | `/p/portfolio.html` | ✅ Updated | Was `/search/label/Case%20Studies` |
 | 5 | About Us | `/p/about.html` | ✅ Correct | — |
 | 6 | Pricing | `/p/services.html` | ✅ FIXED (was `/2026/06/seo-pricing-guide.html`) | Updated |
 | 7 | SEO Consultant | `/p/seo-agency.html` | ✅ FIXED (was `/2026/06/seo-consultant-services.html`) | Updated |
@@ -207,5 +207,10 @@ The other two (Blogger SEO Guide, Technical SEO Checklist) aren't in the live li
 | 10 | rankrseo-theme.xml | 3241 | `/2026/06/technical-seo-checklist.html` | `/p/technical-seo-checklist.html` |
 | 11 | rankrseo-theme.xml | 3247 | `/2026/06/blogger-seo-guide-2026.html` | `/p/blogger-seo-guide.html` |
 | 12 | services.html | 41 | `/p/contact.html` | `/p/contact-us.html` |
+| 13 | rankrseo-theme.xml | 1400 | `/search/label/Case%20Studies` | `/p/portfolio.html` |
+| 14 | rankrseo-theme.xml | 1436 | `/search/label/Case%20Studies` | `/p/portfolio.html` |
+| 15 | rankrseo-theme.xml | 1475 | `/search/label/Case%20Studies` | `/p/portfolio.html` |
+| 16 | rankrseo-theme.xml | 3170 | `/search/label/Case%20Studies` | `/p/portfolio.html` |
+| 17+93 | all blog/page templates | end | direct project links | `/p/portfolio.html` CTA |
 
-**Total: 6 wrong links fixed, 6 `/2026/06/` blog-post links corrected to live `/p/` pages**
+**Total: 8 wrong links fixed, 6 `/2026/06/` blog-post links corrected to live `/p/` pages. 93 templates updated with Portfolio CTA.**

@@ -1397,7 +1397,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
           </ul>
         </li>
         <li><a expr:href='data:blog.homepageUrl'>Blog</a></li>
-        <li><a href='/search/label/Case%20Studies'>Case Studies</a></li>
+        <li><a href='/p/portfolio.html'>Portfolio</a></li>
         <li><a href='/p/about.html'>About</a></li>
         <li><a href='/p/contact-us.html'>Contact</a></li>
       </ul>
@@ -1433,7 +1433,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             </ul>
           </li>
           <li><a aria-label='Blog' expr:href='data:blog.homepageUrl'>Blog</a></li>
-          <li><a aria-label='Case Studies' href='/search/label/Case%20Studies'>Case Studies</a></li>
+          <li><a aria-label='Portfolio' href='/p/portfolio.html'>Portfolio</a></li>
           <li><a aria-label='About' href='/p/about.html'>About</a></li>
           <li><a aria-label='Contact' href='/p/contact-us.html'>Contact</a></li>
         </ul>
@@ -1472,7 +1472,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             </div>
             <div class='hero-buttons'>
               <a class='btn btn-primary btn-lg' href='#contact'><i class='fas fa-search'/> Get Your Free SEO Audit</a>
-              <a class='btn btn-secondary btn-lg' href='/search/label/Case%20Studies'><i class='fas fa-chart-bar'/> See Case Studies</a>
+              <a class='btn btn-secondary btn-lg' href='/p/portfolio.html'><i class='fas fa-briefcase'/> View Our Portfolio</a>
             </div>
             <div class='hero-trust'>
               <span><i class='fas fa-check-circle'/> 98% Client Satisfaction</span>
@@ -3167,8 +3167,8 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <b:widget-setting name='link-1'>/</b:widget-setting>
               <b:widget-setting name='text-2'>Services</b:widget-setting>
               <b:widget-setting name='link-2'>/p/services.html</b:widget-setting>
-              <b:widget-setting name='text-3'>Case Studies</b:widget-setting>
-              <b:widget-setting name='link-3'>/search/label/Case%20Studies</b:widget-setting>
+              <b:widget-setting name='text-3'>Portfolio</b:widget-setting>
+              <b:widget-setting name='link-3'>/p/portfolio.html</b:widget-setting>
               <b:widget-setting name='text-4'>About Us</b:widget-setting>
               <b:widget-setting name='link-4'>/p/about.html</b:widget-setting>
               <b:widget-setting name='text-5'>SEO Agency</b:widget-setting>
@@ -3237,7 +3237,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
         <b:section id='footer-4' maxwidgets='1' name='Footer Column 4' showaddelement='yes'>
           <b:widget id='HTML10' locked='false' title='Contact Info' type='HTML' version='2' visible='true'>
             <b:widget-settings>
-              <b:widget-setting name='content'><![CDATA[<ul class="footer-links contact-info"><li><i class="fas fa-map-marker-alt"></i> New Delhi, Delhi, India</li><li><i class="fas fa-phone"></i> +91 99537 32860</li><li><i class="fas fa-envelope"></i> rankrseo@gmail.com</li><li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</li></ul><h4 class='footer-heading' style='margin-top:24px;'>Our Projects</h4><ul class='footer-links'><li><a href='https://www.scrapco.app/' target='_blank' rel='noopener'><i class='fas fa-external-link-alt'></i> ScrapCo — Scrap Pickup Platform</a></li><li><a href='https://www.ezdry.in/' target='_blank' rel='noopener'><i class='fas fa-external-link-alt'></i> EZDRY — Laundry Service</a></li><li><a href='https://amitkr26.blogspot.com/' target='_blank' rel='noopener'><i class='fas fa-external-link-alt'></i> Amit Kr — Blog</a></li></ul>]]></b:widget-setting>
+              <b:widget-setting name='content'><![CDATA[<ul class="footer-links contact-info"><li><i class="fas fa-map-marker-alt"></i> New Delhi, Delhi, India</li><li><i class="fas fa-phone"></i> +91 99537 32860</li><li><i class="fas fa-envelope"></i> rankrseo@gmail.com</li><li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</li></ul><h4 class='footer-heading' style='margin-top:24px;'>Our Work</h4><ul class='footer-links'><li><a href='/p/portfolio.html'><i class='fas fa-briefcase'></i> View Portfolio</a></li></ul>]]></b:widget-setting>
             </b:widget-settings>
             <b:includable id='main'>
               <h4 class='footer-heading'><data:title/></h4>
