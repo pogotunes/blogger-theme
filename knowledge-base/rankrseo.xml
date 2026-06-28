@@ -151,9 +151,9 @@
 <link href='//www.gstatic.com' rel='preconnect'/>
 <link href='//cdn.jsdelivr.net' rel='dns-prefetch'/>
 
-<!-- Google Fonts: Inter + Poppins -->
-<link as='style' href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Poppins:wght@400;500;600;700;800&amp;display=swap' onload='this.onload=null;this.rel=&apos;stylesheet&apos;' rel='preload'/>
-<noscript><link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Poppins:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/></noscript>
+<!-- Google Fonts: Inter + Space Grotesk + JetBrains Mono -->
+<link as='style' href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;display=swap' onload='this.onload=null;this.rel=&apos;stylesheet&apos;' rel='preload'/>
+<noscript><link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;display=swap' rel='stylesheet'/></noscript>
 
 <!-- Font Awesome (Deferred) -->
 <link crossorigin='anonymous' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' media='print' onload='this.media=&apos;all&apos;' rel='stylesheet'/>
@@ -202,7 +202,8 @@
   --glow-accent: 0 0 20px rgba(var(--accent-rgb),0.15), 0 0 40px rgba(var(--accent-rgb),0.08);
   --radius-sm: 6px; --radius: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px; --radius-full: 9999px;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   --transition: 0.3s cubic-bezier(0.4,0,0.2,1); --transition-fast: 0.15s cubic-bezier(0.4,0,0.2,1);
   --transition-bounce: 0.5s cubic-bezier(0.34,1.56,0.64,1);
   --header-h: 72px; --header-h-scroll: 60px; --container: 1200px; --container-narrow: 800px;
@@ -272,7 +273,6 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 /* --- Section Spacing (4/8/12/16/24/32/48/64/96/128 scale) --- */
 .section { padding: 96px 0; }
 .section:first-child { padding-top: 0; }
-.section + .section { padding-top: 0; }
 .section-alt { background: var(--bg-alt); }
 .section-title { text-align: center; margin-bottom: 48px; }
 .section-title h2 { font-size: clamp(1.75rem, 3.2vw, 2.5rem); margin-bottom: 12px; }
@@ -372,7 +372,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 
 /* --- Error Page --- */
 .error-page { text-align: center; padding: 100px 20px; max-width: 500px; margin: 0 auto; }
-.error-page .error-code { font-size: 120px; font-weight: 800; line-height: 1; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+.error-page .error-code { font-family: var(--font-mono); font-size: 120px; font-weight: 700; line-height: 1; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
 .error-page .error-title { font-size: 1.5rem; margin-bottom: 12px; }
 .error-page .error-text { color: var(--text-light); margin-bottom: 32px; }
 .error-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
@@ -432,30 +432,46 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .hero-results { display: flex; gap: 28px; margin-bottom: 32px; flex-wrap: wrap; }
 .hero-result-item { text-align: center; position: relative; }
 .hero-result-item:not(:last-child)::after { content: ''; position: absolute; right: -14px; top: 10%; height: 80%; width: 1px; background: rgba(255,255,255,0.1); }
-.hero-result-num { display: block; font-family: var(--font-heading); font-size: 1.85rem; font-weight: 800; color: #fff; line-height: 1.2; }
+.hero-result-num { display: block; font-family: var(--font-mono); font-size: 1.85rem; font-weight: 700; color: #fff; line-height: 1.2; }
 .hero-result-label { display: block; font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
 
 /* Hero Dashboard Visual */
 .hero-visual { position: relative; }
 .dashboard-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); overflow: hidden; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
-.dashboard-header { display: flex; gap: 6px; padding: 16px 24px; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.06); }
-.dashboard-dot { width: 10px; height: 10px; border-radius: var(--radius-full); }
-.dashboard-dot:nth-child(1) { background: var(--error-on-dark); }
-.dashboard-dot:nth-child(2) { background: var(--warning-on-dark); }
-.dashboard-dot:nth-child(3) { background: var(--success-on-dark); }
+.dashboard-header { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 14px 24px; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.dashboard-live { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary-light); }
+.dashboard-live-dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--primary); box-shadow: 0 0 0 0 rgba(var(--primary-rgb),0.6); animation: signalPulse 2s ease-out infinite; }
+@keyframes signalPulse { 0% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb),0.55); } 70% { box-shadow: 0 0 0 7px rgba(var(--primary-rgb),0); } 100% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb),0); } }
+.dashboard-signal-bars { display: flex; align-items: flex-end; gap: 3px; height: 14px; }
+.dashboard-signal-bars span { width: 3px; border-radius: 1px; background: rgba(255,255,255,0.18); }
+.dashboard-signal-bars span:nth-child(1) { height: 35%; }
+.dashboard-signal-bars span:nth-child(2) { height: 60%; background: rgba(var(--primary-rgb),0.55); }
+.dashboard-signal-bars span:nth-child(3) { height: 80%; background: rgba(var(--primary-rgb),0.8); }
+.dashboard-signal-bars span:nth-child(4) { height: 100%; background: var(--primary); }
 .dashboard-body { padding: 24px; }
 .dashboard-metric { margin-bottom: 20px; }
 .dashboard-metric:last-of-type { margin-bottom: 24px; }
 .metric-label { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
 .metric-value { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 8px; }
 .metric-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
-.metric-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 3px; transition: width 1s ease; }
+.metric-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--primary-dark), var(--primary)); border-radius: 3px; transition: width 1s ease; }
 .dashboard-chart { display: flex; align-items: flex-end; gap: 6px; height: 100px; margin-bottom: 20px; padding: 0 4px; }
-.chart-bar { flex: 1; background: linear-gradient(to top, var(--primary), var(--accent)); border-radius: 3px 3px 0 0; opacity: 0.7; transition: opacity var(--transition-fast); min-height: 20px; }
+.chart-bar { flex: 1; background: linear-gradient(to top, var(--primary-dark), var(--primary)); border-radius: 3px 3px 0 0; opacity: 0.85; transition: opacity var(--transition-fast); min-height: 20px; }
 .chart-bar:hover { opacity: 1; }
 .dashboard-footer { display: flex; justify-content: space-between; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
 .dashboard-stat { font-size: 13px; color: rgba(255,255,255,0.5); }
-.stat-num { display: block; font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
+.stat-num { display: block; font-size: 18px; font-weight: 700; color: var(--primary-light); margin-bottom: 2px; }
+
+/* --- Industries We Serve Section --- */
+.industries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--gap-lg); }
+.industry-card { background: var(--bg-card); padding: 36px 32px; border-radius: var(--radius-lg); border: 1px solid var(--border); text-align: center; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; }
+.industry-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary)); opacity: 0; transition: opacity 0.4s ease; }
+.industry-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: var(--shadow-xl), var(--glow-primary); border-color: transparent; }
+.industry-card:hover::before { opacity: 1; }
+.industry-icon { width: 64px; height: 64px; margin-bottom: 20px; background: linear-gradient(135deg, rgba(var(--primary-rgb),0.1), rgba(var(--primary-rgb),0.04)); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--primary); transition: all 0.4s ease; flex-shrink: 0; }
+.industry-card:hover .industry-icon { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; transform: scale(1.08); box-shadow: 0 8px 24px rgba(var(--primary-rgb),0.3); }
+.industry-card h3 { font-size: 1.1rem; margin-bottom: 12px; }
+.industry-card p { color: var(--text-light); font-size: 14px; line-height: 1.65; margin-bottom: 18px; flex: 1; }
 
 /* --- Services Section --- */
 .services-section { background: var(--bg-alt); position: relative; }
@@ -523,10 +539,10 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .metric-card-icon { font-size: 32px; margin-bottom: 10px; transition: transform 0.3s ease; }
 .metric-card:hover .metric-card-icon { transform: scale(1.15); }
 .metric-primary .metric-card-icon { color: var(--primary); }
-.metric-accent .metric-card-icon { color: #059669; }
+.metric-accent .metric-card-icon { color: var(--success-on-light); }
 .metric-secondary .metric-card-icon { color: var(--primary); }
-.metric-success .metric-card-icon { color: #d97706; }
-.metric-card-value { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--text); line-height: 1.1; }
+.metric-success .metric-card-icon { color: var(--warning-on-light); }
+.metric-card-value { font-family: var(--font-mono); font-size: 2rem; font-weight: 700; color: var(--text); line-height: 1.1; }
 .metric-card-label { font-size: 13px; color: var(--text-light); margin-top: 6px; font-weight: 500; }
 .why-choose-content p { color: var(--text-light); margin-bottom: 16px; }
 .why-choose-features { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 24px 0; }
@@ -540,7 +556,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .process-step { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 24px; text-align: left; position: relative; transition: all 0.35s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; }
 .process-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(var(--primary-rgb),0.3); }
 .process-step-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-.process-number { width: 40px; height: 40px; flex-shrink: 0; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; box-shadow: 0 4px 14px rgba(var(--primary-rgb),0.25); transition: all var(--transition-bounce); }
+.process-number { width: 40px; height: 40px; flex-shrink: 0; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; box-shadow: 0 4px 14px rgba(var(--primary-rgb),0.25); transition: all var(--transition-bounce); }
 .process-step:hover .process-number { transform: scale(1.08) rotate(-4deg); }
 .process-step-index { font-size: 12px; font-weight: 700; color: var(--text-lighter); text-transform: uppercase; letter-spacing: 0.06em; }
 .process-step h3 { font-size: 1.05rem; margin-bottom: 8px; }
@@ -591,8 +607,11 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .testimonials-section .section-label { color: var(--accent); }
 .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--gap-lg); }
 .testimonial-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 32px; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); position: relative; }
-.testimonial-card::before { content: '\f10d'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 16px; right: 20px; font-size: 42px; color: rgba(255,255,255,0.06); line-height: 1; }
+.testimonial-card::before { content: '\f560'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 16px; right: 20px; font-size: 36px; color: rgba(255,255,255,0.06); line-height: 1; }
 .testimonial-card:hover { transform: translateY(-6px); border-color: rgba(var(--primary-rgb),0.3); box-shadow: 0 12px 40px rgba(0,0,0,0.3), var(--glow-primary); background: rgba(255,255,255,0.09); }
+.testimonial-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(var(--primary-rgb),0.15); border: 1px solid rgba(var(--primary-rgb),0.3); border-radius: var(--radius-full); font-size: 12px; font-weight: 600; color: var(--primary-light); margin-bottom: 18px; }
+.testimonials-note { text-align: center; color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 32px; }
+.testimonials-note a { color: var(--primary-light); font-weight: 600; }
 .testimonial-stars { color: var(--warning-on-dark); font-size: 13px; margin-bottom: 16px; letter-spacing: 2px; display: flex; gap: 2px; }
 .testimonial-text { color: rgba(255,255,255,0.85); font-style: italic; line-height: 1.8; margin-bottom: 24px; font-size: 15px; }
 .testimonial-author { display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
@@ -612,7 +631,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .case-study-card h3 { font-size: 1.15rem; margin-bottom: 16px; }
 .cs-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
 .cs-stat { text-align: center; padding: 12px 8px; background: var(--bg-alt); border-radius: var(--radius-sm); min-height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.cs-number { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: var(--primary); display: block; }
+.cs-number { font-family: var(--font-mono); font-size: 1.35rem; font-weight: 700; color: var(--primary); display: block; }
 .cs-label { font-size: 12px; color: var(--text-light); margin-top: 2px; }
 .cs-desc { color: var(--text-light); font-size: 14px; line-height: 1.7; margin-bottom: 20px; flex: 1; }
 .cs-link { font-size: 14px; font-weight: 600; color: var(--primary); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s ease; margin-top: auto; }
@@ -794,7 +813,7 @@ body.sticky-cta-active { padding-bottom: 64px; }
 .stats-widget-inner { display: flex; align-items: center; gap: 16px; padding: 4px 0; }
 .stats-icon { width: 48px; height: 48px; flex-shrink: 0; background: linear-gradient(135deg, rgba(var(--primary-rgb),0.12), rgba(var(--primary-rgb),0.05)); color: var(--primary); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 20px; }
 .stats-text { display: flex; flex-direction: column; }
-.stats-number { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--text); line-height: 1.2; }
+.stats-number { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--text); line-height: 1.2; }
 .stats-label { font-size: 12px; color: var(--text-lighter); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
 .widget-content { padding: 20px 24px; }
 .popular-post-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border-light); transition: all var(--transition-fast); }
@@ -874,7 +893,7 @@ body.sticky-cta-active { padding-bottom: 64px; }
 .footer::after { content: ''; position: absolute; top: -120px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(var(--primary-rgb),0.06), transparent 70%); border-radius: 50%; pointer-events: none; }
 .footer-grid, .footer-widgets { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.1fr; gap: var(--gap-lg); position: relative; z-index: 1; }
 .footer-brand p { margin-top: 16px; font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.5); max-width: 320px; }
-.footer-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-weight: 800; font-size: 1.4rem; color: #fff; text-decoration: none; }
+.footer-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-weight: 700; font-size: 1.4rem; color: #fff; text-decoration: none; }
 .footer-logo:hover { color: var(--primary-light); }
 .footer-logo span { color: var(--primary); }
 .footer h4, .footer-heading { color: #fff; font-size: 1rem; margin-bottom: 20px; letter-spacing: 0.03em; position: relative; padding-bottom: 12px; }
@@ -900,7 +919,7 @@ body.sticky-cta-active { padding-bottom: 64px; }
 /* --- WhatsApp FAB --- */
 .whatsapp-btn, .whatsapp-fab { position: fixed; bottom: 24px; right: 24px; z-index: 999; width: 56px; height: 56px; background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 6px 16px rgba(37,211,102,0.4); transition: all var(--transition-bounce); text-decoration: none; }
 .whatsapp-btn:hover, .whatsapp-fab:hover { transform: scale(1.12) translateY(-3px); color: #fff; box-shadow: 0 12px 32px rgba(37,211,102,0.5); }
-@media (max-width: 640px) { .whatsapp-btn, .whatsapp-fab { bottom: 16px; right: 16px; width: 48px; height: 48px; font-size: 22px; } }
+@media (max-width: 640px) { .whatsapp-btn, .whatsapp-fab { bottom: 20px; right: 14px; width: 46px; height: 46px; font-size: 20px; } }
 .back-to-top { position: fixed; bottom: 90px; right: 24px; z-index: 998; width: 44px; height: 44px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: var(--shadow-md); transition: all var(--transition); cursor: pointer; border: none; opacity: 0; visibility: hidden; }
 .back-to-top.visible { opacity: 1; visibility: visible; }
 .back-to-top:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg), var(--glow-primary); }
@@ -1353,7 +1372,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
       </b:widget>
       <b:widget id='LinkList3' locked='true' title='Lazy Scrolls / More Text' type='LinkList' version='2' visible='true'>
         <b:widget-settings>
-          <b:widget-setting name='link-5'>https://rankrseo.blogspot.com/</b:widget-setting>
+          <b:widget-setting name='link-5'>/</b:widget-setting>
           <b:widget-setting name='link-6'>https://rankrseo.vercel.app/</b:widget-setting>
           <b:widget-setting name='link-3'>8</b:widget-setting>
           <b:widget-setting name='link-4'>{getContent} $label={recent}</b:widget-setting>
@@ -1502,13 +1521,16 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <span><i aria-hidden='true' class='fas fa-check-circle'/> 98% Client Satisfaction</span>
               <span><i aria-hidden='true' class='fas fa-check-circle'/> 200+ Campaigns Delivered</span>
             </div>
+            <div class='hero-extras' style='margin-top:12px;display:flex;gap:20px;flex-wrap:wrap;font-size:14px'>
+              <a href='/p/free-seo-audit.html' style='color:var(--text-light)'>Learn what our audit covers <i aria-hidden='true' class='fas fa-arrow-right' style='font-size:11px'/></a>
+              <a href='/p/services.html' style='color:var(--text-light)'>View all services <i aria-hidden='true' class='fas fa-arrow-right' style='font-size:11px'/></a>
+            </div>
           </div>
           <div class='hero-visual'>
             <div class='dashboard-card'>
               <div class='dashboard-header'>
-                <span class='dashboard-dot'/>
-                <span class='dashboard-dot'/>
-                <span class='dashboard-dot'/>
+                <span class='dashboard-live'><span class='dashboard-live-dot'/> Live</span>
+                <span class='dashboard-signal-bars'><span/><span/><span/><span/></span>
               </div>
               <div class='dashboard-body'>
                 <div class='dashboard-metric'>
@@ -1736,7 +1758,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <li><i aria-hidden='true' class='fas fa-check'/> Low-competition gap analysis</li>
               <li><i aria-hidden='true' class='fas fa-check'/> Competitor keyword teardown</li>
             </ul>
-            <a class='service-link' href='/search/label/Keyword%20Research'>Explore our keyword process <i aria-hidden='true' class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/seo-agency.html'>Explore our keyword process <i aria-hidden='true' class='fas fa-arrow-right'/></a>
           </div>
           <div class='service-card animate-on-scroll'>
             <div class='service-icon'><i aria-hidden='true' class='fas fa-pen-fancy'/></div>
@@ -1780,7 +1802,7 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <li><i aria-hidden='true' class='fas fa-check'/> Keyword &amp; traffic tracking</li>
               <li><i aria-hidden='true' class='fas fa-check'/> Monthly transparent reviews</li>
             </ul>
-            <a class='service-link' href='/p/seo-agency.html'>What we track <i aria-hidden='true' class='fas fa-arrow-right'/></a>
+            <a class='service-link' href='/p/digital-marketing.html'>What we track <i aria-hidden='true' class='fas fa-arrow-right'/></a>
           </div>
         </div>
       </div>
@@ -1829,6 +1851,37 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <div class='why-feature'><i aria-hidden='true' class='fas fa-check-circle'/> No Long-Term Contracts</div>
             </div>
             <a class='btn btn-primary' href='/p/about.html'>Learn More About Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industries We Serve Section -->
+    <section class='section section-alt industries-section' id='industries'>
+      <div class='container'>
+        <div class='section-title'>
+          <h2>Industries We <span class='highlight'>Serve</span></h2>
+          <div class='accent-line'/>
+          <p>The technical and content playbook changes by industry. Here&#39;s how we approach each.</p>
+        </div>
+        <div class='industries-grid'>
+          <div class='industry-card animate-on-scroll'>
+            <div class='industry-icon'><i aria-hidden='true' class='fas fa-cloud'/></div>
+            <h3>SaaS &amp; Tech</h3>
+            <p>Technical SEO built for fast-shipping product teams &#8212; crawl-budget management, programmatic page structures, and content engineered to get cited by AI search engines, not just ranked.</p>
+            <a class='service-link' href='/p/ai-seo-services.html'>SaaS &amp; AI SEO approach <i aria-hidden='true' class='fas fa-arrow-right'/></a>
+          </div>
+          <div class='industry-card animate-on-scroll'>
+            <div class='industry-icon'><i aria-hidden='true' class='fas fa-cart-shopping'/></div>
+            <h3>Ecommerce</h3>
+            <p>Category and product-page architecture, Core Web Vitals fixes that protect conversion rate, and content clusters built around real buyer search intent.</p>
+            <a class='service-link' href='/p/ecommerce-seo.html'>Ecommerce SEO approach <i aria-hidden='true' class='fas fa-arrow-right'/></a>
+          </div>
+          <div class='industry-card animate-on-scroll'>
+            <div class='industry-icon'><i aria-hidden='true' class='fas fa-store'/></div>
+            <h3>Local Service Businesses</h3>
+            <p>Google Business Profile optimization, NAP consistency, and city-specific landing pages built to capture &quot;near me&quot; search and dominate local map results.</p>
+            <a class='service-link' href='/p/local-seo-services.html'>Local SEO approach <i aria-hidden='true' class='fas fa-arrow-right'/></a>
           </div>
         </div>
       </div>
@@ -2961,6 +3014,13 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
 </b:includable>
                   </b:widget>
                   <b:widget id='Stats1' locked='false' title='Site Stats' type='Stats' version='1' visible='true'>
+                    <b:widget-settings>
+                      <b:widget-setting name='showGraphicalCounter'>false</b:widget-setting>
+                      <b:widget-setting name='showAnimatedCounter'>false</b:widget-setting>
+                      <b:widget-setting name='showSparkline'>true</b:widget-setting>
+                      <b:widget-setting name='sparklineStyle'>BLACK_TRANSPARENT</b:widget-setting>
+                      <b:widget-setting name='timeRange'>ALL_TIME</b:widget-setting>
+                    </b:widget-settings>
                     <b:includable id='main'>
                       <div class='sidebar-widget'>
                         <h3 class='widget-title'><data:title/></h3>
@@ -3105,6 +3165,50 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class='section testimonials-section' id='testimonials'>
+      <div class='container'>
+        <div class='section-title'>
+          <h2>What Working With Us <span class='highlight'>Looks Like</span></h2>
+          <div class='accent-line'/>
+          <p>We&#39;re a young, growing agency &#8212; here&#39;s the kind of engagement and outcome our clients can expect, by project type.</p>
+        </div>
+        <div class='testimonials-grid'>
+          <div class='testimonial-card animate-on-scroll'>
+            <span class='testimonial-tag'><i aria-hidden='true' class='fas fa-magnifying-glass-chart'/> Local Service Business</span>
+            <p class='testimonial-text'>Technical audit identified 40+ indexation issues in week one. On-page fixes and GBP optimization shipped within the first month, with ranking movement tracked transparently in monthly reports.</p>
+            <div class='testimonial-author'>
+              <div class='testimonial-author-info'>
+                <strong>Typical engagement: Local SEO</strong>
+                <span>3&#8211;6 month roadmap</span>
+              </div>
+            </div>
+          </div>
+          <div class='testimonial-card animate-on-scroll'>
+            <span class='testimonial-tag'><i aria-hidden='true' class='fas fa-cart-shopping'/> Ecommerce</span>
+            <p class='testimonial-text'>Category and product-page restructuring paired with content clusters built around real buyer search intent, not just volume. Core Web Vitals fixes shipped alongside the content roadmap.</p>
+            <div class='testimonial-author'>
+              <div class='testimonial-author-info'>
+                <strong>Typical engagement: Ecommerce SEO</strong>
+                <span>4&#8211;6 month roadmap</span>
+              </div>
+            </div>
+          </div>
+          <div class='testimonial-card animate-on-scroll'>
+            <span class='testimonial-tag'><i aria-hidden='true' class='fas fa-robot'/> SaaS / AI Search</span>
+            <p class='testimonial-text'>Entity-driven content structure built specifically to be citable by AI search engines and Google SGE, alongside traditional ranking work &#8212; reported on both fronts monthly.</p>
+            <div class='testimonial-author'>
+              <div class='testimonial-author-info'>
+                <strong>Typical engagement: AI SEO / GEO</strong>
+                <span>3&#8211;6 month roadmap</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class='testimonials-note'>RankrSEO is a growing agency &#8212; these reflect our standard engagement process and reporting structure. <a href='/p/portfolio.html'>See real platforms we&#39;ve built &#8594;</a></p>
       </div>
     </section>
 
@@ -3259,6 +3363,14 @@ body#layout #footer-copyright > h4:after{content:" - Copyright & legal links"}
               <b:widget-setting name='text-3'>Ecommerce SEO</b:widget-setting>
               <b:widget-setting name='text-2'>Local SEO</b:widget-setting>
               <b:widget-setting name='text-5'>Link Building</b:widget-setting>
+              <b:widget-setting name='text-9'>SEO Company</b:widget-setting>
+              <b:widget-setting name='link-9'>/p/seo-agency.html</b:widget-setting>
+              <b:widget-setting name='text-8'>Blogger SEO</b:widget-setting>
+              <b:widget-setting name='link-8'>/p/blogger-seo.html</b:widget-setting>
+              <b:widget-setting name='text-7'>Digital Marketing</b:widget-setting>
+              <b:widget-setting name='link-7'>/p/digital-marketing.html</b:widget-setting>
+              <b:widget-setting name='text-6'>Content Marketing</b:widget-setting>
+              <b:widget-setting name='link-6'>/p/content-marketing.html</b:widget-setting>
               <b:widget-setting name='text-4'>AI SEO / GEO</b:widget-setting>
               <b:widget-setting name='sorting'>NONE</b:widget-setting>
               <b:widget-setting name='link-1'>/p/technical-seo-services.html</b:widget-setting>
