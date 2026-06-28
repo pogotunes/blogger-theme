@@ -1,0 +1,113 @@
+<!-- BLOG POST: Mobile SEO Best Practices
+     Title: Mobile SEO Best Practices — Optimize for Mobile-First Indexing in 2026
+     Labels: Mobile SEO, Technical SEO, Blog
+     Permalink: /2026/06/mobile-seo-best-practices.html -->
+<meta content="Learn mobile SEO best practices with RankrSEO's complete guide. Mobile-first indexing, Core Web Vitals, responsive design, and mobile UX optimization for better rankings." name="description"/>
+
+<style>.blog-content { max-width: 780px; margin: 0 auto; font-size: 1rem; line-height: 1.8; color: var(--text-light); }
+.blog-content h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text); }
+.blog-content h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 12px; color: var(--text); }
+.blog-content p { margin-bottom: 16px; }
+.blog-content ul { margin: 12px 0 20px; padding-left: 24px; }
+.blog-content ul li { margin-bottom: 8px; }
+.blog-content ul li strong { color: var(--text); }
+.highlight { color: var(--primary); }
+.cta-box { text-align: center; background: var(--bg-alt); border-radius: var(--radius-md); padding: 40px 28px; margin: 40px 0; border: 1px solid var(--border); }
+.cta-box h3 { margin-top: 0; }
+.cta-box p { margin-bottom: 20px; }
+.btn-primary { display: inline-block; padding: 14px 32px; background: var(--primary); color: #fff; border-radius: var(--radius); font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid var(--primary); transition: all 0.3s ease; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--glow-primary); }
+.tip-box { background: var(--bg-alt); border-left: 4px solid var(--primary); padding: 16px 20px; margin: 20px 0; border-radius: 0 var(--radius) var(--radius) 0; }
+.checklist-item { padding: 10px 14px; margin: 6px 0; background: var(--bg-alt); border-radius: var(--radius-sm); display: flex; align-items: center; gap: 10px; }</style>
+
+<div style="text-align:center;margin-bottom:24px;">
+  <span style="display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:rgba(99,102,241,0.08);border-radius:999px;font-size:13px;font-weight:600;color:#6366F1;">
+    <i class="fas fa-bolt"></i> Premium SEO Content
+  </span>
+</div>
+<div class="post-feature-image">
+<svg viewBox="0 0 800 400" style="width:100%;border-radius:16px;margin-bottom:32px;display:block;">
+  <defs>
+    <linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.12)"/>
+    </pattern>
+  </defs>
+  <rect fill="url(#hg)" width="800" height="400" rx="16"/>
+  <rect fill="url(#dots)" width="800" height="400" rx="16"/>
+  <g transform="translate(400,200)" text-anchor="middle">
+    <circle r="140" fill="rgba(255,255,255,0.05)"/>
+    <circle r="100" fill="rgba(255,255,255,0.03)"/>
+    <path d="M-40-20 L40-20 L20 20 L-20 20 Z" fill="rgba(255,255,255,0.15)"/>
+    <text y="40" fill="rgba(255,255,255,0.9)" font-size="28" font-weight="700">Featured Article</text>
+    <text y="68" fill="rgba(255,255,255,0.5)" font-size="15">Premium SEO Insights from RankrSEO</text>
+  </g>
+</svg>
+</div>
+
+<div class='blog-content'>
+
+<p>Google has fully transitioned to <strong class='highlight'>mobile-first indexing</strong>, meaning the mobile version of your website is now the primary version used for ranking and indexing. If your mobile experience is subpar, your desktop rankings will suffer too. This guide covers everything you need to optimize for mobile search in 2026.</p>
+
+<h2>What Mobile-First Indexing Means</h2>
+<p>Google's crawler now uses a smartphone agent to index and rank content. It evaluates the mobile version of each page for content, structured data, internal links, and page experience signals. If your mobile site has less content than your desktop version, you will lose visibility. Content parity between mobile and desktop is non-negotiable.</p>
+
+<h2>Core Web Vitals for Mobile</h2>
+
+<h3>Largest Contentful Paint (LCP)</h3>
+<p>LCP measures loading performance on mobile. Target under 2.5 seconds. Common mobile LCP issues include slow server response times, render-blocking resources, and unoptimized hero images. Use responsive image techniques with srcset and sizes attributes. Preload key assets and minimize JavaScript blocking.</p>
+
+<h3>First Input Delay (FID)</h3>
+<p>FID measures interactivity. Target under 100 milliseconds. Mobile devices have less processing power, making JavaScript execution time critical. Break up long tasks, defer non-critical scripts, and use code splitting. Remove or lazy load third-party scripts that delay interactivity.</p>
+
+<h3>Cumulative Layout Shift (CLS)</h3>
+<p>CLS measures visual stability. Target under 0.1. Mobile pages are especially prone to layout shifts from dynamically loaded ads, images without dimensions, and web fonts. Always set explicit width and height on images and embeds. Reserve space for ads and use font-display: swap.</p>
+
+<h2>Mobile Responsive Design</h2>
+<ul>
+  <li><strong>Fluid Grid Layouts:</strong> Use relative units (%, rem, vw) instead of fixed pixel widths. Test on multiple screen sizes from 320px to 1024px.</li>
+  <li><strong>Touch-Friendly Navigation:</strong> Ensure tap targets are at least 48x48 pixels with adequate spacing. Hamburger menus should be easily reachable with one-handed thumb use.</li>
+  <li><strong>Readable Typography:</strong> Body text should be at least 16px on mobile. Line height of 1.5 and line length of 50-75 characters optimize readability. Avoid long paragraphs that require excessive scrolling.</li>
+  <li><strong>Viewport Configuration:</strong> Use the correct viewport meta tag with initial-scale=1.0. Never set maximum-scale or user-scalable=no as these violate accessibility guidelines.</li>
+</ul>
+
+<h2>Mobile Content Strategy</h2>
+<p>Mobile users have shorter attention spans and different intent patterns. Prioritize key information above the fold. Use short paragraphs, scannable headings, and bullet points. Accordion content can compress long pages but ensure critical content is not hidden behind interaction elements. Write concise meta titles and descriptions that display fully on mobile SERPs (typically 30-35 characters for titles on mobile).</p>
+
+<h2>Mobile Technical SEO Checklist</h2>
+<div class='checklist-item'><span style="color:var(--primary);font-weight:600;">✓</span> Mobile and desktop content parity verified</div>
+<div class='checklist-item'><span style="color:var(--primary);font-weight:600;">✓</span> Mobile robots.txt allows crawling of all important resources</div>
+<div class='checklist-item'><span style="color:var(--primary);font-weight:600;">✓</span> No intrusive interstitials or app install prompts</div>
+<div class='checklist-item'><span style="color:var(--primary);font-weight:600;">✓</span> Mobile version has same structured data as desktop</div>
+<div class='checklist-item'><span style="color:var(--primary);font-weight:600;">✓</span> Internal links are consistent between mobile and desktop</div>
+<div class='checklist-item'><span style="color:var(--primary);font-weight:600;">✓</span> Mobile page speed score 70+ on Google PageSpeed Insights</div>
+<div class='checklist-item'><span style="color:var(--primary);font-weight:600;">✓</span> No horizontal scrolling on any device width</div>
+<div class='checklist-item'><span style="color:var(--primary);font-weight:600;">✓</span> Forms are thumb-friendly with proper input types</div>
+
+<div class='tip-box'>
+  <strong>Key Insight:</strong> Google's mobile-first indexing means there is no separate "mobile SEO" anymore — mobile SEO IS SEO. Every optimization you make for mobile benefits desktop rankings too, and vice versa.
+</div>
+
+<h2>Testing &amp; Monitoring</h2>
+<p>Use Google's Mobile-Friendly Test tool to validate individual pages. Monitor mobile usability reports in Google Search Console for site-wide issues. Use PageSpeed Insights to track Core Web Vitals scores. Set up real user monitoring (RUM) with CrUX data to track actual mobile user experiences. Run regular mobile crawls with tools like Screaming Frog using the mobile user agent to compare indexed content with desktop versions.</p>
+
+<div class='cta-box'>
+  <h3>Optimize Your Mobile Experience</h3>
+  <p>Get a comprehensive mobile SEO audit that covers Core Web Vitals, mobile usability, and mobile-first indexing readiness.</p>
+  <a class='btn-primary' href='/p/free-seo-audit.html'><i class='fas fa-search'></i> Get Mobile SEO Audit</a>
+</div>
+
+</div>
+
+<div class="our-projects" style="margin-top:48px;padding:24px 28px;background:rgba(99,102,241,0.05);border-radius:12px;border:1px solid rgba(99,102,241,0.15);text-align:center;">
+  <p style="margin:0 0 10px;font-size:0.95rem;color:var(--text-light);">Check out our latest projects and case studies</p>
+  <a href="/p/portfolio.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--primary);color:#fff;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.2s;">
+    <i class="fas fa-briefcase"></i> View Our Portfolio
+  </a>
+</div>
+
+</div>
+</div>

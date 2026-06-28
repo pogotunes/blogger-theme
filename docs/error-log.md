@@ -9,7 +9,7 @@
 
 | Bug-ID | Severity | Status | Root Cause | Files | Fix |
 |--------|----------|--------|------------|-------|-----|
-| SEO-001 | 🔴 Critical | Open | Viewport `maximum-scale=1` blocks pinch-zoom | rankrseo-theme.xml:8 | Change to `maximum-scale=5` |
+| SEO-001 | 🔴 Critical | Fixed | Viewport was `maximum-scale=1` blocking pinch-zoom | rankrseo-theme.xml:6 | Changed to `maximum-scale=5` |
 
 ---
 
