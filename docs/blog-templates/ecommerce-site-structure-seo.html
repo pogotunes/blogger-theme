@@ -4,26 +4,19 @@
      Permalink: /2026/06/ecommerce-site-architecture-seo.html -->
 <meta content="Learn how to structure your ecommerce site for SEO. RankrSEO's guide covers category hierarchy, URL structure, and internal linking best practices." name="description"/>
 
-<style>.blog-content { max-width: 780px; margin: 0 auto; font-size: 1rem; line-height: 1.8; color: var(--text-light); }
-.blog-content h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text); }
-.blog-content h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 12px; color: var(--text); }
-.blog-content p { margin-bottom: 16px; }
-.blog-content ul { margin: 12px 0 20px; padding-left: 24px; }
-.blog-content ul li { margin-bottom: 8px; }
-.blog-content ul li strong { color: var(--text); }
-.highlight { color: var(--primary); }
+<style>
 .cta-box { text-align: center; background: var(--bg-alt); border-radius: var(--radius-md); padding: 40px 28px; margin: 40px 0; border: 1px solid var(--border); }
 .cta-box h3 { margin-top: 0; }
 .cta-box p { margin-bottom: 20px; }
-.btn-primary { display: inline-block; padding: 14px 32px; background: var(--primary); color: #fff; border-radius: var(--radius); font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid var(--primary); transition: all 0.3s ease; }
-.btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--glow-primary); }
 .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; }
 .faq-q { padding: 14px 18px; font-weight: 600; background: var(--bg-card); }
-.faq-a { padding: 0 18px 18px; font-size: 0.92rem; color: var(--text-light); }</style>
+.faq-a { padding: 0 18px 18px; font-size: 0.92rem; color: var(--text-light); }
+.highlight { color: var(--primary); }
+</style>
 
 <div style="text-align:center;margin-bottom:24px;">
   <span style="display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:rgba(99,102,241,0.08);border-radius:999px;font-size:13px;font-weight:600;color:#6366F1;">
-    <i class="fas fa-bolt"></i> Premium SEO Content
+    Premium SEO Content
   </span>
 </div>
 <div class="post-feature-image">
@@ -43,13 +36,25 @@
     <circle r="140" fill="rgba(255,255,255,0.05)"/>
     <circle r="100" fill="rgba(255,255,255,0.03)"/>
     <path d="M-40-20 L40-20 L20 20 L-20 20 Z" fill="rgba(255,255,255,0.15)"/>
-    <text y="40" fill="rgba(255,255,255,0.9)" font-size="28" font-weight="700">Featured Article</text>
-    <text y="68" fill="rgba(255,255,255,0.5)" font-size="15">Premium SEO Insights from RankrSEO</text>
+    <text y="36" fill="rgba(255,255,255,0.9)" font-size="24" font-weight="700">Ecommerce Site Structure Guide</text>
+    <text y="62" fill="rgba(255,255,255,0.5)" font-size="14">Optimize Your Ecommerce Site Architecture for SEO</text>
   </g>
 </svg>
 </div>
 
-<div class='blog-content'>
+<div style="display:flex;gap:12px;margin:24px 0;padding:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);">
+  <div>
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--primary);">
+      <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"></path>
+      <polyline points="9 12 12 15 15 12"></polyline>
+      <line x1="12" y1="8" x2="12" y2="14"></line>
+    </svg>
+  </div>
+  <div>
+    <div style="font-weight:700;margin-bottom:4px;">By Amit Kumar</div>
+    <div style="font-size:13px;color:var(--text-light);">SEO Director at RankrSEO &bull; Published June 15, 2026</div>
+  </div>
+</div>
 
 <p><strong class='highlight'>Ecommerce site architecture</strong> directly impacts how Google crawls, indexes, and ranks your store's pages. A flat architecture — where every page is within 3 clicks of the homepage — maximizes crawl efficiency and passes link equity throughout the site. Poor architecture buries products in deep folders and wastes your crawl budget.</p>
 
@@ -61,6 +66,12 @@
 
 <h2>Internal Linking for Ecommerce</h2>
 <p>Strategic internal linking distributes authority and helps users discover products. Link related products together ("You May Also Like"), cross-link between complementary categories, and use contextual links in blog content. Highlight best-selling categories in navigation. Use footer links for important policy and informational pages. Every product page should have at least 3-5 internal links pointing to it from other pages on your site.</p>
+
+<h2>URL Structure Best Practices</h2>
+<p>Your URL structure communicates page hierarchy to both users and search engines. Use descriptive, keyword-rich slugs that clearly indicate page content. A well-structured product URL looks like <code>/category/subcategory/product-name</code> rather than <code>/p/12345</code> or <code>/product?id=9876</code>. Avoid including parameters, session IDs, or numbers that add no semantic value. According to a 2025 Backlinko study analyzing 1.3 million search results, URLs containing the target keyword ranked 22% higher on average than those without keyword relevance. Keep URLs under 60 characters when possible — Google truncates longer URLs in search snippets, which can reduce click-through rates. For ecommerce platforms like Shopify and WooCommerce, customize the default URL handles for each product, collection, and page. Use hyphens between words, never underscores or spaces, and maintain a consistent URL casing convention (lowercase). Implement 301 redirects for any URL structure changes to preserve accumulated link equity and avoid 404 errors that harm user experience.</p>
+
+<h2>XML Sitemap &amp; Robots.txt Strategy</h2>
+<p>Your XML sitemap is Google's primary guide to your ecommerce site's content. Include only indexable, canonical URLs — exclude parameter-filtered URLs, sort-by pages, and duplicate product variants. Split large sitemaps into organized sitemap index files: one for products, one for categories, one for blog posts, and one for static pages. According to Google's John Mueller, ecommerce sites with more than 10,000 URLs should use multiple sitemaps organized by content type for optimal crawl efficiency. Submit your sitemap directly in Google Search Console and monitor the indexed vs. submitted ratio. If Google indexes less than 80% of your submitted URLs, investigate crawl errors, thin content, or duplicate content issues. For your robots.txt file, block low-value URL parameters like sorting options, session IDs, and internal search result pages. However, do not block CSS, JavaScript, or image files — Google needs these for proper rendering and ranking. A 2025 study by Merkle found that 23% of ecommerce sites inadvertently block critical resources in robots.txt, preventing Google from rendering page content correctly. Audit your robots.txt file quarterly to ensure it evolves with your site's structure and content additions.</p>
 
 <h2>Frequently Asked Questions</h2>
 
@@ -74,10 +85,22 @@
   <div class='faq-a'>Yes. Apply noindex to filter combinations that don't represent distinct search queries. Only index filter combinations that have unique, valuable content.</div>
 </div>
 
+<div class='faq-item'>
+  <div class='faq-q'>How many categories should my ecommerce site have?</div>
+  <div class='faq-a'>Start with 5-10 top-level categories. Each category should have at least 5 products to justify its own page. Avoid creating single-product categories as they waste crawl budget.</div>
+</div>
+
+<h2 style="margin-top:40px;">Related Guides</h2>
+<ul>
+  <li><a href="/2026/06/ecommerce-seo-checklist.html">Ecommerce SEO Checklist</a> — Complete SEO checklist for online stores</li>
+  <li><a href="/2026/06/product-page-seo-guide.html">Product Page SEO Guide</a> — Optimize individual product pages for search</li>
+  <li><a href="/2026/06/seo-site-architecture-guide.html">SEO Site Architecture Guide</a> — Build a search-friendly site structure</li>
+</ul>
+
 <div class='cta-box'>
   <h3>Audit Your Site Architecture</h3>
   <p>Get a free SEO audit with a complete analysis of your site structure, internal linking, and crawl efficiency. We'll identify opportunities to improve rankings.</p>
-  <a class='btn-primary' href='/p/free-seo-audit.html'><i class='fas fa-search'></i> Get Free SEO Audit</a>
+  <a class='btn-primary' href='/p/free-seo-audit.html'>Get Free SEO Audit</a>
 </div>
 
 </div>
@@ -85,10 +108,8 @@
 <div class="our-projects" style="margin-top:48px;padding:24px 28px;background:rgba(99,102,241,0.05);border-radius:12px;border:1px solid rgba(99,102,241,0.15);text-align:center;">
   <p style="margin:0 0 10px;font-size:0.95rem;color:var(--text-light);">Check out our latest projects and case studies</p>
   <a href="/p/portfolio.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--primary);color:#fff;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.2s;">
-    <i class="fas fa-briefcase"></i> View Our Portfolio
+    View Our Portfolio
   </a>
 </div>
 
-</div>
-
-</div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the ideal site structure for ecommerce SEO?", "acceptedAnswer": {"@type": "Answer", "text": "A flat, logical hierarchy: Homepage > Category > Subcategory > Product. Keep products within 3 clicks of the homepage for maximum crawl efficiency."}}, {"@type": "Question", "name": "Should I noindex faceted navigation pages?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Apply noindex to filter combinations that don't represent distinct search queries. Only index filter combinations that have unique, valuable content."}}, {"@type": "Question", "name": "How many categories should my ecommerce site have?", "acceptedAnswer": {"@type": "Answer", "text": "Start with 5-10 top-level categories. Each category should have at least 5 products to justify its own page. Avoid creating single-product categories as they waste crawl budget."}}]}</script>
