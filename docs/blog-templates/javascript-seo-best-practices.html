@@ -58,10 +58,10 @@
 
 <div class='blog-content'>
 
-<p>Modern websites rely heavily on <strong class='highlight'>JavaScript</strong> — React, Next.js, Vue, Angular, and other frameworks power dynamic user experiences. However, JavaScript-heavy sites present unique challenges for search engine crawlers. These best practices ensure Google can properly render and index your JS-generated content.</p>
+<p>Modern websites rely heavily on <strong class='highlight'>JavaScript</strong> — React, Next.js, Vue, Angular, and other frameworks power dynamic user experiences. However, JavaScript-heavy sites present unique challenges for <a href="/2026/06/crawl-budget-optimization.html">search engine crawlers</a>. These best practices ensure Google can properly render and index your JS-generated content.</p>
 
 <h2>SSR vs. CSR: Choose the Right Rendering Strategy</h2>
-<p><strong>Server-Side Rendering (SSR)</strong> generates HTML on the server and sends a fully rendered page to both users and crawlers. <strong>Client-Side Rendering (CSR)</strong> sends a minimal HTML shell and executes JavaScript in the browser to populate content. For SEO, SSR or static site generation (SSG) is strongly preferred because Googlebot receives fully rendered HTML without needing to execute JavaScript.</p>
+<p><strong>Server-Side Rendering (SSR)</strong> generates HTML on the server and sends a fully rendered page to both users and crawlers. <strong>Client-Side Rendering (CSR)</strong> sends a minimal HTML shell and executes JavaScript in the browser to populate content. For <a href="/2026/06/technical-seo-services.html">SEO</a>, SSR or static site generation (SSG) is strongly preferred because Googlebot receives fully rendered HTML without needing to execute JavaScript.</p>
 <ul>
   <li><strong>SSR (Next.js, Nuxt, Remix)</strong> — Best for dynamic content that needs SEO.</li>
   <li><strong>SSG (Gatsby, Astro, 11ty)</strong> — Best for content-heavy sites; pre-builds HTML at build time.</li>
@@ -69,7 +69,7 @@
 </ul>
 
 <h2>Lazy Loading &amp; SEO Impact</h2>
-<p>Lazy loading improves page speed but can hide content from Googlebot if not implemented correctly. Follow these guidelines:</p>
+<p>Lazy loading improves <a href="/2026/06/core-web-vitals-optimization.html">page speed</a> but can hide content from Googlebot if not implemented correctly. Follow these guidelines:</p>
 <ul>
   <li>Use native <code>loading="lazy"</code> for images — Googlebot respects this attribute.</li>
   <li>For content lazy loading, ensure initial HTML includes the full text. Use progressive enhancement — don't lazy-load core content.</li>
@@ -77,17 +77,17 @@
 </ul>
 
 <h2>Googlebot's JavaScript Rendering</h2>
-<p>Googlebot uses a modern Chromium-based renderer (evergreen Googlebot) that processes JavaScript similarly to Chrome. However, there are important differences:</p>
+<p>Googlebot uses a modern Chromium-based renderer (evergreen Googlebot) that processes JavaScript similarly to Chrome. However, for a deeper look at how this fits into broader <a href="/2026/06/technical-seo-audit-template.html">technical audits</a>, there are important differences:</p>
 <ul>
   <li>Googlebot may defer crawling and rendering of JS-heavy pages.</li>
   <li>Complex single-page applications (SPAs) require careful route design — use the History API, not hash-based routing.</li>
-  <li>Ensure critical content and links are available in the initial HTML response, not injected after JavaScript execution.</li>
+  <li>Ensure <a href="/2026/06/seo-site-architecture-guide.html">critical content and links</a> are available in the initial HTML response, not injected after JavaScript execution.</li>
 </ul>
 
 <h2>Hydration &amp; Partial Hydration</h2>
 <p>Hydration is the process of attaching JavaScript event handlers to server-rendered HTML. Full hydration (used in traditional SSR) can bloat page size and hurt performance. Consider partial hydration patterns (Islands architecture) used by Astro and Qwik, which hydrate only interactive components.</p>
 
-<h2>Common JavaScript SEO Mistakes</h2>
+<h2>Common <a href="/2026/06/technical-seo-checklist.html">JavaScript SEO Mistakes</a></h2>
 <ul>
   <li>Using <code>#</code> hash-based routing instead of the History API — Google can't crawl hash fragments.</li>
   <li>Dynamically injecting title tags and meta descriptions via JavaScript — hardcode these in the HTML head.</li>
